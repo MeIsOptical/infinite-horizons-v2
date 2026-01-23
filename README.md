@@ -43,3 +43,12 @@
     </ul>
   </ul>
 </div>
+<div>
+  <h2>Tech Stack</h2>
+  <ul>
+    <li><b>Frontend:</b> HTML5, JavaScript, CSS</li>
+    <li><b>Backend:</b> Cloudflare Worker</li>
+    <li><b>Database:</b> Cloudflare D1 SQL Database</li>
+    <li><b>Local Storage:</b> IndexedDB</li>
+  </ul>
+</div>
