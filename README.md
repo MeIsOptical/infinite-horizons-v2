@@ -46,9 +46,23 @@
 <div>
   <h2>Tech Stack</h2>
   <ul>
-    <li><b>Frontend:</b> HTML5, JavaScript, CSS</li>
-    <li><b>Backend:</b> Cloudflare Worker</li>
-    <li><b>Database:</b> Cloudflare D1 SQL Database</li>
-    <li><b>Local Storage:</b> IndexedDB</li>
+    <li><b>Frontend:</b></li>
+    <ul>
+      <li>HTML5</li>
+      <li>JavaScript</li>
+      <li>CSS</li>
+    </ul>
+    <li><b>Backend:</b></li>
+    <ul>
+      <li>Cloudflare Worker</li>
+    </ul>
+    <li><b>Database:</b></li>
+    <ul>
+      <li>Cloudflare D1 SQL Database</li>
+    </ul>
+    <li><b>Local Storage:</b></li>
+    <ul>
+      <li>IndexedDB</li>
+    </ul>
   </ul>
 </div>
