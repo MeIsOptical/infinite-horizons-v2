@@ -1,7 +1,8 @@
 
-import { CURRENT_WORLD } from "./state.js";
+import { CURRENT_WORLD, DEBUG_MODE } from "./state.js";
 import { ASSETS } from "../assets/assets.js";
 import { getVisibleBiomePoints, pseudoRandom } from "./worldgen.js";
+import { ENTITY_ACTION_COLORS } from "./entities.js";
 
 
 //#region SETUP
@@ -26,6 +27,9 @@ const visualChunksCache = {};
 const stagingCanvas = document.createElement('canvas');
 const stagingCtx = stagingCanvas.getContext('2d');
 
+// need size of generated chunks for getVisibleElements()
+import { GEN_CHUNK_SIZE } from "./worldgen.js";
+
 //#endregion
 
 // canvas resizing
@@ -48,17 +52,17 @@ export function drawGame() {
     if (CURRENT_WORLD.camera.smoothZoom >= 0.1) {
 
         // set render list
-        const sortedDrawList = [CURRENT_WORLD.player, ...CURRENT_WORLD.props, ...CURRENT_WORLD.entities];
+        const visibleElements = getVisibleElements();
 
         // sort render list by Y position for depth
-        sortedDrawList.sort((a, b) => {
+        visibleElements.sort((a, b) => {
             const bottomA = a.y + (ASSETS[a.type][a.texture].image.naturalHeight * PIXEL_SCALE * a.scale) / 2;
             const bottomB = b.y + (ASSETS[b.type][b.texture].image.naturalHeight * PIXEL_SCALE * b.scale) / 2;
             return bottomA - bottomB;
         });
 
         // draw render list
-        for (const element of sortedDrawList) {
+        for (const element of visibleElements) {
             drawWorldElement(element);
         }
     }
@@ -67,29 +71,134 @@ export function drawGame() {
 
 
 
-
-// function to draw entities, props, and items
+// draws entities, props, and items
 function drawWorldElement(element) {
-
     const asset = ASSETS[element.type][element.texture];
     const camera = CURRENT_WORLD.camera;
     const currentZoom = camera.smoothZoom;
 
-    // get real size
+    // get reak size
     const realWidth = currentZoom * asset.image.naturalWidth * PIXEL_SCALE * element.scale;
     const realHeight = currentZoom * asset.image.naturalHeight * PIXEL_SCALE * element.scale;
     
     // get exact drawing location
-    const drawX = (canvas.width / 2) + ((element.x - camera.x) * currentZoom) - (realWidth / 2);
-    const drawY = (canvas.height / 2) + ((element.y - camera.y) * currentZoom) - (realHeight / 2);
+    const centerX = (canvas.width / 2) + ((element.x - camera.x) * currentZoom);
+    const centerY = (canvas.height / 2) + ((element.y - camera.y) * currentZoom);
     
-    ctx.drawImage(asset.image, drawX, drawY, realWidth, realHeight);
+    // save current canvas state
+    ctx.save();
+
+    // move canvas origin to the center of the element
+    ctx.translate(centerX, centerY);
+
+    // if flipped, flip
+    if (element.flipped) {
+        ctx.scale(-1, 1);
+    }
+
+    // draw the image
+    ctx.drawImage(asset.image, -realWidth / 2, -realHeight / 2, realWidth, realHeight);
+
+    // restore canvas state so other elements don't get affected
+    ctx.restore();
+
+
+    // entity stuff
+    if (element.type == "entities") {
+
+        if (element.displayName) {
+            const text = element.displayName;
+            const textY = centerY - realHeight / 2 - 15 * currentZoom
+            canvasWrite(text, centerX, textY, "#ffffff", 50 * currentZoom)
+        }
+
+        // debug
+        if (DEBUG_MODE && element.currentAction) {
+            const text = element.currentAction.type
+            const textY = centerY + realHeight / 2 + 45 * currentZoom
+            canvasWrite(text, centerX, textY, ENTITY_ACTION_COLORS[element.currentAction.type], 50 * currentZoom)
+        }
+
+    }
+}
+
+
+
+
+// function to write text on the game canvas
+function canvasWrite(text, x, y, color, fontSize) {
+
+    const camera = CURRENT_WORLD.camera;
+    const currentZoom = camera.smoothZoom;
+
+    ctx.font = `${fontSize}px 'Jersey 10'`;
+    ctx.textAlign = "center";
+
+    ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
+    ctx.fillText(
+        text, 
+        x + 3 * currentZoom, 
+        y + 3 * currentZoom
+    );
+    ctx.fillStyle = color;
+    ctx.fillText(
+        text, 
+        x, 
+        y
+    );
 }
 
 
 
 
 
+// returns all entities, items and props visible on screen
+export function getVisibleElements() {
+    const cam = CURRENT_WORLD.camera;
+    const zoom = cam.smoothZoom;
+
+    // get visible screen area in world coordinates
+    const viewW = canvas.width / zoom;
+    const viewH = canvas.height / zoom;
+
+    // set boundaries with a buffer so elements don't pop in/out at the edges
+    const viewLeft = cam.x - (viewW / 2) - 200;
+    const viewRight = cam.x + (viewW / 2) + 200;
+    const viewTop = cam.y - (viewH / 2) - 200;
+    const viewBottom = cam.y + (viewH / 2) + 200;
+
+    const chunkSize = GEN_CHUNK_SIZE;
+    const startChunkX = Math.floor(viewLeft / chunkSize);
+    const endChunkX = Math.floor(viewRight / chunkSize);
+    const startChunkY = Math.floor(viewTop / chunkSize);
+    const endChunkY = Math.floor(viewBottom / chunkSize);
+
+    const visibleProps = [];
+    for (let cx = startChunkX; cx <= endChunkX; cx++) {
+        for (let cy = startChunkY; cy <= endChunkY; cy++) {
+            const chunkKey = `${cx},${cy}`;
+            const chunk = CURRENT_WORLD.loadedChunks.find(c => c.id === chunkKey);
+            if (chunk) {
+                visibleProps.push(...chunk.props);
+            }
+        }
+    }
+
+    const isVisible = (element) => {
+        return element.x >= viewLeft && element.x <= viewRight &&
+               element.y >= viewTop && element.y <= viewBottom;
+    };
+
+    const visibleEntities = CURRENT_WORLD.entities.filter(isVisible);
+    const visibleItems = CURRENT_WORLD.items.filter(isVisible);
+
+    return [
+        CURRENT_WORLD.player,
+        ...visibleProps,
+        ...visibleEntities,
+        ...visibleItems
+    ];
+}
 
 
 

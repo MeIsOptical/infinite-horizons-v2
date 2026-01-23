@@ -2,6 +2,7 @@
 import { CURRENT_WORLD } from "./state.js";
 import { ASSETS } from "../assets/assets.js";
 import { PIXEL_SCALE } from "./visuals.js";
+import { getVisibleElements } from "./visuals.js";
 
 
 
@@ -16,12 +17,7 @@ export function getCollisions(target, strict = false) {
     const targetHitbox = getHitbox(target);
 
     // get all elements that can have collisions
-    const potentialColliders = [
-        CURRENT_WORLD.player,
-        ...(CURRENT_WORLD.props),
-        ...(CURRENT_WORLD.entities),
-        ...(CURRENT_WORLD.items)
-    ].filter(e => e !== target);
+    const potentialColliders = getVisibleElements().filter(e => e !== target);
 
     // check potential collisions
     for (const element of potentialColliders) {
@@ -57,8 +53,8 @@ function getHitbox(target) {
     const height = asset.image.naturalHeight * PIXEL_SCALE * target.scale;
 
     return {
-        left: target.x - (width / 2 * 0.8),
-        right: target.x + (width / 2 * 0.8),
+        left: target.x - (width / 2) + 10,
+        right: target.x + (width / 2) - 10,
         top: target.y - (height / 2 * -0.3),
         bottom: target.y + (height / 2),
     }

@@ -16,23 +16,30 @@ export function newCamera() {
 }
 
 // get a new player
-export function newPlayer() {
+export function newPlayer(texture) {
     return {
         //type
         type: "entities",
+        displayName: "You",
 
         // position
         x: 0,
         y: 0,
         vx: 0,
         vy: 0,
-        speed: 20,
+
+        // stats
+        stats: {
+            maxHealth: 100,
+            health: 100,
+            movementSpeed: 100
+        },
 
         // inputs
         keys: { up: false, left: false, down: false, right: false },
 
         // appearance
-        texture: "mustached_asian_elder",
+        texture: texture,
         scale: 1,
         flipped: false,
     }
@@ -44,19 +51,19 @@ export function newPlayer() {
 
 //#region CONTROL
 
-export function updatePlayer() {
+export function updatePlayer(deltaTime) {
     // get player & camera
     const player = CURRENT_WORLD.player;
     const camera = CURRENT_WORLD.camera;
 
     //update player velocity
-    if (player.keys.up) player.vy -= player.speed;
-    if (player.keys.left) player.vx -= player.speed;
-    if (player.keys.down) player.vy += player.speed;
-    if (player.keys.right) player.vx += player.speed;
+    if (player.keys.up) player.vy -= player.stats.movementSpeed;
+    if (player.keys.left) player.vx -= player.stats.movementSpeed;
+    if (player.keys.down) player.vy += player.stats.movementSpeed;
+    if (player.keys.right) player.vx += player.stats.movementSpeed;
 
     // move player
-    if (player.vx != 0 || player.vy != 0) Entities.moveEntity(player);
+    if (player.vx != 0 || player.vy != 0) Entities.moveEntity(player, deltaTime);
 
     // update camera
     let targetZoom = camera.targetZoom - camera.smoothZoom;

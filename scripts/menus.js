@@ -96,10 +96,10 @@ async function generateNewWorld(currentPage) {
     // generate world    
     const newWorldConfigFile = await fetch("./ai/worldStructureExamples.json");
     const newWorldConfig = await newWorldConfigFile.json();
-    await World.generateNewWorld(newWorldConfig["Minecraft-Like"]);
+    await World.generateNewWorld(newWorldConfig["Gemini"]);
 
     // start game loop
-    Game.gameLoop();
+    requestAnimationFrame(Game.gameLoop);
 
     // hide loading screen
     document.getElementById("newWorldLoadingPage").style.display = "none";

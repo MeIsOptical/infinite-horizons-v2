@@ -65,8 +65,26 @@
     <!-- NEW WORLD SETTINGS -->
      <div class="page" id="newWorldSettingsPage" style="display: none">
         <h1>New World</h1>
-        <button id="generateNewWorld">Generate</button>
-        <button class="backMainMenuBtn">Cancel</button>
+
+        <div id="newWorldSettingsDiv">
+            
+            <div id="newWorldSettingsBox">
+                <label for="worldPreset">Presets</label>
+                <select id="worldPreset">
+                    <option value="custom">Custom (AI)</option>
+                </select>
+            </div>
+
+            <div id="newWorldSettingsBox">
+                <label for="worldPrompt">World Prompt</label>
+                <textarea rows="4" id="worldPrompt" placeholder="Describe your world..."></textarea>
+            </div>
+
+            <div id="newWorldSettingsBox">
+                <button id="generateNewWorld">Generate</button>
+                <button class="backMainMenuBtn">Cancel</button>
+            </div>
+        </div>
      </div>
 
 
@@ -75,10 +93,12 @@
         <h1>Generating...</h1>
     </div>
 
+
     <!-- GAME CANVAS -->
     <div class="page" id="gamePage" style="display: none">
         <canvas id="gameCanvas"></canvas>
     </div>
+
 
     <script src="./scripts/main.js" type="module"></script>
     
