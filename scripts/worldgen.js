@@ -73,7 +73,7 @@ function newProp(x, y, texture) {
 
 
 
-
+//#region BIOME GENERATION
 
 // get the biome centers that are visible on screen
 export function getVisibleBiomePoints(camX, camY, screenW, screenH) {
@@ -204,3 +204,5 @@ function smoothNoise(x, y, seed) {
     
     return x1 + (x2 - x1) * v;
 }
+
+//#endregion

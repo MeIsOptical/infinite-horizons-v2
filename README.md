@@ -52,7 +52,8 @@
     <br>
     <li><b>/auth</b> - Authentication</li>
     <ul>
-      <li><code>auth.js</code>: API interface and JWT management</li>
+      <li><code>auth.js</code>: API and JWT management</li>
+      <li><code>authMenus.js</code>: Interface for user authentication</li>
     </ul>
     <br>
     <li><b>/assets</b> - Assets</li>
