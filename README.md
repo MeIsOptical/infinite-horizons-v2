@@ -1,13 +1,36 @@
 <h1>Infinite Horizons</h1>
 <p>Infinite Horizons uses LLMs to enable players to generate and explore limitless 2D environments. Whether you're crafting serene landscapes or dense cities, the possibilities are endless. But the creativity doesn't stop at world-generating; the AI dynamically generates quests as you play, creating a living story that never ends.</p>
 <br>
-<p>The game is unfinished. This is version 2, built again from scratch. You can play the v1 at <a href="https://optical-labs.ca">optical-labs.ca</a>!</p>
+<div>
+  <h3>🚧 Development Status 🚧</h3>
+  <p><b>Infinite Horizons is currently in active development.</b> This repository contains V2, a complete rewrite of the original game from scratch, made to improve the code structure.</p>
+  <p>While V2 is being built, you can play the V1 <a href="https://optical-labs.ca/infinite-horizons/" target="_blank">here</a>!</p>
+</div>
 <br>
 <div>
-  <h2>Planned Features</h2> 
+  <h2>Tech Stack</h2>
   <ul>
-    <li>AI-Powered World Generation</li>
-    <li>Never-Ending Quest System</li>
+    <li><b>Frontend:</b></li>
+    <ul>
+      <li>HTML5</li>
+      <li>JavaScript</li>
+      <li>CSS</li>
+    </ul>
+    <br>
+    <li><b>Backend:</b></li>
+    <ul>
+      <li>Cloudflare Worker</li>
+    </ul>
+    <br>
+    <li><b>Database:</b></li>
+    <ul>
+      <li>Cloudflare D1 SQL Database</li>
+    </ul>
+    <br>
+    <li><b>Local Storage:</b></li>
+    <ul>
+      <li>IndexedDB</li>
+    </ul>
   </ul>
 </div>
 <br>
@@ -42,33 +65,6 @@
     <ul>
       <li><code>expectedWorldStructure.json</code>: Schema defining the required format for world generation</li>
       <li><code>worldStructureExamples.json</code>: Example structures used for prompting the AI</li>
-    </ul>
-  </ul>
-</div>
-<br>
-<div>
-  <h2>Tech Stack</h2>
-  <ul>
-    <li><b>Frontend:</b></li>
-    <ul>
-      <li>HTML5</li>
-      <li>JavaScript</li>
-      <li>CSS</li>
-    </ul>
-    <br>
-    <li><b>Backend:</b></li>
-    <ul>
-      <li>Cloudflare Worker</li>
-    </ul>
-    <br>
-    <li><b>Database:</b></li>
-    <ul>
-      <li>Cloudflare D1 SQL Database</li>
-    </ul>
-    <br>
-    <li><b>Local Storage:</b></li>
-    <ul>
-      <li>IndexedDB</li>
     </ul>
   </ul>
 </div>
