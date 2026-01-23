@@ -1,6 +1,8 @@
 <h1>Infinite Horizons</h1>
 <p>Infinite Horizons uses LLMs to enable players to generate and explore limitless 2D environments. Whether you're crafting serene landscapes or dense cities, the possibilities are endless. But the creativity doesn't stop at world-generating; the AI dynamically generates quests as you play, creating a living story that never ends.</p>
 <br>
+<p>The game is unfinished. This is version 2, built again from scratch. You can play the v1 at <a href="https://optical-labs.ca">optical-labs.ca</a>!</p>
+<br>
 <div>
   <h2>Planned Features</h2> 
   <ul>
