@@ -1,0 +1,115 @@
+
+
+{
+    "Minecraft-Like": {
+        "settings": {
+            "worldName": "Minecraft-Like",
+            "worldDescription": "A generic but vaste and lush world.",
+            "generationAxes": {
+                "primary": "TEMPERATURE",
+                "secondary": "HUMIDITY"
+            }
+        },
+        "biomes": [
+            {
+                "biomeName": "Oasis",
+                "biomeDescription": "A rare paradise found in hot and dry climates.",
+                "biomeType": "ABOVE",
+                "generationAxes": {
+                    "primary": 0.9,
+                    "secondary": 0.1
+                },
+                "rarity": 0.97,
+                "visuals": {
+                    "groundColor": "#48cae4",
+                    "groundNoiseIntensity": 0.02
+                },
+                "props": []
+            },
+            {
+                "biomeName": "Desert",
+                "biomeDescription": "An empty desert, hot and dry.",
+                "biomeType": "REGION",
+                "generationAxes": {
+                    "primary": 0.9,
+                    "secondary": 0.1
+                },
+                "visuals": {
+                    "groundColor": "#e6ccb2",
+                    "groundNoiseIntensity": 0.03
+                },
+                "props": []
+            },
+            {
+                "biomeName": "Forest",
+                "biomeDescription": "A dense forest.",
+                "biomeType": "REGION",
+                "generationAxes": {
+                    "primary": 0.6,
+                    "secondary": 0.6
+                },
+                "visuals": {
+                    "groundColor": "#2d6a45",
+                    "groundNoiseIntensity": 0.07
+                },
+                "props": []
+            },
+            {
+                "biomeName": "Tundra",
+                "biomeDescription": "A vast frozen land.",
+                "biomeType": "REGION",
+                "generationAxes": {
+                    "primary": 0.1,
+                    "secondary": 0.4
+                },
+                "visuals": {
+                    "groundColor": "#fcf9e5",
+                    "groundNoiseIntensity": 0.01
+                },
+                "props": []
+            },
+            {
+                "biomeName": "Frozen Valley",
+                "biomeDescription": "A valley, deprived of any heat source.",
+                "biomeType": "REGION",
+                "generationAxes": {
+                    "primary": 0.0,
+                    "secondary": 0.0
+                },
+                "visuals": {
+                    "groundColor": "#c5dbe0",
+                    "groundNoiseIntensity": 0.03
+                },
+                "props": []
+            },
+            {
+                "biomeName": "Plains",
+                "biomeDescription": "Lust grass land filled with flowers and animals.",
+                "biomeType": "REGION",
+                "generationAxes": {
+                    "primary": 0.5,
+                    "secondary": 0.5
+                },
+                "visuals": {
+                    "groundColor": "#80bd75",
+                    "groundNoiseIntensity": 0.02
+                },
+                "props": []
+            },
+            {
+                "biomeName": "Swamp",
+                "biomeDescription": "Wet region, overgrown by vegetation.",
+                "biomeType": "REGION",
+                "generationAxes": {
+                    "primary": 0.6,
+                    "secondary": 0.9
+                },
+                "visuals": {
+                    "groundColor": "#283618",
+                    "groundNoiseIntensity": 0.12
+                },
+                "props": []
+            }
+        ]
+    }
+}

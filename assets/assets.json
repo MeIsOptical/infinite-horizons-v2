@@ -1,0 +1,304 @@
+
+{
+    "entities": {
+
+        "blue_smiling_slime":
+        { "isFlat": false, "hasCollision": true },
+
+        "green_smiling_slime":
+        { "isFlat": false, "hasCollision": true },
+
+        "cow":
+        { "isFlat": false, "hasCollision": true },
+
+        "chicken":
+        { "isFlat": false, "hasCollision": true },
+
+        "bald_man":
+        { "isFlat": false, "hasCollision": true },
+
+        "homeless_looking_man":
+        { "isFlat": false, "hasCollision": true },
+
+        "green_hat_man":
+        { "isFlat": false, "hasCollision": true },
+
+        "man_in_dark_suit":
+        { "isFlat": false, "hasCollision": true },
+
+        "elder_man":
+        { "isFlat": false, "hasCollision": true },
+
+        "old_sensei_man":
+        { "isFlat": false, "hasCollision": true },
+
+        "asian_girl":
+        { "isFlat": false, "hasCollision": true },
+
+        "armored_gladiator":
+        { "isFlat": false, "hasCollision": true },
+
+        "red_samurai":
+        { "isFlat": false, "hasCollision": true },
+
+        "blue_samurai":
+        { "isFlat": false, "hasCollision": true },
+
+        "black_ninja":
+        { "isFlat": false, "hasCollision": true },
+
+        "green_ninja":
+        { "isFlat": false, "hasCollision": true },
+
+        "blue_ninja":
+        { "isFlat": false, "hasCollision": true },
+
+        "red_ninja":
+        { "isFlat": false, "hasCollision": true },
+
+        "green_ninja_robot":
+        { "isFlat": false, "hasCollision": true },
+
+        "shiny_robot":
+        { "isFlat": false, "hasCollision": true },
+
+        "skull_helmet_shaman":
+        { "isFlat": false, "hasCollision": true },
+
+        "skeleton":
+        { "isFlat": false, "hasCollision": true },
+
+        "skeleton_monster":
+        { "isFlat": false, "hasCollision": true },
+
+        "red_hair_woman":
+        { "isFlat": false, "hasCollision": true },
+
+        "orange_shirt_human":
+        { "isFlat": false, "hasCollision": true },
+
+        "blue_spirit":
+        { "isFlat": false, "hasCollision": true },
+
+        "tengu":
+        { "isFlat": false, "hasCollision": true },
+
+        "blue_tengu":
+        { "isFlat": false, "hasCollision": true },
+
+        "stone_golem":
+        { "isFlat": false, "hasCollision": true },
+
+        "blond_human":
+        { "isFlat": false, "hasCollision": true },
+
+        "regular_knight":
+        { "isFlat": false, "hasCollision": true },
+
+        "golden_knight":
+        { "isFlat": false, "hasCollision": true },
+
+        "scarred_bearded_man":
+        { "isFlat": false, "hasCollision": true },
+
+        "small_green_elf":
+        { "isFlat": false, "hasCollision": true },
+
+        "cute_humanoid_frog":
+        { "isFlat": false, "hasCollision": true },
+
+        "human_with_dog_mask":
+        { "isFlat": false, "hasCollision": true },
+
+        "white_hair_mustached_man":
+        { "isFlat": false, "hasCollision": true },
+
+        "mustached_asian_elder":
+        { "isFlat": false, "hasCollision": true },
+
+        "monk":
+        { "isFlat": false, "hasCollision": true },
+
+        "white_hat_man_with_sunglasses":
+        { "isFlat": false, "hasCollision": true },
+
+        "shadow_wizard":
+        { "isFlat": false, "hasCollision": true }
+
+    },
+
+    "items": {
+
+        "generic_sword":
+        { "isFlat": true, "hasCollision": false },
+
+        "long_sword":
+        { "isFlat": true, "hasCollision": false },
+
+        "red_apple":
+        { "isFlat": true, "hasCollision": false },
+
+        "green_apple":
+        { "isFlat": true, "hasCollision": false },
+
+        "red_liquid_small_flask":
+        { "isFlat": true, "hasCollision": false },
+
+        "red_liquid_flask":
+        { "isFlat": true, "hasCollision": false },
+
+        "blue_liquid_small_flask":
+        { "isFlat": true, "hasCollision": false },
+
+        "blue_liquid_big_flask":
+        { "isFlat": true, "hasCollision": false },
+
+        "blue_gem_necklace":
+        { "isFlat": true, "hasCollision": false },
+
+        "star_necklace":
+        { "isFlat": true, "hasCollision": false },
+
+        "gold_key":
+        { "isFlat": true, "hasCollision": false },
+
+        "silver_key":
+        { "isFlat": true, "hasCollision": false },
+
+        "blue_parchment":
+        { "isFlat": true, "hasCollision": false },
+
+        "red_parchment":
+        { "isFlat": true, "hasCollision": false }
+
+    },
+
+    "props": {
+
+        "small_rock":
+        { "isFlat": false, "hasCollision": true },
+
+        "large_rock":
+        { "isFlat": false, "hasCollision": true },
+
+        "regular_cactus":
+        { "isFlat": false, "hasCollision": true },
+
+        "small_mushroom":
+        { "isFlat": false, "hasCollision": false },
+
+        "yellow_flower":
+        { "isFlat": false, "hasCollision": false },
+
+        "flower_rose":
+        { "isFlat": false, "hasCollision": false },
+
+        "tree_stump":
+        { "isFlat": false, "hasCollision": true },
+
+        "generic_tree":
+        { "isFlat": false, "hasCollision": true },
+
+        "bush":
+        { "isFlat": false, "hasCollision": false },
+
+        "grass_patch":
+        { "isFlat": false, "hasCollision": false },
+
+        "old_light_post":
+        { "isFlat": false, "hasCollision": true },
+
+        "direction_wooden_sign":
+        { "isFlat": false, "hasCollision": true },
+
+        "big_wooden_crate":
+        { "isFlat": false, "hasCollision": true },
+
+        "wooden_crate":
+        { "isFlat": false, "hasCollision": true },
+
+        "wooden_barrel":
+        { "isFlat": false, "hasCollision": true },
+
+        "tall_clay_pot":
+        { "isFlat": false, "hasCollision": true },
+
+        "big_clay_pot":
+        { "isFlat": false, "hasCollision": true },
+
+        "ritual_obelisk":
+        { "isFlat": false, "hasCollision": true },
+
+        "broken_ritual_obelisk":
+        { "isFlat": false, "hasCollision": true },
+
+        "small_tombstone":
+        { "isFlat": false, "hasCollision": true },
+
+        "big_tombstone":
+        { "isFlat": false, "hasCollision": true },
+
+        "polished_stone_cube":
+        { "isFlat": false, "hasCollision": true },
+
+        "stone_pillar":
+        { "isFlat": false, "hasCollision": true },
+
+        "broken_stone_pillar":
+        { "isFlat": false, "hasCollision": true },
+
+        "red_vending_machine":
+        { "isFlat": false, "hasCollision": true },
+
+        "futuristic_crate":
+        { "isFlat": false, "hasCollision": true },
+
+        "industrial_vent_unit":
+        { "isFlat": false, "hasCollision": true },
+
+        "futuristic_food_cart":
+        { "isFlat": false, "hasCollision": true },
+
+        "futuristic_antena_pole":
+        { "isFlat": false, "hasCollision": true },
+
+        "futuristic_solar_panels_on_pole":
+        { "isFlat": false, "hasCollision": true },
+
+        "egg_in_nest":
+        { "isFlat": false, "hasCollision": false },
+
+        "horizontal_yellow_pipe":
+        { "isFlat": false, "hasCollision": true },
+
+        "horizontal_blue_pipe":
+        { "isFlat": false, "hasCollision": true },
+
+        "horizontal_green_pipe":
+        { "isFlat": false, "hasCollision": true },
+
+        "vertical_yellow_pipe":
+        { "isFlat": false, "hasCollision": true },
+
+        "vertical_blue_pipe":
+        { "isFlat": false, "hasCollision": true },
+
+        "vertical_green_pipe":
+        { "isFlat": false, "hasCollision": true },
+
+        "vegetable_basket":
+        { "isFlat": false, "hasCollision": true },
+
+        "sunflower":
+        { "isFlat": false, "hasCollision": false }
+
+    },
+
+    "patterns": {
+
+    },
+
+    "structures": {
+        
+    }
+}

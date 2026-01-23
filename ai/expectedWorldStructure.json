@@ -1,0 +1,34 @@
+
+
+{
+    "settings": {
+        "worldName": "String: Visible name of the world.",
+        "worldDescription": "String: Visible description of the world.",
+        "generationAxes": {
+            "primary": "String: Defines what the primary axe represents when generating biomes (e.g. 'TEMPERATURE', 'WEALTH', 'CORRUPTION').",
+            "secondary": "String: Defines what the secondary axe represents when generating biomes (e.g. 'HUMIDITY', 'CRIME RATE', 'TECHNOLOGY')."
+        }
+    },
+    "biomes": [
+        {
+            "biomeName": "String: Visible name of this biome.",
+            "biomeDescription": "String: Visible description of this biome.",
+            "biomeType": "String: Generation type of this biome. Must be one of: 'REGION' (base layer), 'ABOVE' (rarer, sits on top of 'REGION').",
+            "generationAxes": {
+                "primary": "Number (0.0 to 1.0): The ideal value on the Primary Axis for this biome.",
+                "secondary": "Number (0.0 to 1.0): The ideal value on the Secondary Axis for this biome."
+            },
+            "rarity": "Number: 0.5 (very common) to 0.99 (extremely rare). Only used for 'ABOVE' biome type.",
+            "visuals": {
+                "groundColor": "String: Hex color (#rrggbb) for the floor/terrain in this biome.",
+                "groundNoiseIntensity": "Number: Defines how noisy the ground looks in this biome. Must be from 0.01 (smooth/flat) to 0.2 (very noisy/rocky)."
+            },
+            "props": [
+                {
+                    "texture": "String: Defines the appearance of the prop. Must be in OBJECTS LIBRARY",
+                    "density": "Number: Density of this prop in each chunk. Must be between 0.01 (1%) and 1.0 (100%)"
+                }
+            ]
+        }
+    ]
+}

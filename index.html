@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Infinite Horizons v2</title>
+
+    <!-- GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
+
+    <!-- STYLESHEETS -->
+    <link rel="stylesheet" href="/styles/variables.css">
+    <link rel="stylesheet" href="/styles/defaults.css">
+    <link rel="stylesheet" href="/styles/menus.css">
+    <link rel="stylesheet" href="/auth/auth.css">
+</head>
+<body>
+
+    <!-- LOGIN/REGISTER PAGE -->
+    <div class="page" id="loginPage">
+        <h1>Infinite Horizons</h1>
+
+        <form class="container" id="loginForm">
+            <h2>Please Login</h2>
+
+            <div class="formInputBlock">
+                <label for="email" class="formLabel">Email</label>
+                <input type="email" class="formInput" id="email" required>
+            </div>
+
+            <div class="formInputBlock">
+                <label for="password" class="formLabel">Password</label>
+                <input type="password" class="formInput" id="password" required>
+            </div>
+
+            <p id="loginStatus"></p>
+
+            <div class="loginBtnsBlock">
+                <button type="submit" id="loginBtn">Login</button>
+                <button type="button" id="switchLoginBtn">No Account? Register</button>
+            </div>
+        </form>
+    </div>
+
+
+    <!-- MAIN MENU -->
+    <div class="page" id="mainMenuPage" style="display: none">
+        <h1>Infinite Horizons</h1>
+
+        <div class="btnsPanel">
+            <button id="newWorldBtn">Start New Adventure</button>
+            <button id="worldsListBtn">Load Existing World</button>
+            <button id="gameSettings">Settings</button>
+
+            <hr>
+
+            <button id="logoutBtn">Log out</button>
+        </div>
+    </div>
+
+
+    <!-- NEW WORLD SETTINGS -->
+     <div class="page" id="newWorldSettingsPage" style="display: none">
+        <h1>New World</h1>
+        <button id="generateNewWorld">Generate</button>
+        <button class="backMainMenuBtn">Cancel</button>
+     </div>
+
+
+    <!-- NEW WORLD LOADING SCREEN -->
+    <div class="page" id="newWorldLoadingPage" style="display: none">
+        <h1>Generating...</h1>
+    </div>
+
+    <!-- GAME CANVAS -->
+    <div class="page" id="gamePage" style="display: none">
+        <canvas id="gameCanvas"></canvas>
+    </div>
+
+    <script src="./scripts/main.js" type="module"></script>
+    
+</body>
+</html>

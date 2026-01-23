@@ -1,0 +1,89 @@
+
+body {
+    background-color: var(--bg-main-color);
+    color: var(--text-color);
+    font-family: var(--default-font);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    background-image: radial-gradient(circle at 1px 1px, var(--border-color) 1px, transparent 0);
+    background-size: 40px 40px;
+    user-select: none;
+
+}
+
+
+
+#gameCanvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+}
+
+
+/* #region TITLES */
+
+h1 {
+    margin: 2rem 0 0 0; padding: 0;
+    font-size: clamp(5rem, 12vw, 30rem);
+    text-align: center;
+    text-shadow: var(--primary-color) 0 0 50px;
+    text-transform: uppercase;
+}
+
+h2 {
+    margin: 0; padding: 0;
+    font-size: clamp(2rem, 4vw, 15rem);
+    text-align: center;
+    text-transform: uppercase;
+}
+
+/* #endregion */
+
+
+/* #region COMPONENTS */
+
+.page {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0; left: 0;
+    margin: 0; padding: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 0; padding: 1rem;
+    background: var(--glass-color);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border-color);
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+}
+
+button {
+    font-family: var(--default-font);
+    cursor: pointer;
+}
+
+button:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+
+hr {
+    border: var(--text-color) 1px solid;
+    margin: 1rem 2rem; padding: 0;
+    width: stretch;
+}
+
+/* #endregion */

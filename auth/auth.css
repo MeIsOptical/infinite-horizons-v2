@@ -1,0 +1,94 @@
+#loginPage h1 {
+    margin-top: auto;
+}
+
+
+#loginPage {
+    margin: 0; padding: 0;
+    align-items: center;
+}
+
+
+#loginForm {
+    overflow-y: auto;
+    display: flex;
+    margin: 20px 0 auto; padding: 1rem 2rem;
+    width: 75%;
+    min-width: 10rem;
+}
+
+
+.formInputBlock {
+    margin: 0; padding: 0;
+    width: stretch;
+}
+
+
+.formInput {
+    margin: 0 20px; padding: 0.5rem;
+    width: stretch;
+
+    font-size: 1.5rem;
+    
+    color: white;
+    background-color: var(--primary-dark-color);
+    border: var(--primary-color) 2px solid;
+    border-radius: 5px;
+    box-shadow: var(--primary-color) 0 0 15px;
+    outline: none;
+
+    transition: all 0.5s ease;
+}
+
+
+.formInput:focus {
+    border: var(--primary-bright-color) 2px solid;
+    box-shadow: var(--primary-bright-color) 0 0 20px;
+}
+
+.formLabel {
+    display: block;
+    margin: 0 20px 5px; padding: 0;
+    font-size: 1.5rem;
+}
+
+
+
+.loginBtnsBlock {
+    display: grid;
+    margin: 20px auto; padding: 0;
+    width: 30%;
+    min-width: 12rem;
+    gap: 10px;
+}
+
+.loginBtnsBlock button {
+    margin: 0 auto; padding: 0.5rem 1rem;
+    width: 100%;
+    min-width: 5rem;
+    font-size: clamp(1.2rem, 1.5vw, 7rem);
+    text-align: center;
+
+    color: white;
+    background-color: var(--primary-dark-color);
+    border: var(--primary-color) 2px solid;
+    border-radius: 5px;
+    box-shadow: var(--primary-color) 0 0 10px;
+
+    transition: all 0.5s ease;
+}
+
+
+.loginBtnsBlock button:hover {
+    transform: scale(1.02);
+    border: var(--primary-bright-color) 2px solid;
+    box-shadow: var(--primary-bright-color) 0 0 20px;
+}
+
+
+
+#loginStatus {
+    margin: 0; padding: 0;
+    text-align: center;
+    font-size: 1.5rem;
+}
