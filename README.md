@@ -52,14 +52,17 @@
       <li>JavaScript</li>
       <li>CSS</li>
     </ul>
+    <br>
     <li><b>Backend:</b></li>
     <ul>
       <li>Cloudflare Worker</li>
     </ul>
+    <br>
     <li><b>Database:</b></li>
     <ul>
       <li>Cloudflare D1 SQL Database</li>
     </ul>
+    <br>
     <li><b>Local Storage:</b></li>
     <ul>
       <li>IndexedDB</li>
