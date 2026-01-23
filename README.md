@@ -8,26 +8,26 @@
 </div>
 <br>
 <div>
-  <h2>Tech Stack</h2>
+  <h2>Stack</h2>
   <ul>
-    <li><b>Frontend:</b></li>
+    <li><b>Frontend</b></li>
     <ul>
       <li>HTML5</li>
       <li>JavaScript</li>
       <li>CSS</li>
     </ul>
     <br>
-    <li><b>Backend:</b></li>
+    <li><b>Backend</b></li>
     <ul>
       <li>Cloudflare Worker</li>
     </ul>
     <br>
-    <li><b>Database:</b></li>
+    <li><b>Database</b></li>
     <ul>
       <li>Cloudflare D1 SQL Database</li>
     </ul>
     <br>
-    <li><b>Local Storage:</b></li>
+    <li><b>Local Storage</b></li>
     <ul>
       <li>IndexedDB</li>
     </ul>
