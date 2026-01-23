@@ -2,9 +2,9 @@
 <p>Infinite Horizons uses LLMs to enable players to generate and explore limitless 2D environments. Whether you're crafting serene landscapes or dense cities, the possibilities are endless. But the creativity doesn't stop at world-generating; the AI dynamically generates quests as you play, creating a living story that never ends.</p>
 <br>
 <div>
-  <h3>🚧 Development Status 🚧</h3>
+  <h2>🚧 Development Status 🚧</h2>
   <p><b>Infinite Horizons is currently in active development.</b> This repository contains V2, a complete rewrite of the original game from scratch, made to improve the code structure.</p>
-  <p>While V2 is being built, you can play the V1 <a href="https://optical-labs.ca/infinite-horizons/" target="_blank">here</a>!</p>
+  <p>While V2 is being built, you can play the V1 at <a href="https://optical-labs.ca/infinite-horizons/" target="_blank">optical-labs.ca</a>.</p>
 </div>
 <br>
 <div>
