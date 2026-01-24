@@ -9,7 +9,7 @@ import { getCollisions } from "./physics.js";
 
 // biome generation settings
 const BIOME_CELL_SIZE = 4000; // size of biomes
-const BIOME_SCALE = 0.2; // lower number = larger biomes.
+const BIOME_SCALE = 0.22; // lower number = larger biomes.
 
 // chunk generation settings
 export const GEN_CHUNK_SIZE = 2000;
@@ -289,7 +289,7 @@ export function generateChunkData(chunkX, chunkY) {
 
                 let effectiveDensity = propConfig.density;
                 if (propConfig.type === "entities") { // make entities rarer than props
-                    effectiveDensity *= 0.1;
+                    effectiveDensity *= 0.2;
                 }
 
                 if (densityRoll < effectiveDensity) {
@@ -304,7 +304,7 @@ export function generateChunkData(chunkX, chunkY) {
                     const height = asset.image.naturalHeight * PIXEL_SCALE * elementScale / 2;
 
                     // clamp to make sure the prop stays in the chunk
-                    const gridBuffer = 30;
+                    const gridBuffer = 25;
                     finalX = Math.min(Math.max(finalX, chunkWorldX + width - gridBuffer), maxChunkX - width + gridBuffer);
                     finalY = Math.min(Math.max(finalY, chunkWorldY + height - gridBuffer), maxChunkY - height + gridBuffer);
 
@@ -320,7 +320,7 @@ export function generateChunkData(chunkX, chunkY) {
                             break;
                         }
                     }
-                    else if (propConfig.type === "entities") {
+                    else if (propConfig.type === "entities") { // is an entity
                         const element = Entities.newEntity(finalX, finalY, propConfig.texture, propConfig.displayName, propConfig.traits, propConfig.stats);
                         element.flipped = pseudoRandom(propSeed + 3) > 0.5;
                         element.scale = elementScale;

@@ -32,13 +32,13 @@
                         { "texture": "regular_cactus", "density": 0.08 },
                         { "texture": "small_rock", "density": 0.02 },
                         { "texture": "large_rock", "density": 0.004 },
-                        { "texture": "broken_stone_pillar", "density": 0.002 }
+                        { "texture": "broken_stone_pillar", "density": 0.001 }
                     ],
                     "entities": [
                         {
                             "texture": "tengu",
                             "displayName": "Desert Hunter",
-                            "density": 0.004,
+                            "density": 0.005,
                             "traits": ["AGGRESSIVE", "WANDERER"],
                             "stats": {
                                 "health": "HIGH",
@@ -49,7 +49,7 @@
                         {
                             "texture": "stone_golem",
                             "displayName": "Sandstone Golem",
-                            "density": 0.002,
+                            "density": 0.003,
                             "traits": ["AGGRESSIVE"],
                             "stats": {
                                 "health": "VERY HIGH",
