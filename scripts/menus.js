@@ -50,6 +50,21 @@ async function openNewWorldSettings(currentPage) {
 
     // open new world settings menu
     document.getElementById("newWorldSettingsPage").style.display = "flex";
+
+
+    // get world presets
+    const presetWorldsFile = await fetch("./ai/worldStructureExamples.json");
+    const presetWorldsObject = await presetWorldsFile.json();
+    const worldTypes = Object.keys(presetWorldsObject);
+
+    // populate world presets
+    const presetSelect = document.getElementById('worldPreset');
+    worldTypes.forEach(type => {
+        const newOption = document.createElement('option');
+        newOption.value = type;
+        newOption.textContent = "Preset: " + type;
+        presetSelect.appendChild(newOption);
+    });
 }
 
 
@@ -93,10 +108,13 @@ async function generateNewWorld(currentPage) {
     // display loading screen
     document.getElementById("newWorldLoadingPage").style.display = "flex";
 
+    // get world preset
+    const selectedWorldPreset = document.getElementById('worldPreset').value;
+
     // generate world    
     const newWorldConfigFile = await fetch("./ai/worldStructureExamples.json");
     const newWorldConfig = await newWorldConfigFile.json();
-    await World.generateNewWorld(newWorldConfig["Gemini"]);
+    await World.generateNewWorld(newWorldConfig[selectedWorldPreset]);
 
     // start game loop
     requestAnimationFrame(Game.gameLoop);
