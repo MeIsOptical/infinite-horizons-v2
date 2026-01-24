@@ -1,8 +1,8 @@
 
 import * as Menu from "./authMenus.js"
 import * as Storage from "../scripts/storage.js";
-
-let onLoginSuccessCallback
+import { DEBUG_MODE } from "../scripts/state.js";
+import { API_URL } from "../scripts/state.js";
 
 
 
@@ -19,7 +19,7 @@ export async function init(onSuccessCallback) {
 
 
 export async function tryConnectAccount(route, email, password) {
-    const url = `https://infinite-horizons-api-v2.tobixepremium.workers.dev/auth/${route}`;
+    const url = `${API_URL}/auth/${route}`;
     
     try {
         const response = await fetch(url, {
@@ -57,7 +57,7 @@ export async function tryConnectAccount(route, email, password) {
 //#region AUTO-LOGIN
 
 async function tryAutoLogin(onSuccessCallback) {
-    onSuccessCallback(); // only for development
+    if (DEBUG_MODE) return onSuccessCallback(); // skip login screen when debugging
 
     // get token from database
     const loginToken = await Storage.getItem(Storage.STORES.AUTH, "jwt");
@@ -81,7 +81,7 @@ async function tryAutoLogin(onSuccessCallback) {
     switchLoginBtn.disabled = true;
 
 
-    const url = `https://infinite-horizons-api-v2.tobixepremium.workers.dev/auth/session`;
+    const url = `${API_URL}/auth/session`;
     
     try {
         const response = await fetch(url, {

@@ -6,8 +6,8 @@
         "worldDescription": "String: Visible description of the world",
         "playerTexture": "String: The appearance of the player. Must be in ENTITIES LIBRARY",
         "generationAxes": {
-            "primary": "String: Defines what the primary axe represents when generating biomes (e.g. 'TEMPERATURE', 'WEALTH', 'CORRUPTION'). Can be anything",
-            "secondary": "String: Defines what the secondary axe represents when generating biomes (e.g. 'HUMIDITY', 'CRIME RATE', 'TECHNOLOGY'). Can be anything"
+            "primary": "String: Defines what the primary axe represents when generating biomes (e.g., 'TEMPERATURE', 'WEALTH', 'CORRUPTION'). Can be anything",
+            "secondary": "String: Defines what the secondary axe represents when generating biomes (e.g., 'HUMIDITY', 'CRIME RATE', 'TECHNOLOGY'). Can be anything"
         }
     },
     "biomes": [
@@ -16,8 +16,8 @@
             "biomeDescription": "String: Visible description of this biome",
             "biomeType": "String: Generation type of this biome. Must be one of: 'REGION' (base layer), 'ABOVE' (rarer, sits on top of 'REGION')",
             "generationAxes": {
-                "primary": "Number (0.0 to 1.0): The ideal value on the Primary Axis for this biome",
-                "secondary": "Number (0.0 to 1.0): The ideal value on the Secondary Axis for this biome"
+                "primary": "Number (0.0 to 1.0): The ideal value on the Primary Axis for this biome. Make sure biomes cover everything, from 0.0 to 1.0.",
+                "secondary": "Number (0.0 to 1.0): The ideal value on the Secondary Axis for this biome. Make sure biomes cover everything, from 0.0 to 1.0."
             },
             "rarity": "Number: 0.5 (very common) to 0.99 (extremely rare). Only for 'ABOVE' biome type",
             "visuals": {

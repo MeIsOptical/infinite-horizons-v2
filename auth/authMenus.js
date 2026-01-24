@@ -73,7 +73,7 @@ export async function loginListener(onSuccessCallback) {
             displayStatus.style.color = "#5fd95b";
 
             // start game
-            onSuccessCallback(result.data);
+            if (loginMode === "login") onSuccessCallback(result.data);
 
         } else {
             displayStatus.innerText = result.error;

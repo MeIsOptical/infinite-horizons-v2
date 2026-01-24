@@ -9,7 +9,7 @@ import { getCollisions } from "./physics.js";
 
 // biome generation settings
 const BIOME_CELL_SIZE = 4000; // size of biomes
-const BIOME_SCALE = 0.16; // lower number = larger biomes.
+const BIOME_SCALE = 0.2; // lower number = larger biomes.
 
 // chunk generation settings
 export const GEN_CHUNK_SIZE = 2000;

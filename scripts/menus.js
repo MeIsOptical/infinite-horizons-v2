@@ -1,6 +1,7 @@
 
 import * as World from "./worldgen.js";
 import * as Game from "./game.js";
+import { generateWorldFromPrompt } from "../ai/prompts.js";
 
 
 
@@ -109,12 +110,20 @@ async function generateNewWorld(currentPage) {
     document.getElementById("newWorldLoadingPage").style.display = "flex";
 
     // get world preset
-    const selectedWorldPreset = document.getElementById('worldPreset').value;
+    const selectedWorldPreset = document.getElementById("worldPreset").value;
+    if (selectedWorldPreset === "custom") {
+        // generate world with ai
+        const worldPrompt = document.getElementById("worldPrompt").value;
+        const newWorldConfig = await generateWorldFromPrompt(worldPrompt);
+        World.generateNewWorld(newWorldConfig);
+    }
+    else {
+        // generate world from preset
+        const newWorldConfigFile = await fetch("./ai/worldStructureExamples.json");
+        const newWorldConfig = await newWorldConfigFile.json();
+        World.generateNewWorld(newWorldConfig[selectedWorldPreset].output);
 
-    // generate world    
-    const newWorldConfigFile = await fetch("./ai/worldStructureExamples.json");
-    const newWorldConfig = await newWorldConfigFile.json();
-    await World.generateNewWorld(newWorldConfig[selectedWorldPreset]);
+    }
 
     // start game loop
     requestAnimationFrame(Game.gameLoop);

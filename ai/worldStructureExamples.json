@@ -2,515 +2,331 @@
 
 {
     "Minecraft-Like": {
-        "settings": {
-            "worldName": "Minecraft-Like",
-            "worldDescription": "A generic but vaste and lush world.",
-            "playerTexture": "mustached_asian_elder",
-            "generationAxes": {
-                "primary": "TEMPERATURE",
-                "secondary": "HUMIDITY"
-            }
+        "inputs": {
+            "worldPrompt": "Generate a world that feels like Minecraft."
         },
-        "biomes": [
-            {
-                "biomeName": "Oasis",
-                "biomeDescription": "A rare paradise found in hot and dry climates.",
-                "biomeType": "ABOVE",
+        "output": {
+            "settings": {
+                "worldName": "Minecraft-Like",
+                "worldDescription": "A vast, procedurally generated natural world filled with diverse landscapes, hidden ruins, and varied wildlife.",
+                "playerTexture": "mustached_asian_elder",
                 "generationAxes": {
-                    "primary": 0.9,
-                    "secondary": 0.1
-                },
-                "rarity": 0.97,
-                "visuals": {
-                    "groundColor": "#48cae4",
-                    "groundNoiseIntensity": 0.02
-                },
-                "props": [],
-                "entities": []
+                    "primary": "TEMPERATURE",
+                    "secondary": "HUMIDITY"
+                }
             },
-            {
-                "biomeName": "Desert",
-                "biomeDescription": "An empty desert, hot and dry.",
-                "biomeType": "REGION",
-                "generationAxes": {
-                    "primary": 0.9,
-                    "secondary": 0.1
-                },
-                "visuals": {
-                    "groundColor": "#e6ccb2",
-                    "groundNoiseIntensity": 0.03
-                },
-                "props": [
-                    { "texture": "regular_cactus", "density": 0.1 },
-                    { "texture": "small_rock", "density": 0.03 },
-                    { "texture": "large_rock", "density": 0.005 }
-                ],
-                "entities": [
-                    {
-                        "texture": "armored_gladiator",
-                        "displayName": "Desert Raider",
-                        "density": 0.01,
-                        "traits": ["AGGRESSIVE", "WANDERER"],
-                        "stats": {
-                            "health": "HIGH",
-                            "movementSpeed": "MEDIUM",
-                            "visionRange": "HIGH"
-                        }
-                    }
-                ]
-            },
-            {
-                "biomeName": "Forest",
-                "biomeDescription": "A regular forest.",
-                "biomeType": "REGION",
-                "generationAxes": {
-                    "primary": 0.6,
-                    "secondary": 0.6
-                },
-                "visuals": {
-                    "groundColor": "#2d6a45",
-                    "groundNoiseIntensity": 0.07
-                },
-                "props": [
-                    { "texture": "generic_tree", "density": 0.8 },
-                    { "texture": "grass_patch", "density": 0.05 },
-                    { "texture": "bush", "density": 0.08 },
-                    { "texture": "small_mushroom", "density": 0.04 },
-                    { "texture": "small_rock", "density": 0.03 }
-                ],
-                "entities": []
-            },
-            {
-                "biomeName": "Tundra",
-                "biomeDescription": "A vast frozen land.",
-                "biomeType": "REGION",
-                "generationAxes": {
-                    "primary": 0.1,
-                    "secondary": 0.4
-                },
-                "visuals": {
-                    "groundColor": "#fcf9e5",
-                    "groundNoiseIntensity": 0.01
-                },
-                "props": [
-                    { "texture": "grass_patch", "density": 0.013 },
-                    { "texture": "bush", "density": 0.013 },
-                    { "texture": "yellow_flower", "density": 0.007 },
-                    { "texture": "flower_rose", "density": 0.007 },
-                    { "texture": "small_rock", "density": 0.004 }
-                ],
-                "entities": []
-            },
-            {
-                "biomeName": "Frozen Valley",
-                "biomeDescription": "A valley, deprived of any heat source.",
-                "biomeType": "REGION",
-                "generationAxes": {
-                    "primary": 0.0,
-                    "secondary": 0.0
-                },
-                "visuals": {
-                    "groundColor": "#c5dbe0",
-                    "groundNoiseIntensity": 0.03
-                },
-                "props": [
-                    { "texture": "bush", "density": 0.007 },
-                    { "texture": "yellow_flower", "density": 0.006 },
-                    { "texture": "small_rock", "density": 0.01 },
-                    { "texture": "large_rock", "density": 0.005}
-                ],
-                "entities": []
-            },
-            {
-                "biomeName": "Plains",
-                "biomeDescription": "Lust grass land filled with flowers and animals.",
-                "biomeType": "REGION",
-                "generationAxes": {
-                    "primary": 0.5,
-                    "secondary": 0.5
-                },
-                "visuals": {
-                    "groundColor": "#7ec971",
-                    "groundNoiseIntensity": 0.02
-                },
-                "props": [
-                    { "texture": "yellow_flower", "density": 0.013 },
-                    { "texture": "flower_rose", "density": 0.025 },
-                    { "texture": "sunflower", "density": 0.02},
-                    { "texture": "grass_patch", "density": 0.015 },
-                    { "texture": "bush", "density": 0.008 }
-                ],
-                "entities": [
-                    {
-                        "texture": "cow",
-                        "displayName": "Cow",
-                        "density": 0.01,
-                        "traits": ["COWARD", "WANDERER"],
-                        "stats": {
-                            "health": "MEDIUM",
-                            "movementSpeed": "MEDIUM",
-                            "visionRange": "LOW"
-                        }
-                    }
-                ]
-            },
-            {
-                "biomeName": "Swamp",
-                "biomeDescription": "Wet region, overgrown by vegetation.",
-                "biomeType": "REGION",
-                "generationAxes": {
-                    "primary": 0.6,
-                    "secondary": 0.9
-                },
-                "visuals": {
-                    "groundColor": "#283618",
-                    "groundNoiseIntensity": 0.12
-                },
-                "props": [
-                    { "texture": "generic_tree", "density": 0.1 },
-                    { "texture": "grass_patch", "density": 0.05 },
-                    { "texture": "bush", "density": 0.01 },
-                    { "texture": "small_mushroom", "density": 0.08 },
-                    { "texture": "small_rock", "density": 0.01 },
-                    { "texture": "large_rock", "density": 0.007}
-                ],
-                "entities": [
-                    {
-                        "texture": "green_smiling_slime",
-                        "displayName": "Swamp Slime",
-                        "density": 0.02 ,
-                        "traits": ["REGENERATIVE", "WANDERER", "STALKER"],
-                        "stats": {
-                            "health": "VERY LOW",
-                            "movementSpeed": "MEDIUM",
-                            "visionRange": "HIGH"
-                        }
-                    }
-                ]
-            }
-        ]
-    },
-
-    "Gemini": {
-        "settings": {
-            "worldName": "The Scorched Wastes",
-            "worldDescription": "A vast, ancient desert filled with forgotten magic, hostile raiders, and the ruins of a lost civilization.",
-            "playerTexture": "scarred_bearded_man",
-            "generationAxes": {
-                "primary": "ARIDITY",
-                "secondary": "ANCIENT_MAGIC"
-            }
-        },
-        "biomes": [
-            {
-                "biomeName": "Sunbleached Dunes",
-                "biomeDescription": "Endless rolling waves of golden sand beneath a blazing sun.",
-                "biomeType": "REGION",
-                "generationAxes": {
-                    "primary": 0.8,
-                    "secondary": 0.1
-                },
-                "visuals": {
-                    "groundColor": "#e8d1a7",
-                    "groundNoiseIntensity": 0.05
-                },
-                "props": [
-                    { "texture": "regular_cactus", "density": 0.03 },
-                    { "texture": "small_rock", "density": 0.02 },
-                    { "texture": "wooden_barrel", "density": 0.002 }
-                ],
-                "entities": [
-                    {
-                        "texture": "skeleton",
-                        "displayName": "Lost Traveler",
-                        "density": 0.005,
-                        "traits": ["WANDERER", "COWARD"],
-                        "stats": {
-                            "health": "LOW",
-                            "movementSpeed": "LOW",
-                            "visionRange": "MEDIUM"
-                        }
-                    }
-                ]
-            },
-            {
-                "biomeName": "Scorched Canyons",
-                "biomeDescription": "Rocky, red-clay canyons favored by bandits and scavengers.",
-                "biomeType": "REGION",
-                "generationAxes": {
-                    "primary": 0.7,
-                    "secondary": 0.3
-                },
-                "visuals": {
-                    "groundColor": "#b85e43",
-                    "groundNoiseIntensity": 0.15
-                },
-                "props": [
-                    { "texture": "large_rock", "density": 0.08 },
-                    { "texture": "stone_pillar", "density": 0.02 },
-                    { "texture": "bush", "density": 0.05 }
-                ],
-                "entities": [
-                    {
-                        "texture": "armored_gladiator",
-                        "displayName": "Canyon Raider",
-                        "density": 0.015,
-                        "traits": ["AGGRESSIVE", "STALKER"],
-                        "stats": {
-                            "health": "HIGH",
-                            "movementSpeed": "MEDIUM",
-                            "visionRange": "HIGH"
-                        }
+            "biomes": [
+                {
+                    "biomeName": "Desert",
+                    "biomeDescription": "An empty desert, hot and dry.",
+                    "biomeType": "REGION",
+                    "generationAxes": {
+                        "primary": 0.9,
+                        "secondary": 0.1
                     },
-                    {
-                        "texture": "bald_man",
-                        "displayName": "Scavenger",
-                        "density": 0.008,
-                        "traits": ["CURIOUS", "COWARD"],
-                        "stats": {
-                            "health": "MEDIUM",
-                            "movementSpeed": "HIGH",
-                            "visionRange": "MEDIUM"
-                        }
-                    }
-                ]
-            },
-            {
-                "biomeName": "Nomad's Oasis",
-                "biomeDescription": "A rare source of water and life, fiercely protected by local monks.",
-                "biomeType": "ABOVE",
-                "generationAxes": {
-                    "primary": 0.2,
-                    "secondary": 0.4
-                },
-                "rarity": 0.95,
-                "visuals": {
-                    "groundColor": "#77ab59",
-                    "groundNoiseIntensity": 0.03
-                },
-                "props": [
-                    { "texture": "generic_tree", "density": 0.15 },
-                    { "texture": "grass_patch", "density": 0.2 },
-                    { "texture": "tall_clay_pot", "density": 0.01 },
-                    { "texture": "yellow_flower", "density": 0.05 }
-                ],
-                "entities": [
-                    {
-                        "texture": "monk",
-                        "displayName": "Oasis Guardian",
-                        "density": 0.02,
-                        "traits": ["REGENERATIVE", "WANDERER"],
-                        "stats": {
-                            "health": "VERY HIGH",
-                            "movementSpeed": "LOW",
-                            "visionRange": "HIGH"
-                        }
+                    "visuals": {
+                        "groundColor": "#e6ccb2",
+                        "groundNoiseIntensity": 0.03
                     },
-                    {
-                        "texture": "cute_humanoid_frog",
-                        "displayName": "Oasis Spirit",
-                        "density": 0.01,
-                        "traits": ["CURIOUS"],
-                        "stats": {
-                            "health": "MEDIUM",
-                            "movementSpeed": "HIGH",
-                            "visionRange": "LOW"
+                    "props": [
+                        { "texture": "regular_cactus", "density": 0.08 },
+                        { "texture": "small_rock", "density": 0.02 },
+                        { "texture": "large_rock", "density": 0.004 },
+                        { "texture": "broken_stone_pillar", "density": 0.002 }
+                    ],
+                    "entities": [
+                        {
+                            "texture": "tengu",
+                            "displayName": "Desert Hunter",
+                            "density": 0.004,
+                            "traits": ["AGGRESSIVE", "WANDERER"],
+                            "stats": {
+                                "health": "HIGH",
+                                "movementSpeed": "MEDIUM",
+                                "visionRange": "MEDIUM"
+                            }
+                        },
+                        {
+                            "texture": "stone_golem",
+                            "displayName": "Sandstone Golem",
+                            "density": 0.002,
+                            "traits": ["AGGRESSIVE"],
+                            "stats": {
+                                "health": "VERY HIGH",
+                                "movementSpeed": "LOW",
+                                "visionRange": "LOW"
+                            }
                         }
-                    }
-                ]
-            },
-            {
-                "biomeName": "Graveyard of the Ancients",
-                "biomeDescription": "A dark, cursed stretch of sand filled with the ruins of a dead civilization.",
-                "biomeType": "REGION",
-                "generationAxes": {
-                    "primary": 0.9,
-                    "secondary": 0.9
+                    ]
                 },
-                "visuals": {
-                    "groundColor": "#4a3f35",
-                    "groundNoiseIntensity": 0.18
-                },
-                "props": [
-                    { "texture": "big_tombstone", "density": 0.03 },
-                    { "texture": "small_tombstone", "density": 0.07 },
-                    { "texture": "broken_ritual_obelisk", "density": 0.01 },
-                    { "texture": "broken_stone_pillar", "density": 0.04 }
-                ],
-                "entities": [
-                    {
-                        "texture": "skeleton_monster",
-                        "displayName": "Ancient Guardian",
-                        "density": 0.02,
-                        "traits": ["AGGRESSIVE", "REGENERATIVE"],
-                        "stats": {
-                            "health": "HIGH",
-                            "movementSpeed": "MEDIUM",
-                            "visionRange": "MEDIUM"
-                        }
+                {
+                    "biomeName": "Badlands",
+                    "biomeDescription": "A desolate, arid plateau of red sands and jagged rocks.",
+                    "biomeType": "REGION",
+                    "generationAxes": {
+                        "primary": 0.9,
+                        "secondary": 0.2
                     },
-                    {
-                        "texture": "shadow_wizard",
-                        "displayName": "Grave Robber Mage",
-                        "density": 0.005,
-                        "traits": ["AGGRESSIVE", "COWARD"],
-                        "stats": {
-                            "health": "LOW",
-                            "movementSpeed": "HIGH",
-                            "visionRange": "VERY HIGH"
-                        }
-                    }
-                ]
-            },
-            {
-                "biomeName": "Petrified Forest",
-                "biomeDescription": "A quiet desert filled with the stone-like remains of long-dead giant trees.",
-                "biomeType": "REGION",
-                "generationAxes": {
-                    "primary": 0.6,
-                    "secondary": 0.6
-                },
-                "visuals": {
-                    "groundColor": "#8d877e",
-                    "groundNoiseIntensity": 0.08
-                },
-                "props": [
-                    { "texture": "tree_stump", "density": 0.1 },
-                    { "texture": "polished_stone_cube", "density": 0.02 },
-                    { "texture": "large_rock", "density": 0.05 }
-                ],
-                "entities": [
-                    {
-                        "texture": "stone_golem",
-                        "displayName": "Petrified Golem",
-                        "density": 0.015,
-                        "traits": ["WANDERER", "AGGRESSIVE"],
-                        "stats": {
-                            "health": "VERY HIGH",
-                            "movementSpeed": "VERY LOW",
-                            "visionRange": "LOW"
-                        }
-                    }
-                ]
-            },
-            {
-                "biomeName": "The Salt Flats",
-                "biomeDescription": "A flat, blindingly white expanse where temperatures fluctuate to extremes.",
-                "biomeType": "REGION",
-                "generationAxes": {
-                    "primary": 1.0,
-                    "secondary": 0.2
-                },
-                "visuals": {
-                    "groundColor": "#f5f5f5",
-                    "groundNoiseIntensity": 0.01
-                },
-                "props": [
-                    { "texture": "small_rock", "density": 0.01 },
-                    { "texture": "industrial_vent_unit", "density": 0.003 }
-                ],
-                "entities": [
-                    {
-                        "texture": "shiny_robot",
-                        "displayName": "Survey Drone",
-                        "density": 0.008,
-                        "traits": ["WANDERER", "CURIOUS"],
-                        "stats": {
-                            "health": "MEDIUM",
-                            "movementSpeed": "HIGH",
-                            "visionRange": "VERY HIGH"
-                        }
-                    }
-                ]
-            },
-            {
-                "biomeName": "Shaman's Mesa",
-                "biomeDescription": "High, rocky plateaus crackling with desert magic and ritual sites.",
-                "biomeType": "ABOVE",
-                "generationAxes": {
-                    "primary": 0.5,
-                    "secondary": 0.8
-                },
-                "rarity": 0.90,
-                "visuals": {
-                    "groundColor": "#cf6f34",
-                    "groundNoiseIntensity": 0.12
-                },
-                "props": [
-                    { "texture": "ritual_obelisk", "density": 0.01 },
-                    { "texture": "big_clay_pot", "density": 0.03 },
-                    { "texture": "large_rock", "density": 0.06 }
-                ],
-                "entities": [
-                    {
-                        "texture": "skull_helmet_shaman",
-                        "displayName": "Mesa Shaman",
-                        "density": 0.01,
-                        "traits": ["REGENERATIVE", "WANDERER"],
-                        "stats": {
-                            "health": "MEDIUM",
-                            "movementSpeed": "MEDIUM",
-                            "visionRange": "HIGH"
-                        }
+                    "visuals": {
+                        "groundColor": "#a05a2c",
+                        "groundNoiseIntensity": 0.15
                     },
-                    {
-                        "texture": "tengu",
-                        "displayName": "Mesa Spirit",
-                        "density": 0.005,
-                        "traits": ["AGGRESSIVE", "STALKER"],
-                        "stats": {
-                            "health": "HIGH",
-                            "movementSpeed": "VERY HIGH",
-                            "visionRange": "VERY HIGH"
+                    "props": [
+                        { "texture": "small_rock", "density": 0.1 },
+                        { "texture": "large_rock", "density": 0.08 },
+                        { "texture": "tree_stump", "density": 0.005 },
+                        { "texture": "bush", "density": 0.01 }
+                    ],
+                    "entities": [
+                        {
+                            "texture": "skeleton",
+                            "displayName": "Dust Skeleton",
+                            "density": 0.015,
+                            "traits": ["AGGRESSIVE", "WANDERER"],
+                            "stats": {
+                                "health": "MEDIUM",
+                                "movementSpeed": "MEDIUM",
+                                "visionRange": "MEDIUM"
+                            }
                         }
-                    }
-                ]
-            },
-            {
-                "biomeName": "Scavenger's Junkyard",
-                "biomeDescription": "A rusted technological graveyard swallowed by the desert sands.",
-                "biomeType": "ABOVE",
-                "generationAxes": {
-                    "primary": 0.4,
-                    "secondary": 0.1
+                    ]
                 },
-                "rarity": 0.85,
-                "visuals": {
-                    "groundColor": "#c2a984",
-                    "groundNoiseIntensity": 0.10
-                },
-                "props": [
-                    { "texture": "big_wooden_crate", "density": 0.04 },
-                    { "texture": "futuristic_crate", "density": 0.02 },
-                    { "texture": "horizontal_yellow_pipe", "density": 0.03 },
-                    { "texture": "old_light_post", "density": 0.01 },
-                    { "texture": "red_vending_machine", "density": 0.005 }
-                ],
-                "entities": [
-                    {
-                        "texture": "green_ninja_robot",
-                        "displayName": "Malfunctioning Guardian",
-                        "density": 0.012,
-                        "traits": ["AGGRESSIVE"],
-                        "stats": {
-                            "health": "MEDIUM",
-                            "movementSpeed": "HIGH",
-                            "visionRange": "MEDIUM"
-                        }
+                {
+                    "biomeName": "Forest",
+                    "biomeDescription": "A dense, regular forest teeming with natural resources.",
+                    "biomeType": "REGION",
+                    "generationAxes": {
+                        "primary": 0.6,
+                        "secondary": 0.6
                     },
-                    {
-                        "texture": "homeless_looking_man",
-                        "displayName": "Scrap Trader",
-                        "density": 0.005,
-                        "traits": ["WANDERER", "CURIOUS"],
-                        "stats": {
-                            "health": "LOW",
-                            "movementSpeed": "LOW",
-                            "visionRange": "MEDIUM"
+                    "visuals": {
+                        "groundColor": "#2d6a45",
+                        "groundNoiseIntensity": 0.07
+                    },
+                    "props": [
+                        { "texture": "generic_tree", "density": 0.8 },
+                        { "texture": "tree_stump", "density": 0.02 },
+                        { "texture": "grass_patch", "density": 0.07 },
+                        { "texture": "bush", "density": 0.08 },
+                        { "texture": "small_mushroom", "density": 0.04 },
+                        { "texture": "small_rock", "density": 0.03 },
+                        { "texture": "flower_rose", "density": 0.06 }
+                    ],
+                    "entities": [
+                        {
+                            "texture": "chicken",
+                            "displayName": null,
+                            "density": 0.01,
+                            "traits": ["COWARD", "WANDERER"],
+                            "stats": {
+                                "health": "LOW",
+                                "movementSpeed": "MEDIUM",
+                                "visionRange": "LOW"
+                            }
                         }
-                    }
-                ]
-            }
-        ]
+                    ]
+                },
+                {
+                    "biomeName": "Mystic Ruins",
+                    "biomeDescription": "Ancient, overgrown remnants of a forgotten civilization.",
+                    "biomeType": "ABOVE",
+                    "generationAxes": {
+                        "primary": 0.6,
+                        "secondary": 0.7
+                    },
+                    "rarity": 0.98,
+                    "visuals": {
+                        "groundColor": "#4a5d23",
+                        "groundNoiseIntensity": 0.18
+                    },
+                    "props": [
+                        { "texture": "stone_pillar", "density": 0.01 },
+                        { "texture": "broken_stone_pillar", "density": 0.03 },
+                        { "texture": "ritual_obelisk", "density": 0.004 },
+                        { "texture": "big_wooden_crate", "density": 0.01 },
+                        { "texture": "grass_patch", "density": 0.08 }
+                    ],
+                    "entities": [
+                        {
+                            "texture": "shadow_wizard",
+                            "displayName": "Ruins Guardian",
+                            "density": 0.003,
+                            "traits": ["AGGRESSIVE"],
+                            "stats": {
+                                "health": "HIGH",
+                                "movementSpeed": "MEDIUM",
+                                "visionRange": "HIGH"
+                            }
+                        },
+                        {
+                            "texture": "skeleton_monster",
+                            "displayName": "Giant Skeleton",
+                            "density": 0.002,
+                            "traits": ["AGGRESSIVE", "REGENERATIVE"],
+                            "stats": {
+                                "health": "VERY HIGH",
+                                "movementSpeed": "LOW",
+                                "visionRange": "MEDIUM"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "biomeName": "Tundra",
+                    "biomeDescription": "A vast frozen land.",
+                    "biomeType": "REGION",
+                    "generationAxes": {
+                        "primary": 0.1,
+                        "secondary": 0.4
+                    },
+                    "visuals": {
+                        "groundColor": "#fcf9e5",
+                        "groundNoiseIntensity": 0.01
+                    },
+                    "props": [
+                        { "texture": "grass_patch", "density": 0.01 },
+                        { "texture": "bush", "density": 0.013 },
+                        { "texture": "yellow_flower", "density": 0.007 },
+                        { "texture": "flower_rose", "density": 0.007 },
+                        { "texture": "small_rock", "density": 0.004 }
+                    ],
+                    "entities": [
+                        {
+                            "texture": "blue_tengu",
+                            "displayName": "Frost Stalker",
+                            "density": 0.003,
+                            "traits": ["STALKER", "WANDERER"],
+                            "stats": {
+                                "health": "MEDIUM",
+                                "movementSpeed": "HIGH",
+                                "visionRange": "HIGH"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "biomeName": "Frozen Valley",
+                    "biomeDescription": "A deep valley, completely deprived of any heat source.",
+                    "biomeType": "REGION",
+                    "generationAxes": {
+                        "primary": 0.0,
+                        "secondary": 0.0
+                    },
+                    "visuals": {
+                        "groundColor": "#c5dbe0",
+                        "groundNoiseIntensity": 0.03
+                    },
+                    "props": [
+                        { "texture": "bush", "density": 0.007 },
+                        { "texture": "yellow_flower", "density": 0.006 },
+                        { "texture": "small_rock", "density": 0.01 },
+                        { "texture": "large_rock", "density": 0.005}
+                    ],
+                    "entities": [
+                        {
+                            "texture": "skeleton",
+                            "displayName": "Deceased Stray",
+                            "density": 0.01,
+                            "traits": ["AGGRESSIVE", "WANDERER"],
+                            "stats": {
+                                "health": "MEDIUM",
+                                "movementSpeed": "MEDIUM",
+                                "visionRange": "MEDIUM"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "biomeName": "Plains",
+                    "biomeDescription": "Lust grassland filled with flowers and animals.",
+                    "biomeType": "REGION",
+                    "generationAxes": {
+                        "primary": 0.5,
+                        "secondary": 0.5
+                    },
+                    "visuals": {
+                        "groundColor": "#7ec971",
+                        "groundNoiseIntensity": 0.02
+                    },
+                    "props": [
+                        { "texture": "yellow_flower", "density": 0.013 },
+                        { "texture": "flower_rose", "density": 0.025 },
+                        { "texture": "sunflower", "density": 0.02},
+                        { "texture": "grass_patch", "density": 0.015 },
+                        { "texture": "bush", "density": 0.008 }
+                    ],
+                    "entities": [
+                        {
+                            "texture": "cow",
+                            "displayName": "Cow",
+                            "density": 0.01,
+                            "traits": ["COWARD", "WANDERER"],
+                            "stats": {
+                                "health": "MEDIUM",
+                                "movementSpeed": "MEDIUM",
+                                "visionRange": "LOW"
+                            }
+                        },
+                        {
+                            "texture": "regular_knight",
+                            "displayName": "Wandering Knight",
+                            "density": 0.001,
+                            "traits": ["WANDERER", "REGENERATIVE"],
+                            "stats": {
+                                "health": "HIGH",
+                                "movementSpeed": "MEDIUM",
+                                "visionRange": "MEDIUM"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "biomeName": "Swamp",
+                    "biomeDescription": "Wet region, overgrown by vegetation.",
+                    "biomeType": "REGION",
+                    "generationAxes": {
+                        "primary": 0.6,
+                        "secondary": 0.9
+                    },
+                    "visuals": {
+                        "groundColor": "#283618",
+                        "groundNoiseIntensity": 0.12
+                    },
+                    "props": [
+                        { "texture": "generic_tree", "density": 0.1 },
+                        { "texture": "grass_patch", "density": 0.05 },
+                        { "texture": "bush", "density": 0.01 },
+                        { "texture": "small_mushroom", "density": 0.08 },
+                        { "texture": "small_rock", "density": 0.01 },
+                        { "texture": "large_rock", "density": 0.007},
+                        { "texture": "broken_ritual_obelisk", "density": 0.002 }
+                    ],
+                    "entities": [
+                        {
+                            "texture": "green_smiling_slimeball",
+                            "displayName": null,
+                            "density": 0.02 ,
+                            "traits": ["REGENERATIVE", "WANDERER", "STALKER", "COWARD"],
+                            "stats": {
+                                "health": "LOW",
+                                "movementSpeed": "MEDIUM",
+                                "visionRange": "HIGH"
+                            }
+                        },
+                        {
+                            "texture": "skull_helmet_shaman",
+                            "displayName": "Witch",
+                            "density": 0.008,
+                            "traits": ["REGENERATIVE", "AGGRESSIVE"],
+                            "stats": {
+                                "health": "HIGH",
+                                "movementSpeed": "MEDIUM",
+                                "visionRange": "MEDIUM"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
     }
 }

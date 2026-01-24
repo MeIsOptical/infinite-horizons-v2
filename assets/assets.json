@@ -2,10 +2,10 @@
 {
     "entities": {
 
-        "blue_smiling_slime":
+        "blue_smiling_slimeball":
         { "isFlat": false, "hasCollision": true },
 
-        "green_smiling_slime":
+        "green_smiling_slimeball":
         { "isFlat": false, "hasCollision": true },
 
         "cow":
@@ -267,24 +267,6 @@
 
         "egg_in_nest":
         { "isFlat": false, "hasCollision": false },
-
-        "horizontal_yellow_pipe":
-        { "isFlat": false, "hasCollision": true },
-
-        "horizontal_blue_pipe":
-        { "isFlat": false, "hasCollision": true },
-
-        "horizontal_green_pipe":
-        { "isFlat": false, "hasCollision": true },
-
-        "vertical_yellow_pipe":
-        { "isFlat": false, "hasCollision": true },
-
-        "vertical_blue_pipe":
-        { "isFlat": false, "hasCollision": true },
-
-        "vertical_green_pipe":
-        { "isFlat": false, "hasCollision": true },
 
         "vegetable_basket":
         { "isFlat": false, "hasCollision": true },
