@@ -13,12 +13,14 @@ export async function loadAllAssets() {
 
         const promises = [];
 
+        const assetCategories = ["entities", "items", "props", "tiles"];
+
         // loop all categories
-        for (const category in manifest) {
+        for (const category of assetCategories) {
 
             ASSETS[category] = {};
 
-            // loop all assets in category
+            // loop assets in each category
             for (const asset in manifest[category]) {
 
                 // grab asset properties
@@ -59,6 +61,8 @@ export async function loadAllAssets() {
         }
 
         await Promise.all(promises);
+
+        ASSETS.structures = manifest.structures;
 
     }
     catch (error) {

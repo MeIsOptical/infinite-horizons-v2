@@ -26,6 +26,8 @@ export async function generateWorldFromPrompt(prompt) {
     formattedBody.worldPrompt = prompt;
     formattedBody.availableProps = Object.keys(ASSETS.props);
     formattedBody.availableEntities = Object.keys(ASSETS.entities);
+    formattedBody.availableTiles = Object.keys(ASSETS.tiles);
+    formattedBody.availableStructures = Object.keys(ASSETS.structures);
     formattedBody.worldStructure = worldStructure;
     formattedBody.worldExamples = worldExamples
 

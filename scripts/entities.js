@@ -13,11 +13,11 @@ const HEALTH_MAP = {
 }
 
 const MOV_SPEED_MAP = {
-    "VERY LOW": 10,
-    "LOW": 20,
-    "MEDIUM": 35,
-    "HIGH": 60,
-    "VERY HIGH": 90
+    "VERY LOW": 0.2,
+    "LOW": 0.6,
+    "MEDIUM": 1,
+    "HIGH": 1.6,
+    "VERY HIGH": 3
 }
 
 const VISION_RANGE_MAP = {
@@ -35,7 +35,8 @@ export const ENTITY_ACTION_COLORS = {
     "WANDER": "#9cff5f",
     "ATTACK": "#ff5f5f",
     "FLEE": "#ffee58",
-    "FOLLOW": "#d078ff"
+    "FOLLOW": "#d078ff",
+    "WEAVE": "#ff9b53"
 }
 
 
@@ -74,21 +75,18 @@ export function newEntity(x, y, texture, displayName, traits, stats) {
 //#region MOVEMENT
 
 // move entity based on velocity
-export function moveEntity(entity, deltaTime) {
+export function moveEntity(entity) {
     if (entity.vx < 0) { entity.flipped = true; }
     else if (entity.vx > 0) entity.flipped = false;
 
-    const realVX = entity.vx * deltaTime;
-    const realVY = entity.vy * deltaTime;
-
     // move entity x
-    entity.x += realVX;
+    entity.x += entity.vx;
     if (Physics.getCollisions(entity).length > 0) { // colliding with something
         // go back
-        entity.x -= realVX;
+        entity.x -= entity.vx;
         // slightly move until collides
-        const step = Math.sign(realVX);
-        for (let i = 0; i < Math.abs(realVX); i++) {
+        const step = Math.sign(entity.vx);
+        for (let i = 0; i < Math.abs(entity.vx); i++) {
             entity.x += step;
             if (Physics.getCollisions(entity).length > 0) {
                 entity.x -= step;
@@ -101,13 +99,13 @@ export function moveEntity(entity, deltaTime) {
 
 
     // move entity y
-    entity.y += realVY;
+    entity.y += entity.vy;
     if (Physics.getCollisions(entity).length > 0) { // colliding with something
         // go back
-        entity.y -= realVY;
+        entity.y -= entity.vy;
         // slightly move until collides
-        const step = Math.sign(realVY);
-        for (let i = 0; i < Math.abs(realVY); i++) {
+        const step = Math.sign(entity.vy);
+        for (let i = 0; i < Math.abs(entity.vy); i++) {
             entity.y += step;
             if (Physics.getCollisions(entity).length > 0) {
                 entity.y -= step;
@@ -161,56 +159,86 @@ export function updateNearbyEntities(deltaTime) {
 
 
 const entityBehavior = {
-    "AGGRESSIVE": (entity, rangeSq, distSq) => {
+    "AGGRESSIVE": (entity, player, rangeSq, distSq) => {
         // if player is within range, attack them
         if (distSq < rangeSq) return { type: "ATTACK", weight: 5, speed: 1.1 };
         return;
     },
-    "REGENERATIVE": (entity, rangeSq, distSq) => {
+    "REGENERATIVE": (entity, player, rangeSq, distSq) => {
         // passive effect: heal the entity slightly every frame
         if (entity.stats.health < entity.stats.maxHealth) entity.stats.health += 0.01;
         // run away to heal if health is under 30%
         if (entity.stats.health < entity.stats.maxHealth * 0.3) return { type: "FLEE", weight: 12, speed: 1.1 };
         return null;
     },
-    "COWARD": (entity, rangeSq, distSq) => {
+    "COWARD": (entity, player, rangeSq, distSq) => {
         // run away if health under 60% and player is within range
-        if (distSq < rangeSq && entity.stats.health < entity.stats.maxHealth * 0.6) return { type: "FLEE", weight: 15, speed: 1.2 };
+        if (distSq < rangeSq && entity.stats.health < entity.stats.maxHealth * 0.6) return { type: "FLEE", weight: 15, speed: 1.3 };
         return;
     },
-    "WANDERER": (entity, rangeSq, distSq) => {
+    "WANDERER": (entity, player, rangeSq, distSq) => {
         // basic behavior
         return { type: "WANDER", weight: 1, speed: 0.5 };
     },
-    "CURIOUS": (entity, rangeSq, distSq) => {
-        // follow the player if within range
-        if (distSq < rangeSq) return { type: "FOLLOW", weight: 2, speed: 0.6 }; 
+    "SKITTISH": (entity, player, rangeSq, distSq) => {
+        // minimum  distance
+        const minDistSq = rangeSq * 0.36; // 0.6 * 0.6 = 0.36
+        // player too close
+        if (distSq < minDistSq) return { type: "FLEE", weight: 8, speed: 1.1 };
         return null;
     },
-    "STALKER": (entity, rangeSq, distSq) => {
+    "COMPANION": (entity, player, rangeSq, distSq) => {
+        // minimum distance
+        const minDistSq = 90000; // 300 * 300 = 90000
+        // maximum distance
+        const maxDistSq = 490000; // 700 * 700 = 490000
+        // player too close
+        if (distSq < minDistSq) return { type: "FLEE", weight: 4, speed: 1.1 };
+        // sweet spot
+        if (distSq >= minDistSq && distSq <= maxDistSq) return { type: "WANDER", weight: 2, speed: 0.2 }; 
+        // player too far
+        if (distSq < rangeSq) return { type: "FOLLOW", weight: 3, speed: 1.2 };
+        return null;
+    },
+    "STALKER": (entity, player, rangeSq, distSq) => {
         // minimum distance: 45%
         const minDistSq = rangeSq * 0.2025; // 0.45 * 0.45 = 0.2025
         // maximum distance: 70%
         const maxDistSq = rangeSq * 0.49; // 0.7 * 0.7 = 0.49
         // player too close (0%-45%)
-        if (distSq < minDistSq) return { type: "FLEE", weight: 3, speed: 1.3 };
+        if (distSq < minDistSq) return { type: "FLEE", weight: 4, speed: 1.2 };
         // sweet spot (45%-70%)
-        if (distSq >= minDistSq && distSq <= maxDistSq) return { type: "IDLE", weight: 3, speed: 0 }; 
+        if (distSq >= minDistSq && distSq <= maxDistSq) return { type: "IDLE", weight: 2, speed: 0 }; 
         // player too far (70%-100%)
-        if (distSq < rangeSq) return { type: "FOLLOW", weight: 3, speed: 1.1 };
+        if (distSq < rangeSq) return { type: "FOLLOW", weight: 3, speed: 1 };
         return null;
-    }
+    },
+    "VULTURE": (entity, player, rangeSq, distSq) => {
+        // player at low health
+        if (distSq < rangeSq && player.stats.health < player.stats.maxHealth * 0.4) return { type: "ATTACK", weight: 10, speed: 1.3 };
+        return null;
+    },
+    "VIPER": (entity, player, rangeSq, distSq) => {
+        // charge distance
+        const chargeZoneSq = 360000; // 600 * 600 = 360000
+        // charge if very close
+        if (distSq < chargeZoneSq) return { type: "ATTACK", weight: 8, speed: 2 };
+        // weave slowly towards player until close enough
+        if (distSq < rangeSq) return { type: "WEAVE", weight: 6, speed: 0.8 };
+        return null;
+    },
 }
 
 
 // checks which is the best action to do based on entity traits
 function updateEntity(entity, deltaTime) {
-    const distSq = getDistanceSq(entity, CURRENT_WORLD.player);
+    const player = CURRENT_WORLD.player;
+    const distSq = getDistanceSq(entity, player);
     let bestAction = { type: "WANDER", weight: 0, speed: 0.6 }; // default behavior
 
     const rangeSq = entity.stats.visionRange * entity.stats.visionRange;
     entity.traits.forEach(traitName => {
-        const action = entityBehavior[traitName](entity, rangeSq, distSq);
+        const action = entityBehavior[traitName](entity, player, rangeSq, distSq);
         if (action && action.weight > bestAction.weight) bestAction = action;
     });
 
@@ -258,6 +286,12 @@ function executeEntityAction(entity, action, deltaTime) {
             speedMultiplier = entity.wanderSpeed;
             break;
 
+        case "WEAVE":
+            // point towards player, but moves in a zigzag pattern
+            const baseAngle = Math.atan2(player.y - entity.y, player.x - entity.x);
+            targetAngle = baseAngle + Math.sin(Date.now() / 400) * 1.2; 
+            break;
+
         case "IDLE":
             isMoving = false;
             break;
@@ -274,7 +308,7 @@ function executeEntityAction(entity, action, deltaTime) {
         entity.flipped = entity.vx < 0; 
     }
 
-    if (entity.vx != 0 || entity.vy != 0) moveEntity(entity, deltaTime);
+    if (entity.vx != 0 || entity.vy != 0) moveEntity(entity);
 }
 
 //#endregion

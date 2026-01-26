@@ -8,3 +8,13 @@ export const API_URL = "https://infinite-horizons-api-v2.tobixepremium.workers.d
 
 // global variable holding all world data
 export const CURRENT_WORLD = {};
+
+export let IS_PAUSED = false;
+
+export function togglePause(forcedState = null) {
+    if (forcedState !== null) {
+        IS_PAUSED = forcedState;
+    } else {
+        IS_PAUSED = !IS_PAUSED;
+    }
+}

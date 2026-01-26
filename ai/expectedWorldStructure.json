@@ -16,8 +16,8 @@
             "biomeDescription": "String: Visible description of this biome",
             "biomeType": "String: Generation type of this biome. Must be one of: 'REGION' (base layer), 'ABOVE' (rarer, sits on top of 'REGION')",
             "generationAxes": {
-                "primary": "Number (0.0 to 1.0): The ideal value on the Primary Axis for this biome. Make sure biomes cover everything, from 0.0 to 1.0.",
-                "secondary": "Number (0.0 to 1.0): The ideal value on the Secondary Axis for this biome. Make sure biomes cover everything, from 0.0 to 1.0."
+                "primary": "Number (0.0 to 1.0): The ideal value on the Primary Axis for this biome. Make sure biomes cover everything, from 0.0 to 1.0",
+                "secondary": "Number (0.0 to 1.0): The ideal value on the Secondary Axis for this biome. Make sure biomes cover everything, from 0.0 to 1.0"
             },
             "rarity": "Number: 0.5 (very common) to 0.99 (extremely rare). Only for 'ABOVE' biome type",
             "visuals": {
@@ -27,19 +27,35 @@
             "props": [
                 {
                     "texture": "String: The appearance of the prop. Must be in OBJECTS LIBRARY",
-                    "density": "Number: Density of this prop in each chunk. Must be between 0.001 (0.1% - rare) and 1.0 (100% - extremely dense)"
+                    "density": "Number: Density of this prop in each chunk. Must be between 0.001 (rare) and 1.0 (extremely dense)"
                 }
             ],
             "entities": [
                 {
-                    "texture": "String: The appearance of the entity. Must be in ENTITIES LIBRARY",
-                    "displayName": "String (Optional): The visible name of the entity. Set to NULL if entity is generic.",
-                    "density": "Number: Density of this prop in each chunk. Must be between 0.001 (0.1% - rare) and 1.0 (100% - extremely dense)",
-                    "traits": [ "String: The behavior of the entity. Choose all traits that apply. Must be one of: 'AGGRESSIVE' (attacks player when in range), 'REGENERATIVE' (slowly regenerates its health over time & runs away if health is too low), 'COWARD' (runs away when health gets low), 'WANDERER' (wanders around), 'CURIOUS' (follows the player when in range), 'STALKER' (when in range, follows the player from a distance)" ],
+                    "texture": "String: The appearance of this entity. Must be in ENTITIES LIBRARY",
+                    "displayName": "String (Optional): The visible name of this entity. Set to NULL if entity is generic.",
+                    "density": "Number: Density of this entity in each chunk. Must be between 0.001 (rare) and 1.0 (extremely dense)",
+                    "traits": [ "String: The behavior of this entity. Choose all that apply from: 'AGGRESSIVE' (attacks player on sight), 'REGENERATIVE' (passive heal & flees player when health too low), 'COWARD' (flees when health too low), 'SKITTISH' (flees if player approaches), 'WANDERER' (moves aimlessly), 'COMPANION' (follows player at medium distance), 'STALKER' (watches player from a distance, flees if approached), 'VULTURE' (attacks only if player health is low), 'VIPER' (slowly weaves towards player, then attacks by charging at them)" ],
                     "stats": {
                         "health": "String: The health of this entity. Must be one of: 'VERY LOW', 'LOW', 'MEDIUM', 'HIGH', 'VERY HIGH'",
                         "movementSpeed": "String: The speed at which this entity moves. Must be one of: 'VERY LOW', 'LOW', 'MEDIUM', 'HIGH', 'VERY HIGH'",
                         "visionRange": "String: The vision range of this entity. Must be one of: 'VERY LOW', 'LOW', 'MEDIUM', 'HIGH', 'VERY HIGH'"
+                    }
+                }
+            ],
+            "structures": [
+                {
+                    "layout": "String: The type of this structure. Must be in STRUCTURES LIBRARY",
+                    "density": "Number: Density of this structure in each chunk. Must be between 0.001 (rare) and 1.0 (extremely dense)",
+                    "properties": {
+                        "walls": {
+                            "texture": "String: The wall pattern of this structure. Must be in TILES LIBRARY",
+                            "color": "String: Hex color (#rrggbb) for the walls of this structure"
+                        },
+                        "floors": {
+                            "texture": "String: The floor pattern of this structure. Must be in TILES LIBRARY",
+                            "color": "String: Hex color (#rrggbb) for the floors of this structure"
+                        }
                     }
                 }
             ]

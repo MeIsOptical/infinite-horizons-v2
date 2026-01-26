@@ -4,16 +4,17 @@ import { PIXEL_SCALE } from "./visuals.js";
 import * as Player from "./player.js";
 import * as Entities from "./entities.js";
 import { CURRENT_WORLD } from "./state.js";
-import { getCollisions } from "./physics.js";
+import { getCollisionsFromArray } from "./physics.js";
 
 
 // biome generation settings
 const BIOME_CELL_SIZE = 4000; // size of biomes
-const BIOME_SCALE = 0.22; // lower number = larger biomes.
+const BIOME_SCALE = 0.26; // lower number = larger biomes.
 
 // chunk generation settings
-export const GEN_CHUNK_SIZE = 2000;
-const PROP_SPAWN_STEP = 350; // distance between potential spawn attempts
+const PROP_SPAWN_STEP = 300; // distance between potential spawn attempts
+const TILE_SIZE = 16 * PIXEL_SCALE;
+export const GEN_CHUNK_SIZE = TILE_SIZE * 36;
 
 
 
@@ -25,17 +26,19 @@ export async function generateNewWorld(newWorldConfig) {
     CURRENT_WORLD.entities = [];
     CURRENT_WORLD.items = [];
 
+    // player
+    CURRENT_WORLD.player = Player.newPlayer(newWorldConfig.settings.playerTexture);
+
+    // cameras
+    CURRENT_WORLD.camera = Player.newCamera("player"); // main camera
+    CURRENT_WORLD.mapCamera = Player.newCamera("map"); // camera when looking at the map
+    CURRENT_WORLD.isMapOpen = false;
+
     // world
     CURRENT_WORLD.worldConfig = newWorldConfig;
     CURRENT_WORLD.cachedAboveBiomes = newWorldConfig.biomes.filter(e => e.biomeType === "ABOVE");
     CURRENT_WORLD.cachedRegionBiomes = newWorldConfig.biomes.filter(e => e.biomeType === "REGION");
     CURRENT_WORLD.worldSeed = Math.floor(Math.random() * 100000); // random seed
-
-    // player
-    CURRENT_WORLD.player = Player.newPlayer(newWorldConfig.settings.playerTexture);
-
-    // camera
-    CURRENT_WORLD.camera = Player.newCamera();
 
     // move camera to player location
     CURRENT_WORLD.camera.x = CURRENT_WORLD.player.x;
@@ -65,6 +68,27 @@ function newProp(x, y, texture) {
         texture: texture,
         scale: 1,
         flipped: false,
+    }
+}
+
+
+// get a new tile
+function newTile(x, y, texture, layer, tint) {
+    return {
+        //type
+        type: "tiles",
+
+        // position
+        x: x,
+        y: y,
+
+        // appearance
+        texture: texture,
+        scale: 1,
+        flipped: false,
+
+        layer: layer,
+        tint: tint
     }
 }
 
@@ -208,10 +232,10 @@ export function getBiomeAtLocation(x, y) {
 
 
 export function generateVisibleChunks(canvasWidth, canvasHeight) {
-    const cam = CURRENT_WORLD.camera;
+    const cam = CURRENT_WORLD.isMapOpen ? CURRENT_WORLD.mapCamera : CURRENT_WORLD.camera;
     const zoom = cam.smoothZoom;
 
-    if (CURRENT_WORLD.camera.smoothZoom < 0.1) return;
+    if (cam.smoothZoom < 0.1) return;
 
     // calculate the visible screen area in world coordinates
     const viewW = canvasWidth / zoom;
@@ -239,7 +263,6 @@ export function generateVisibleChunks(canvasWidth, canvasHeight) {
 
 
 
-
 export function generateChunkData(chunkX, chunkY) {
     const chunkKey = `${chunkX},${chunkY}`;
     const existingChunk = CURRENT_WORLD.loadedChunks.find(chunk => chunk.id === chunkKey);
@@ -255,14 +278,21 @@ export function generateChunkData(chunkX, chunkY) {
         id: chunkKey,
         x: chunkWorldX,
         y: chunkWorldY,
-        props: []
+        props: [],
+        tiles: []
     };
 
     // push new chunk to array
     CURRENT_WORLD.loadedChunks.push(newChunk);
     const chunkSeed = CURRENT_WORLD.worldSeed + (chunkX * 12345) ^ (chunkY * 67890);
 
-    // add elements (props, entities, items)
+    // get entities in range
+    const chunkEntities = CURRENT_WORLD.entities.filter(e => 
+        e.x >= chunkWorldX && e.x < maxChunkX &&
+        e.y >= chunkWorldY && e.y < maxChunkY
+    );
+
+    // add elements (props, entities, items, structures)
     for (let localX = 0; localX < GEN_CHUNK_SIZE; localX += PROP_SPAWN_STEP) {
         for (let localY = 0; localY < GEN_CHUNK_SIZE; localY += PROP_SPAWN_STEP) {
 
@@ -273,62 +303,98 @@ export function generateChunkData(chunkX, chunkY) {
             // get biome props, entities and items
             const biomeProps = (biome.props || []).map(e => ({ ...e, type: "props" }));
             const biomeEntities = (biome.entities || []).map(e => ({ ...e, type: "entities" }));
+            const biomeStructures = (biome.structures || []).map(e => ({ ...e, type: "structures" }));
 
-            // order props in random order
             const tileSeed = chunkSeed + (localX * 13) + (localY * 37);
-            const shuffledElements = [...biomeProps, ...biomeEntities];
+
+            // shuffle structures
+            const shuffledStructures = [...biomeStructures];
+            for (let i = shuffledStructures.length - 1; i > 0; i--) {
+                const j = Math.floor(pseudoRandom(tileSeed + i) * (i + 1));
+                [shuffledStructures[i], shuffledStructures[j]] = [shuffledStructures[j], shuffledStructures[i]];
+            }
+
+            // shuffle entities and props
+            let shuffledElements = [...biomeProps, ...biomeEntities];
             for (let i = shuffledElements.length - 1; i > 0; i--) {
                 const j = Math.floor(pseudoRandom(tileSeed + i) * (i + 1));
                 [shuffledElements[i], shuffledElements[j]] = [shuffledElements[j], shuffledElements[i]];
             }
 
+            shuffledElements.unshift(...shuffledStructures);
+
             // loop props until one matches
             for (const propConfig of shuffledElements) {
-                const propSeed = tileSeed + propConfig.texture.length;
+                const elementId = propConfig.texture || propConfig.layout;
+                const propSeed = tileSeed + elementId.length;
                 const densityRoll = pseudoRandom(propSeed);
 
                 let effectiveDensity = propConfig.density;
                 if (propConfig.type === "entities") { // make entities rarer than props
                     effectiveDensity *= 0.2;
                 }
+                else if (propConfig.type === "structures") { // make structures even rarer
+                    effectiveDensity *= 0.1; 
+                }
 
                 if (densityRoll < effectiveDensity) {
                     let finalX = worldX + (pseudoRandom(propSeed + 1) * PROP_SPAWN_STEP);
                     let finalY = worldY + (pseudoRandom(propSeed + 2) * PROP_SPAWN_STEP);
 
-                    const elementScale = 1;
-
-                    // get the prop's width and height
-                    const asset = ASSETS[propConfig.type][propConfig.texture];
-                    const width = asset.image.naturalWidth * PIXEL_SCALE * elementScale / 2;
-                    const height = asset.image.naturalHeight * PIXEL_SCALE * elementScale / 2;
-
-                    // clamp to make sure the prop stays in the chunk
-                    const gridBuffer = 25;
-                    finalX = Math.min(Math.max(finalX, chunkWorldX + width - gridBuffer), maxChunkX - width + gridBuffer);
-                    finalY = Math.min(Math.max(finalY, chunkWorldY + height - gridBuffer), maxChunkY - height + gridBuffer);
+                    // get colliders
+                    const chunkColliders = [...newChunk.props, ...newChunk.tiles, ...chunkEntities];
 
                     // define the element
-                    if (propConfig.type === "props") { // is a prop
-                        const element = newProp(finalX, finalY, propConfig.texture);
-                        element.flipped = pseudoRandom(propSeed + 3) > 0.5;
-                        element.scale = elementScale;
-
-                        // collision check
-                        if (getCollisions(element, true).length === 0) {
-                            newChunk.props.push(element);
-                            break;
-                        }
+                    if (propConfig.type === "structures") { // is a structure
+                        const spawnSuccess = spawnStructureInChunk(
+                            newChunk, 
+                            propConfig, 
+                            finalX, 
+                            finalY, 
+                            chunkWorldX, 
+                            chunkWorldY, 
+                            maxChunkX, 
+                            maxChunkY, 
+                            chunkColliders, 
+                            propSeed
+                        );
+                        if (spawnSuccess) break;
                     }
-                    else if (propConfig.type === "entities") { // is an entity
-                        const element = Entities.newEntity(finalX, finalY, propConfig.texture, propConfig.displayName, propConfig.traits, propConfig.stats);
-                        element.flipped = pseudoRandom(propSeed + 3) > 0.5;
-                        element.scale = elementScale;
+                    else {
 
-                        // collision check
-                        if (getCollisions(element, true).length === 0) {
-                            CURRENT_WORLD.entities.push(element);
-                            break;
+                        const elementScale = 1;
+
+                        // get the prop's width and height
+                        const asset = ASSETS[propConfig.type][propConfig.texture];
+                        const fullWidth = asset.image.naturalWidth * PIXEL_SCALE * elementScale / 2;
+                        const fullHeight = asset.image.naturalHeight * PIXEL_SCALE * elementScale / 2;
+
+                        // clamp to make sure the prop stays in the chunk
+                        finalX = Math.min(Math.max(finalX, chunkWorldX), maxChunkX - fullWidth);
+                        finalY = Math.min(Math.max(finalY, chunkWorldY), maxChunkY - fullHeight);
+
+                        if (propConfig.type === "props") { // is a prop
+                            const element = newProp(finalX, finalY, propConfig.texture);
+                            element.flipped = pseudoRandom(propSeed + 3) > 0.5;
+                            element.scale = elementScale;
+
+                            // collision check
+                            if (getCollisionsFromArray(element, chunkColliders, true).length === 0) {
+                                newChunk.props.push(element);
+                                break;
+                            }
+                        }
+                        else if (propConfig.type === "entities") { // is an entity
+                            const element = Entities.newEntity(finalX, finalY, propConfig.texture, propConfig.displayName, propConfig.traits, propConfig.stats);
+                            element.flipped = pseudoRandom(propSeed + 3) > 0.5;
+                            element.scale = elementScale;
+
+                            // collision check
+                            if (getCollisionsFromArray(element, chunkColliders, true).length === 0) {
+                                chunkEntities.push(element);
+                                CURRENT_WORLD.entities.push(element);
+                                break;
+                            }
                         }
                     }
                 }
@@ -341,6 +407,92 @@ export function generateChunkData(chunkX, chunkY) {
 //#endregion
 
 
+
+
+
+
+
+//#region STRUCTURE GENERATION
+
+
+function spawnStructureInChunk(chunk, structureConfig, startX, startY, minX, minY, maxX, maxY, colliders, seed) {
+    // get layout and rotation
+    const rawLayout = ASSETS.structures[structureConfig.layout].layout;
+    const rotations = Math.floor(pseudoRandom(seed + 4) * 4); // 0 to 3
+    const rotatedLayout = rotateStructure(rawLayout, rotations);
+
+    // calculate structure size
+    const rows = rotatedLayout.length;
+    const cols = rotatedLayout[0].length;
+    const structureWidth = cols * TILE_SIZE;
+    const structureHeight = rows * TILE_SIZE;
+
+    // get grid
+    const minGridX = Math.ceil(minX / TILE_SIZE) * TILE_SIZE;
+    const minGridY = Math.ceil(minY / TILE_SIZE) * TILE_SIZE;
+    const maxGridX = Math.floor((maxX - structureWidth) / TILE_SIZE) * TILE_SIZE;
+    const maxGridY = Math.floor((maxY - structureHeight) / TILE_SIZE) * TILE_SIZE;
+
+    // snap structure to grid
+    const snappedX = Math.round(startX / TILE_SIZE) * TILE_SIZE;
+    const snappedY = Math.round(startY / TILE_SIZE) * TILE_SIZE;
+
+    // clamp to the chunk grid area
+    const gridX = Math.min(Math.max(snappedX, minGridX), maxGridX);
+    const gridY = Math.min(Math.max(snappedY, minGridY), maxGridY);
+
+    const wallTexture = structureConfig.properties.walls.texture;
+    const floorTexture = structureConfig.properties.floors.texture;
+    const wallTint = structureConfig.properties.walls.color;
+    const floorTint = structureConfig.properties.floors.color;
+
+    // single collision check for entire structure
+    const structureHitbox = {
+        x: gridX + (structureWidth / 2),
+        y: gridY + (structureHeight / 2),
+        width: structureWidth,
+        height: structureHeight,
+        type: "structures"
+    };
+
+    // if overlaps with existing chunk elements, stop
+    if (getCollisionsFromArray(structureHitbox, colliders, true).length > 0) {
+        return false; // return false if failed
+    }
+
+    // generate tiles
+    for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+            const cellType = rotatedLayout[r][c];
+            if (cellType === " ") continue; // empty space
+
+            const tileX = gridX + (c * TILE_SIZE) + (TILE_SIZE / 2);
+            const tileY = gridY + (r * TILE_SIZE) + (TILE_SIZE / 2);
+
+            if (cellType === "W") { // wall
+                const wallTile = newTile(tileX, tileY, wallTexture, "wall", wallTint); // walls have collisions
+                chunk.tiles.push(wallTile);
+            } else if (cellType === "F") { // floor
+                const floorTile = newTile(tileX, tileY, floorTexture, "floor", floorTint); // floors have no collisions
+                chunk.tiles.push(floorTile);
+            }
+        }
+    }
+
+    return true; // return true if success
+}
+
+
+// rotates an array clockwise by 90 degrees 'rotations' times
+function rotateStructure(grid, rotations) {
+    let newGrid = grid;
+    for (let r = 0; r < rotations; r++) {
+        newGrid = newGrid[0].map((val, index) => newGrid.map(row => row[index]).reverse());
+    }
+    return newGrid;
+}
+
+//#endregion
 
 
 //#region PSEUDO RANDOMNESS

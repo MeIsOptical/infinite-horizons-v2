@@ -176,15 +176,21 @@
     "props": {
 
         "small_rock":
-        { "isFlat": false, "hasCollision": true },
+        { "isFlat": false, "hasCollision": true, "hitboxHeightScale": 0.4 },
 
         "large_rock":
-        { "isFlat": false, "hasCollision": true },
+        { "isFlat": false, "hasCollision": true, "hitboxHeightScale": 0.7 },
 
         "regular_cactus":
-        { "isFlat": false, "hasCollision": true },
+        { "isFlat": false, "hasCollision": true, "hitboxHeightScale": 0.25 },
 
-        "small_mushroom":
+        "small_brown_mushroom":
+        { "isFlat": false, "hasCollision": false },
+
+        "small_red_mushroom":
+        { "isFlat": false, "hasCollision": false },
+
+        "small_purple_mushroom":
         { "isFlat": false, "hasCollision": false },
 
         "yellow_flower":
@@ -194,10 +200,10 @@
         { "isFlat": false, "hasCollision": false },
 
         "tree_stump":
-        { "isFlat": false, "hasCollision": true },
+        { "isFlat": false, "hasCollision": true, "hitboxHeightScale": 0.6 },
 
         "generic_tree":
-        { "isFlat": false, "hasCollision": true },
+        { "isFlat": false, "hasCollision": true, "hitboxHeightScale": 0.2 },
 
         "bush":
         { "isFlat": false, "hasCollision": false },
@@ -205,82 +211,239 @@
         "grass_patch":
         { "isFlat": false, "hasCollision": false },
 
+        "grass_sprout":
+        { "isFlat": false, "hasCollision": false },
+
         "old_light_post":
-        { "isFlat": false, "hasCollision": true },
+        { "isFlat": false, "hasCollision": true, "hitboxHeightScale": 0.16 },
 
         "direction_wooden_sign":
-        { "isFlat": false, "hasCollision": true },
+        { "isFlat": false, "hasCollision": true, "hitboxHeightScale": 0.2 },
 
         "big_wooden_crate":
-        { "isFlat": false, "hasCollision": true },
+        { "isFlat": false, "hasCollision": true, "hitboxHeightScale": 0.7 },
 
         "wooden_crate":
-        { "isFlat": false, "hasCollision": true },
+        { "isFlat": false, "hasCollision": true, "hitboxHeightScale": 0.7 },
 
         "wooden_barrel":
-        { "isFlat": false, "hasCollision": true },
+        { "isFlat": false, "hasCollision": true, "hitboxHeightScale": 0.6 },
 
         "tall_clay_pot":
-        { "isFlat": false, "hasCollision": true },
+        { "isFlat": false, "hasCollision": true, "hitboxHeightScale": 0.5 },
 
         "big_clay_pot":
-        { "isFlat": false, "hasCollision": true },
+        { "isFlat": false, "hasCollision": true, "hitboxHeightScale": 0.5 },
 
         "ritual_obelisk":
-        { "isFlat": false, "hasCollision": true },
+        { "isFlat": false, "hasCollision": true, "hitboxHeightScale": 0.4 },
 
         "broken_ritual_obelisk":
-        { "isFlat": false, "hasCollision": true },
+        { "isFlat": false, "hasCollision": true, "hitboxHeightScale": 0.4 },
 
         "small_tombstone":
-        { "isFlat": false, "hasCollision": true },
+        { "isFlat": false, "hasCollision": true, "hitboxHeightScale": 0.5 },
 
         "big_tombstone":
-        { "isFlat": false, "hasCollision": true },
+        { "isFlat": false, "hasCollision": true, "hitboxHeightScale": 0.6 },
 
         "polished_stone_cube":
-        { "isFlat": false, "hasCollision": true },
+        { "isFlat": false, "hasCollision": true, "hitboxHeightScale": 0.7 },
 
         "stone_pillar":
-        { "isFlat": false, "hasCollision": true },
+        { "isFlat": false, "hasCollision": true, "hitboxHeightScale": 0.35 },
 
         "broken_stone_pillar":
-        { "isFlat": false, "hasCollision": true },
+        { "isFlat": false, "hasCollision": true, "hitboxHeightScale": 0.5 },
 
         "red_vending_machine":
-        { "isFlat": false, "hasCollision": true },
+        { "isFlat": false, "hasCollision": true, "hitboxHeightScale": 0.3 },
 
         "futuristic_crate":
-        { "isFlat": false, "hasCollision": true },
+        { "isFlat": false, "hasCollision": true, "hitboxHeightScale": 0.6 },
 
         "industrial_vent_unit":
-        { "isFlat": false, "hasCollision": true },
+        { "isFlat": false, "hasCollision": true, "hitboxHeightScale": 0.6 },
 
         "futuristic_food_cart":
-        { "isFlat": false, "hasCollision": true },
+        { "isFlat": false, "hasCollision": true, "hitboxHeightScale": 0.5 },
 
         "futuristic_antena_pole":
-        { "isFlat": false, "hasCollision": true },
+        { "isFlat": false, "hasCollision": true, "hitboxHeightScale": 0.2 },
 
         "futuristic_solar_panels_on_pole":
-        { "isFlat": false, "hasCollision": true },
+        { "isFlat": false, "hasCollision": true, "hitboxHeightScale": 0.2 },
 
         "egg_in_nest":
         { "isFlat": false, "hasCollision": false },
 
         "vegetable_basket":
-        { "isFlat": false, "hasCollision": true },
+        { "isFlat": false, "hasCollision": true, "hitboxHeightScale": 0.4 },
 
         "sunflower":
-        { "isFlat": false, "hasCollision": false }
+        { "isFlat": false, "hasCollision": false },
+
+        "wooden_tool_table":
+        { "isFlat": false, "hasCollision": true, "hitboxHeightScale": 0.9 }
 
     },
 
-    "patterns": {
-
+    "tiles": {
+        "reinforced_metal" : {},
+        "smooth": {},
+        "bricks": {},
+        "cracked_stone": {},
+        "double_diagonal_checkerboard_tiles": {},
+        "grate": {},
+        "checkerboard": {},
+        "dimpled_grid": {},
+        "square_grid": {}
     },
 
     "structures": {
-        
+        "small_house": {
+            "layout": [
+                ["W","W","W","W","W","W","W","W"," "],
+                ["W","F","F","F","F","F","F","W","W"],
+                ["W","F","F","F","F","F","F","F","W"],
+                ["W","F","F","F","F","F","F","F","W"],
+                ["W","F","F","F","F","F","F","F","W"],
+                ["W","F","F","F","F","F","F","W","W"],
+                ["W","W","F","W","W","W","W","W"," "]
+            ]
+        },
+
+        "mini_shack": {
+            "layout": [
+                ["W","W","W"],
+                ["W","F","W"],
+                ["W","F","W"]
+            ]
+        },
+
+        "small_l_shaped_room": {
+            "layout": [
+                ["W","W","W","W","W"],
+                ["W","F","F","F","W"],
+                ["W","F","W","W","W"],
+                ["W","F","W"," "," "],
+                ["W","F","W"," "," "]
+            ]
+        },
+
+        "small_square_house": {
+            "layout": [
+                ["W","W","W","W","W","W"],
+                ["W","F","F","F","F","W"],
+                ["W","F","F","F","F","W"],
+                ["W","F","F","F","F","W"],
+                ["W","F","F","F","F","W"],
+                ["W","W","F","F","W","W"]
+            ]
+        },
+
+        "square_house": {
+            "layout": [
+                ["W","W","W","W","W","W","W","W"],
+                ["W","F","F","F","F","F","F","W"],
+                ["W","F","F","F","F","F","F","W"],
+                ["W","F","F","F","F","F","F","W"],
+                ["W","F","F","F","F","F","F","W"],
+                ["W","F","F","F","F","F","F","W"],
+                ["W","F","F","F","F","F","F","W"],
+                ["W","W","W","F","F","W","W","W"]
+            ]
+        },
+
+        "rectangle_house": {
+            "layout": [
+                ["W","W","W","W","W","W","W","W","W"],
+                ["W","F","F","F","F","F","F","F","W"],
+                ["W","F","F","F","F","F","F","F","W"],
+                ["W","F","F","F","F","F","F","F","W"],
+                ["W","F","F","F","F","F","F","F","W"],
+                ["W","W","F","F","W","W","W","W","W"]
+            ]
+        },
+
+        "igloo": {
+            "layout": [
+                [" "," ","W","W","W"," "," "],
+                [" ","W","F","F","F","W"," "],
+                ["W","F","F","F","F","F","W"],
+                ["W","F","F","F","F","F","W"],
+                ["W","F","F","F","F","F","W"],
+                [" ","W","F","F","F","W"," "],
+                [" "," ","W","F","W"," "," "],
+                [" "," ","W","F","W"," "," "]
+            ]
+        },
+
+        "generic_ruins": {
+            "layout": [
+                [" ","W"," ","W","W","W","W"," "],
+                ["W","W"," ","F"," "," ","W","W"],
+                ["W","F","F"," ","F"," ","F","W"],
+                [" "," ","F","F"," "," ","F","W"],
+                ["W","F"," "," "," ","F","F","W"],
+                ["W","F","F","F"," ","F","F","W"],
+                ["W","W","F"," ","F"," "," ","W"],
+                [" ","W"," "," ","F","W"," "," "],
+                [" ","W"," "," ","F","W"," "," "],
+                [" "," "," "," "," ","W"," "," "]
+            ]
+        },
+
+        "ancient_pillars": {
+            "layout": [
+                ["W","W"," "," ","W","W"," "," ","W"],
+                [" ","F","F","F"," ","F","F","F","W"],
+                [" ","F","F","F"," ","F","F","F"," "],
+                [" ","F","F","F","W","F","F","F"," "],
+                ["W"," "," ","W","W"," "," "," ","W"]
+            ]
+        },
+
+        "u_shaped_closed_courtyard": {
+            "layout": [
+                ["W","W","W","W","W","W","W"],
+                ["W","F","F","F","F","F","W"],
+                ["W","F","F","F","F","F","W"],
+                ["W","F","F","F","F","F","W"],
+                ["W","F","W"," ","W","F","W"],
+                ["W","F","W"," ","W","F","W"],
+                ["W","W","W"," ","W","W","W"]
+            ]
+        },
+
+        "merchant_stall": {
+            "layout": [
+                ["W","W","W","W","W","W"],
+                ["W","F","F","F","F","W"],
+                ["W","F","F","F","F","W"],
+                ["W","W"," "," ","W","W"]
+            ]
+        },
+
+        "long_horizontal_corridor": {
+            "layout": [
+                ["W","W","W","W","W","W","W","W"],
+                ["F","F","F","F","F","F","F","F"],
+                ["F","F","F","F","F","F","F","F"],
+                ["W","W","W","W","W","W","W","W"]
+            ]
+        },
+
+        "mini_maze": {
+            "layout": [
+                ["W","W","W","W","W","W","W"],
+                ["W","F","F","F","W","F","W"],
+                ["W","F","W","F","W","F","W"],
+                ["W","F","W","F","F","F","W"],
+                ["W","F","W","W","W","F","W"],
+                ["W","F","F","F","F","F","W"],
+                ["W","W","W","F","W","W","W"]
+            ]
+        }
     }
 }

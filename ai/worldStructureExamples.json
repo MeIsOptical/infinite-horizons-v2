@@ -1,14 +1,14 @@
 
 
 {
-    "Minecraft-Like": {
+    "Classic Fantasy": {
         "inputs": {
-            "worldPrompt": "Generate a world that feels like Minecraft."
+            "worldPrompt": "Generate a vast fantasy world with diverse biomes based on temperature and humidity, including monsters, wildlife, and hidden ruins."
         },
         "output": {
             "settings": {
-                "worldName": "Minecraft-Like",
-                "worldDescription": "A vast, procedurally generated natural world filled with diverse landscapes, hidden ruins, and varied wildlife.",
+                "worldName": "Classic Fantasy",
+                "worldDescription": "A vast natural world filled with diverse landscapes, hidden ruins, and varied wildlife.",
                 "playerTexture": "mustached_asian_elder",
                 "generationAxes": {
                     "primary": "TEMPERATURE",
@@ -21,15 +21,15 @@
                     "biomeDescription": "An empty desert, hot and dry.",
                     "biomeType": "REGION",
                     "generationAxes": {
-                        "primary": 0.9,
-                        "secondary": 0.1
+                        "primary": 0.8,
+                        "secondary": 0.15
                     },
                     "visuals": {
                         "groundColor": "#e6ccb2",
                         "groundNoiseIntensity": 0.03
                     },
                     "props": [
-                        { "texture": "regular_cactus", "density": 0.08 },
+                        { "texture": "regular_cactus", "density": 0.07 },
                         { "texture": "small_rock", "density": 0.02 },
                         { "texture": "large_rock", "density": 0.004 },
                         { "texture": "broken_stone_pillar", "density": 0.001 }
@@ -38,23 +38,30 @@
                         {
                             "texture": "tengu",
                             "displayName": "Desert Hunter",
-                            "density": 0.005,
-                            "traits": ["AGGRESSIVE", "WANDERER"],
+                            "density": 0.01,
+                            "traits": ["AGGRESSIVE", "VIPER", "WANDERER"],
                             "stats": {
                                 "health": "HIGH",
                                 "movementSpeed": "MEDIUM",
                                 "visionRange": "MEDIUM"
                             }
+                        }
+                    ],
+                    "structures": [
+                        {
+                            "layout": "ancient_pillars",
+                            "density": 0.002,
+                            "properties": {
+                                "walls": { "texture": "cracked_stone", "color": "#d9b891" },
+                                "floors": { "texture": "smooth", "color": "#c4a484" }
+                            }
                         },
                         {
-                            "texture": "stone_golem",
-                            "displayName": "Sandstone Golem",
+                            "layout": "square_house",
                             "density": 0.003,
-                            "traits": ["AGGRESSIVE"],
-                            "stats": {
-                                "health": "VERY HIGH",
-                                "movementSpeed": "LOW",
-                                "visionRange": "LOW"
+                            "properties": {
+                                "walls": { "texture": "bricks", "color": "#e6ccb2" },
+                                "floors": { "texture": "smooth", "color": "#bd947b" }
                             }
                         }
                     ]
@@ -64,12 +71,12 @@
                     "biomeDescription": "A desolate, arid plateau of red sands and jagged rocks.",
                     "biomeType": "REGION",
                     "generationAxes": {
-                        "primary": 0.9,
+                        "primary": 0.8,
                         "secondary": 0.2
                     },
                     "visuals": {
                         "groundColor": "#a05a2c",
-                        "groundNoiseIntensity": 0.15
+                        "groundNoiseIntensity": 0.12
                     },
                     "props": [
                         { "texture": "small_rock", "density": 0.1 },
@@ -81,14 +88,51 @@
                         {
                             "texture": "skeleton",
                             "displayName": "Dust Skeleton",
-                            "density": 0.015,
-                            "traits": ["AGGRESSIVE", "WANDERER"],
+                            "density": 0.02,
+                            "traits": ["AGGRESSIVE", "WANDERER", "VULTURE"],
                             "stats": {
                                 "health": "MEDIUM",
                                 "movementSpeed": "MEDIUM",
                                 "visionRange": "MEDIUM"
                             }
                         }
+                    ],
+                    "structures": [
+                        
+                    ]
+                },
+                {
+                    "biomeName": "Volcanic Barrens",
+                    "biomeDescription": "A hot landscape of dark soil and jagged volcanic rock formations.",
+                    "biomeType": "REGION",
+                    "generationAxes": {
+                        "primary": 1.0,
+                        "secondary": 0.0
+                    },
+                    "visuals": {
+                        "groundColor": "#362727",
+                        "groundNoiseIntensity": 0.18
+                    },
+                    "props": [
+                        { "texture": "large_rock", "density": 0.12 },
+                        { "texture": "small_rock", "density": 0.2 },
+                        { "texture": "broken_stone_pillar", "density": 0.005 }
+                    ],
+                    "entities": [
+                        {
+                            "texture": "stone_golem",
+                            "displayName": "Obsidian Golem",
+                            "density": 0.01,
+                            "traits": ["AGGRESSIVE"],
+                            "stats": {
+                                "health": "VERY HIGH",
+                                "movementSpeed": "LOW",
+                                "visionRange": "MEDIUM"
+                            }
+                        }
+                    ],
+                    "structures": [
+
                     ]
                 },
                 {
@@ -96,8 +140,8 @@
                     "biomeDescription": "A dense, regular forest teeming with natural resources.",
                     "biomeType": "REGION",
                     "generationAxes": {
-                        "primary": 0.6,
-                        "secondary": 0.6
+                        "primary": 0.55,
+                        "secondary": 0.55
                     },
                     "visuals": {
                         "groundColor": "#2d6a45",
@@ -108,7 +152,7 @@
                         { "texture": "tree_stump", "density": 0.02 },
                         { "texture": "grass_patch", "density": 0.07 },
                         { "texture": "bush", "density": 0.08 },
-                        { "texture": "small_mushroom", "density": 0.04 },
+                        { "texture": "small_red_mushroom", "density": 0.02 },
                         { "texture": "small_rock", "density": 0.03 },
                         { "texture": "flower_rose", "density": 0.06 }
                     ],
@@ -117,11 +161,29 @@
                             "texture": "chicken",
                             "displayName": null,
                             "density": 0.01,
-                            "traits": ["COWARD", "WANDERER"],
+                            "traits": ["SKITTISH", "COWARD", "WANDERER"],
                             "stats": {
                                 "health": "LOW",
                                 "movementSpeed": "MEDIUM",
                                 "visionRange": "LOW"
+                            }
+                        }
+                    ],
+                    "structures": [
+                        {
+                            "layout": "small_house",
+                            "density": 0.005,
+                            "properties": {
+                                "walls": { "texture": "bricks", "color": "#785c40" },
+                                "floors": { "texture": "checkerboard", "color": "#8f6e4f" }
+                            }
+                        },
+                        {
+                            "layout": "merchant_stall",
+                            "density": 0.003,
+                            "properties": {
+                                "walls": { "texture": "bricks", "color": "#7a8277" },
+                                "floors": { "texture": "square_grid", "color": "#5b6159" }
                             }
                         }
                     ]
@@ -134,7 +196,7 @@
                         "primary": 0.6,
                         "secondary": 0.7
                     },
-                    "rarity": 0.98,
+                    "rarity": 0.8,
                     "visuals": {
                         "groundColor": "#4a5d23",
                         "groundNoiseIntensity": 0.18
@@ -150,8 +212,8 @@
                         {
                             "texture": "shadow_wizard",
                             "displayName": "Ruins Guardian",
-                            "density": 0.003,
-                            "traits": ["AGGRESSIVE"],
+                            "density": 0.05,
+                            "traits": ["AGGRESSIVE", "REGENERATIVE"],
                             "stats": {
                                 "health": "HIGH",
                                 "movementSpeed": "MEDIUM",
@@ -161,12 +223,30 @@
                         {
                             "texture": "skeleton_monster",
                             "displayName": "Giant Skeleton",
-                            "density": 0.002,
-                            "traits": ["AGGRESSIVE", "REGENERATIVE"],
+                            "density": 0.02,
+                            "traits": ["AGGRESSIVE"],
                             "stats": {
                                 "health": "VERY HIGH",
                                 "movementSpeed": "LOW",
                                 "visionRange": "MEDIUM"
+                            }
+                        }
+                    ],
+                    "structures": [
+                        {
+                            "layout": "generic_ruins",
+                            "density": 0.1,
+                            "properties": {
+                                "walls": { "texture": "bricks", "color": "#434d38" },
+                                "floors": { "texture": "cracked_stone", "color": "#4e5745" }
+                            }
+                        },
+                        {
+                            "layout": "mini_maze",
+                            "density": 0.07,
+                            "properties": {
+                                "walls": { "texture": "cracked_stone", "color": "#454a3a" },
+                                "floors": { "texture": "smooth", "color": "#647055" }
                             }
                         }
                     ]
@@ -195,11 +275,21 @@
                             "texture": "blue_tengu",
                             "displayName": "Frost Stalker",
                             "density": 0.003,
-                            "traits": ["STALKER", "WANDERER"],
+                            "traits": ["VULTURE", "STALKER", "WANDERER"],
                             "stats": {
                                 "health": "MEDIUM",
                                 "movementSpeed": "HIGH",
                                 "visionRange": "HIGH"
+                            }
+                        }
+                    ],
+                    "structures": [
+                        {
+                            "layout": "igloo",
+                            "density": 0.004,
+                            "properties": {
+                                "walls": { "texture": "smooth", "color": "#ffffff" },
+                                "floors": { "texture": "smooth", "color": "#e8f0f2" }
                             }
                         }
                     ]
@@ -210,7 +300,7 @@
                     "biomeType": "REGION",
                     "generationAxes": {
                         "primary": 0.0,
-                        "secondary": 0.0
+                        "secondary": 0.02
                     },
                     "visuals": {
                         "groundColor": "#c5dbe0",
@@ -234,6 +324,9 @@
                                 "visionRange": "MEDIUM"
                             }
                         }
+                    ],
+                    "structures": [
+                        
                     ]
                 },
                 {
@@ -241,24 +334,24 @@
                     "biomeDescription": "Lust grassland filled with flowers and animals.",
                     "biomeType": "REGION",
                     "generationAxes": {
-                        "primary": 0.5,
+                        "primary": 0.45,
                         "secondary": 0.5
                     },
                     "visuals": {
-                        "groundColor": "#7ec971",
+                        "groundColor": "#6CBF60",
                         "groundNoiseIntensity": 0.02
                     },
                     "props": [
                         { "texture": "yellow_flower", "density": 0.013 },
                         { "texture": "flower_rose", "density": 0.025 },
                         { "texture": "sunflower", "density": 0.02},
-                        { "texture": "grass_patch", "density": 0.015 },
+                        { "texture": "grass_sprout", "density": 0.1 },
                         { "texture": "bush", "density": 0.008 }
                     ],
                     "entities": [
                         {
                             "texture": "cow",
-                            "displayName": "Cow",
+                            "displayName": null,
                             "density": 0.01,
                             "traits": ["COWARD", "WANDERER"],
                             "stats": {
@@ -278,6 +371,8 @@
                                 "visionRange": "MEDIUM"
                             }
                         }
+                    ],
+                    "structures": [
                     ]
                 },
                 {
@@ -285,8 +380,8 @@
                     "biomeDescription": "Wet region, overgrown by vegetation.",
                     "biomeType": "REGION",
                     "generationAxes": {
-                        "primary": 0.6,
-                        "secondary": 0.9
+                        "primary": 0.7,
+                        "secondary": 0.8
                     },
                     "visuals": {
                         "groundColor": "#283618",
@@ -296,7 +391,8 @@
                         { "texture": "generic_tree", "density": 0.1 },
                         { "texture": "grass_patch", "density": 0.05 },
                         { "texture": "bush", "density": 0.01 },
-                        { "texture": "small_mushroom", "density": 0.08 },
+                        { "texture": "small_brown_mushroom", "density": 0.08 },
+                        { "texture": "small_red_mushroom", "density": 0.01 },
                         { "texture": "small_rock", "density": 0.01 },
                         { "texture": "large_rock", "density": 0.007},
                         { "texture": "broken_ritual_obelisk", "density": 0.002 }
@@ -306,7 +402,7 @@
                             "texture": "green_smiling_slimeball",
                             "displayName": null,
                             "density": 0.02 ,
-                            "traits": ["REGENERATIVE", "WANDERER", "STALKER", "COWARD"],
+                            "traits": ["REGENERATIVE", "WANDERER", "STALKER", "COWARD", "VULTURE"],
                             "stats": {
                                 "health": "LOW",
                                 "movementSpeed": "MEDIUM",
@@ -322,6 +418,422 @@
                                 "health": "HIGH",
                                 "movementSpeed": "MEDIUM",
                                 "visionRange": "MEDIUM"
+                            }
+                        }
+                    ],
+                    "structures": [
+                        {
+                            "layout": "mini_shack",
+                            "density": 0.01,
+                            "properties": {
+                                "walls": { "texture": "bricks", "color": "#4a331c" },
+                                "floors": { "texture": "cracked_stone", "color": "#3d4233" }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "biomeName": "Tropical Rainforest",
+                    "biomeDescription": "An overgrown wilderness of giant trees and dense vines, thriving in perpetual heat and heavy rainfall.",
+                    "biomeType": "REGION",
+                    "generationAxes": {
+                        "primary": 0.85,
+                        "secondary": 0.95
+                    },
+                    "visuals": {
+                        "groundColor": "#1b3d11", 
+                        "groundNoiseIntensity": 0.12
+                    },
+                    "props": [
+                        { "texture": "generic_tree", "density": 1 },
+                        { "texture": "bush", "density": 0.6 },
+                        { "texture": "grass_patch", "density": 0.7 },
+                        { "texture": "yellow_flower", "density": 0.1 },
+                        { "texture": "small_red_mushroom", "density": 0.1 },
+                        { "texture": "small_rock", "density": 0.06 },
+                        { "texture": "ritual_obelisk", "density": 0.02}
+                    ],
+                    "entities": [
+                        {
+                            "texture": "scarred_bearded_man",
+                            "displayName": "Wild Survivor",
+                            "density": 0.008,
+                            "traits": ["COWARD", "SKITTISH", "WANDERER", "VULTURE"],
+                            "stats": {
+                                "health": "HIGH",
+                                "movementSpeed": "MEDIUM",
+                                "visionRange": "HIGH"
+                            }
+                        }
+                    ],
+                    "structures": [
+                        {
+                            "layout": "ancient_pillars",
+                            "density": 0.01,
+                            "properties": {
+                                "walls": { "texture": "cracked_stone", "color": "#2d3323" },
+                                "floors": { "texture": "dimpled_grid", "color": "#1a2412" }
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+
+    "Massive Modern City": {
+        "inputs": {
+            "worldPrompt": "Generate a massive modern metropolis divided into distinct districts based on wealth and urbanization."
+        },
+        "output": {
+            "settings": {
+                "worldName": "Metropolis",
+                "worldDescription": "A massive, dense modern city bustling with corporate workers, heavy traffic, and industrial sectors.",
+                "playerTexture": "white_hat_man_with_sunglasses",
+                "generationAxes": {
+                    "primary": "URBANIZATION",
+                    "secondary": "WEALTH"
+                }
+            },
+            "biomes": [
+                {
+                    "biomeName": "Financial District",
+                    "biomeDescription": "The heart of the city, packed with towering office buildings and corporate workers.",
+                    "biomeType": "REGION",
+                    "generationAxes": {
+                        "primary": 0.95,
+                        "secondary": 0.9
+                    },
+                    "visuals": {
+                        "groundColor": "#5D5E58",
+                        "groundNoiseIntensity": 0.02
+                    },
+                    "props": [
+                        { "texture": "old_light_post", "density": 0.05 },
+                        { "texture": "industrial_vent_unit", "density": 0.03 }
+                    ],
+                    "entities": [
+                        {
+                            "texture": "man_in_dark_suit",
+                            "displayName": "Corporate Worker",
+                            "density": 0.02,
+                            "traits": ["WANDERER", "COWARD"],
+                            "stats": {
+                                "health": "LOW",
+                                "movementSpeed": "MEDIUM",
+                                "visionRange": "MEDIUM"
+                            }
+                        }
+                    ],
+                    "structures": [
+                        {
+                            "layout": "rectangle_house",
+                            "density": 1.0,
+                            "properties": {
+                                "walls": { "texture": "smooth", "color": "#a8a8a8" },
+                                "floors": { "texture": "checkerboard", "color": "#d4d4d4" }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "biomeName": "Commercial Hub",
+                    "biomeDescription": "A dense network of shops, stalls, and heavy foot traffic.",
+                    "biomeType": "REGION",
+                    "generationAxes": {
+                        "primary": 0.9,
+                        "secondary": 0.6
+                    },
+                    "visuals": {
+                        "groundColor": "#737373",
+                        "groundNoiseIntensity": 0.02
+                    },
+                    "props": [
+                        { "texture": "red_vending_machine", "density": 0.08 },
+                        { "texture": "old_light_post", "density": 0.04 },
+                        { "texture": "wooden_crate", "density": 0.02 },
+                        { "texture": "wooden_tool_table", "density": 0.007 }
+                    ],
+                    "entities": [
+                        {
+                            "texture": "asian_girl",
+                            "displayName": "Shopper",
+                            "density": 0.05,
+                            "traits": ["WANDERER", "SKITTISH"],
+                            "stats": {
+                                "health": "MEDIUM",
+                                "movementSpeed": "MEDIUM",
+                                "visionRange": "MEDIUM"
+                            }
+                        }
+                    ],
+                    "structures": [
+                        {
+                            "layout": "merchant_stall",
+                            "density": 1.0,
+                            "properties": {
+                                "walls": { "texture": "bricks", "color": "#8f574b" },
+                                "floors": { "texture": "square_grid", "color": "#636363" }
+                            }
+                        },
+                        {
+                            "layout": "small_square_house",
+                            "density": 0.8,
+                            "properties": {
+                                "walls": { "texture": "bricks", "color": "#784b42" },
+                                "floors": { "texture": "smooth", "color": "#525252" }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "biomeName": "Industrial Sector",
+                    "biomeDescription": "A polluted sector filled with massive warehouses and machinery.",
+                    "biomeType": "REGION",
+                    "generationAxes": {
+                        "primary": 0.8,
+                        "secondary": 0.2
+                    },
+                    "visuals": {
+                        "groundColor": "#45413c",
+                        "groundNoiseIntensity": 0.05
+                    },
+                    "props": [
+                        { "texture": "industrial_vent_unit", "density": 0.1 },
+                        { "texture": "big_wooden_crate", "density": 0.15 },
+                        { "texture": "wooden_barrel", "density": 0.05 },
+                        { "texture": "wooden_tool_table", "density": 0.02 }
+                    ],
+                    "entities": [
+                        {
+                            "texture": "bald_man",
+                            "displayName": "Factory Worker",
+                            "density": 0.01,
+                            "traits": ["WANDERER"],
+                            "stats": {
+                                "health": "MEDIUM",
+                                "movementSpeed": "LOW",
+                                "visionRange": "LOW"
+                            }
+                        }
+                    ],
+                    "structures": [
+                        {
+                            "layout": "long_horizontal_corridor",
+                            "density": 0.9,
+                            "properties": {
+                                "walls": { "texture": "reinforced_metal", "color": "#545e61" },
+                                "floors": { "texture": "grate", "color": "#383d3f" }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "biomeName": "Suburban Neighborhood",
+                    "biomeDescription": "A quiet residential area with houses, paved streets, and greenery.",
+                    "biomeType": "REGION",
+                    "generationAxes": {
+                        "primary": 0.5,
+                        "secondary": 0.7
+                    },
+                    "visuals": {
+                        "groundColor": "#5e7552",
+                        "groundNoiseIntensity": 0.03
+                    },
+                    "props": [
+                        { "texture": "generic_tree", "density": 0.05 },
+                        { "texture": "old_light_post", "density": 0.02 },
+                        { "texture": "grass_patch", "density": 0.1 }
+                    ],
+                    "entities": [
+                        {
+                            "texture": "elder_man",
+                            "displayName": "Local Resident",
+                            "density": 0.01,
+                            "traits": ["WANDERER", "COWARD"],
+                            "stats": {
+                                "health": "LOW",
+                                "movementSpeed": "VERY LOW",
+                                "visionRange": "MEDIUM"
+                            }
+                        }
+                    ],
+                    "structures": [
+                        {
+                            "layout": "small_house",
+                            "density": 0.4,
+                            "properties": {
+                                "walls": { "texture": "smooth", "color": "#e0d8c8" },
+                                "floors": { "texture": "checkerboard", "color": "#b8afa0" }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "biomeName": "Slums",
+                    "biomeDescription": "A neglected, decaying neighborhood with high poverty and petty crime.",
+                    "biomeType": "REGION",
+                    "generationAxes": {
+                        "primary": 0.6,
+                        "secondary": 0.1
+                    },
+                    "visuals": {
+                        "groundColor": "#3d3b36",
+                        "groundNoiseIntensity": 0.15
+                    },
+                    "props": [
+                        { "texture": "wooden_crate", "density": 0.08 },
+                        { "texture": "wooden_barrel", "density": 0.05 },
+                        { "texture": "broken_stone_pillar", "density": 0.01 }
+                    ],
+                    "entities": [
+                        {
+                            "texture": "homeless_looking_man",
+                            "displayName": "Drifter",
+                            "density": 0.03,
+                            "traits": ["WANDERER", "VULTURE"],
+                            "stats": {
+                                "health": "MEDIUM",
+                                "movementSpeed": "MEDIUM",
+                                "visionRange": "MEDIUM"
+                            }
+                        },
+                        {
+                            "texture": "green_hat_man",
+                            "displayName": "Thug",
+                            "density": 0.01,
+                            "traits": ["AGGRESSIVE", "STALKER"],
+                            "stats": {
+                                "health": "MEDIUM",
+                                "movementSpeed": "HIGH",
+                                "visionRange": "HIGH"
+                            }
+                        }
+                    ],
+                    "structures": [
+                        {
+                            "layout": "mini_shack",
+                            "density": 0.7,
+                            "properties": {
+                                "walls": { "texture": "cracked_stone", "color": "#61574a" },
+                                "floors": { "texture": "cracked_stone", "color": "#4a4237" }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "biomeName": "Central Park",
+                    "biomeDescription": "A massive, maintained green space surrounded by the dense city.",
+                    "biomeType": "REGION",
+                    "generationAxes": {
+                        "primary": 0.2,
+                        "secondary": 0.5
+                    },
+                    "visuals": {
+                        "groundColor": "#3e7033",
+                        "groundNoiseIntensity": 0.04
+                    },
+                    "props": [
+                        { "texture": "generic_tree", "density": 0.6 },
+                        { "texture": "grass_patch", "density": 0.4 },
+                        { "texture": "flower_rose", "density": 0.05 },
+                        { "texture": "bush", "density": 0.15 },
+                        { "texture": "old_light_post", "density": 0.01 }
+                    ],
+                    "entities": [
+                        {
+                            "texture": "chicken",
+                            "displayName": "Pigeon",
+                            "density": 0.02,
+                            "traits": ["SKITTISH", "WANDERER"],
+                            "stats": {
+                                "health": "LOW",
+                                "movementSpeed": "HIGH",
+                                "visionRange": "LOW"
+                            }
+                        }
+                    ],
+                    "structures": []
+                },
+                {
+                    "biomeName": "Rural Outskirts",
+                    "biomeDescription": "The very edge of the city, transitioning into farmland and countryside.",
+                    "biomeType": "REGION",
+                    "generationAxes": {
+                        "primary": 0.0,
+                        "secondary": 0.3
+                    },
+                    "visuals": {
+                        "groundColor": "#6e8a56",
+                        "groundNoiseIntensity": 0.06
+                    },
+                    "props": [
+                        { "texture": "generic_tree", "density": 0.05 },
+                        { "texture": "grass_patch", "density": 0.2 },
+                        { "texture": "wooden_crate", "density": 0.01 }
+                    ],
+                    "entities": [
+                        {
+                            "texture": "cow",
+                            "displayName": null,
+                            "density": 0.01,
+                            "traits": ["WANDERER"],
+                            "stats": {
+                                "health": "MEDIUM",
+                                "movementSpeed": "LOW",
+                                "visionRange": "MEDIUM"
+                            }
+                        }
+                    ],
+                    "structures": [
+                        {
+                            "layout": "mini_shack",
+                            "density": 0.05,
+                            "properties": {
+                                "walls": { "texture": "bricks", "color": "#8f6954" },
+                                "floors": { "texture": "smooth", "color": "#755645" }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "biomeName": "Construction Site",
+                    "biomeDescription": "An area of active development, filled with scaffolding, materials, and concrete.",
+                    "biomeType": "ABOVE",
+                    "generationAxes": {
+                        "primary": 0.7,
+                        "secondary": 0.5
+                    },
+                    "rarity": 0.8,
+                    "visuals": {
+                        "groundColor": "#857560",
+                        "groundNoiseIntensity": 0.12
+                    },
+                    "props": [
+                        { "texture": "big_wooden_crate", "density": 0.1 },
+                        { "texture": "stone_pillar", "density": 0.05 },
+                        { "texture": "large_rock", "density": 0.03 }
+                    ],
+                    "entities": [
+                        {
+                            "texture": "bald_man",
+                            "displayName": "Contractor",
+                            "density": 0.01,
+                            "traits": ["WANDERER"],
+                            "stats": {
+                                "health": "MEDIUM",
+                                "movementSpeed": "MEDIUM",
+                                "visionRange": "MEDIUM"
+                            }
+                        }
+                    ],
+                    "structures": [
+                        {
+                            "layout": "mini_maze",
+                            "density": 0.6,
+                            "properties": {
+                                "walls": { "texture": "reinforced_metal", "color": "#7a7a7a" },
+                                "floors": { "texture": "smooth", "color": "#8c8275" }
                             }
                         }
                     ]
