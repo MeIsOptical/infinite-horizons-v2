@@ -65,8 +65,23 @@ export function drawGame() {
         // then draw the rest in order of Y (depth)
         const verticalElements = visibleElements.filter(e => !(e.type === "tiles" && e.layer === "floor"));
         verticalElements.sort((a, b) => {
-            const bottomA = a.y + (ASSETS[a.type][a.texture].image.naturalHeight * PIXEL_SCALE * a.scale) / 2;
-            const bottomB = b.y + (ASSETS[b.type][b.texture].image.naturalHeight * PIXEL_SCALE * b.scale) / 2;
+
+            // get assets
+            const assetA = ASSETS[a.type][a.texture];
+            const assetB = ASSETS[b.type][b.texture];
+
+            const isAFlat = "isFlat" in assetA ? assetA.isFlat : false;
+            const isBFlat = "isFlat" in assetB ? assetB.isFlat : false;
+
+            // check if isFlat
+            if (isAFlat !== isBFlat) {
+                return isAFlat ? -1 : 1;
+
+            }
+
+            // order by Y
+            const bottomA = a.y + (assetA.image.naturalHeight * PIXEL_SCALE * a.scale) / 2;
+            const bottomB = b.y + (assetB.image.naturalHeight * PIXEL_SCALE * b.scale) / 2;
             return bottomA - bottomB;
         });
         

@@ -77,9 +77,6 @@
         "orange_shirt_human":
         { "isFlat": false, "hasCollision": true },
 
-        "blue_spirit":
-        { "isFlat": false, "hasCollision": true },
-
         "tengu":
         { "isFlat": false, "hasCollision": true },
 
@@ -179,7 +176,7 @@
         { "isFlat": false, "hasCollision": true, "hitboxHeightScale": 0.4 },
 
         "large_rock":
-        { "isFlat": false, "hasCollision": true, "hitboxHeightScale": 0.7 },
+        { "isFlat": false, "hasCollision": true, "hitboxHeightScale": 0.5 },
 
         "regular_cactus":
         { "isFlat": false, "hasCollision": true, "hitboxHeightScale": 0.25 },
@@ -284,7 +281,10 @@
         { "isFlat": false, "hasCollision": false },
 
         "wooden_tool_table":
-        { "isFlat": false, "hasCollision": true, "hitboxHeightScale": 0.9 }
+        { "isFlat": false, "hasCollision": true, "hitboxHeightScale": 0.9 },
+
+        "sandstone_floor_rocks":
+        { "isFlat": true, "hasCollision": false }
 
     },
 
@@ -422,15 +422,6 @@
                 ["W","F","F","F","F","W"],
                 ["W","F","F","F","F","W"],
                 ["W","W"," "," ","W","W"]
-            ]
-        },
-
-        "long_horizontal_corridor": {
-            "layout": [
-                ["W","W","W","W","W","W","W","W"],
-                ["F","F","F","F","F","F","F","F"],
-                ["F","F","F","F","F","F","F","F"],
-                ["W","W","W","W","W","W","W","W"]
             ]
         },
 

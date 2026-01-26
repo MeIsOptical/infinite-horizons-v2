@@ -12,7 +12,8 @@
                 "playerTexture": "mustached_asian_elder",
                 "generationAxes": {
                     "primary": "TEMPERATURE",
-                    "secondary": "HUMIDITY"
+                    "secondary": "HUMIDITY",
+                    "tertiary": "MAGIC DENSITY"
                 }
             },
             "biomes": [
@@ -22,7 +23,8 @@
                     "biomeType": "REGION",
                     "generationAxes": {
                         "primary": 0.8,
-                        "secondary": 0.15
+                        "secondary": 0.15,
+                        "tertiary": 0.15
                     },
                     "visuals": {
                         "groundColor": "#e6ccb2",
@@ -32,7 +34,8 @@
                         { "texture": "regular_cactus", "density": 0.07 },
                         { "texture": "small_rock", "density": 0.02 },
                         { "texture": "large_rock", "density": 0.004 },
-                        { "texture": "broken_stone_pillar", "density": 0.001 }
+                        { "texture": "broken_stone_pillar", "density": 0.001 },
+                        { "texture": "sandstone_floor_rocks", "density": 0.02}
                     ],
                     "entities": [
                         {
@@ -72,7 +75,8 @@
                     "biomeType": "REGION",
                     "generationAxes": {
                         "primary": 0.8,
-                        "secondary": 0.2
+                        "secondary": 0.2,
+                        "tertiary": 0.2
                     },
                     "visuals": {
                         "groundColor": "#a05a2c",
@@ -107,7 +111,8 @@
                     "biomeType": "REGION",
                     "generationAxes": {
                         "primary": 1.0,
-                        "secondary": 0.0
+                        "secondary": 0.0,
+                        "tertiary": 0.6
                     },
                     "visuals": {
                         "groundColor": "#362727",
@@ -141,7 +146,8 @@
                     "biomeType": "REGION",
                     "generationAxes": {
                         "primary": 0.55,
-                        "secondary": 0.55
+                        "secondary": 0.55,
+                        "tertiary": 0.4
                     },
                     "visuals": {
                         "groundColor": "#2d6a45",
@@ -194,9 +200,10 @@
                     "biomeType": "ABOVE",
                     "generationAxes": {
                         "primary": 0.6,
-                        "secondary": 0.7
+                        "secondary": 0.7,
+                        "tertiary": 0.9
                     },
-                    "rarity": 0.8,
+                    "rarity": 0.9,
                     "visuals": {
                         "groundColor": "#4a5d23",
                         "groundNoiseIntensity": 0.18
@@ -257,7 +264,8 @@
                     "biomeType": "REGION",
                     "generationAxes": {
                         "primary": 0.1,
-                        "secondary": 0.4
+                        "secondary": 0.4,
+                        "tertiary": 0.3
                     },
                     "visuals": {
                         "groundColor": "#fcf9e5",
@@ -304,7 +312,8 @@
                     },
                     "visuals": {
                         "groundColor": "#c5dbe0",
-                        "groundNoiseIntensity": 0.03
+                        "groundNoiseIntensity": 0.03,
+                        "tertiary": 0.35
                     },
                     "props": [
                         { "texture": "bush", "density": 0.007 },
@@ -335,7 +344,8 @@
                     "biomeType": "REGION",
                     "generationAxes": {
                         "primary": 0.45,
-                        "secondary": 0.5
+                        "secondary": 0.5,
+                        "tertiary": 0.15
                     },
                     "visuals": {
                         "groundColor": "#6CBF60",
@@ -381,7 +391,8 @@
                     "biomeType": "REGION",
                     "generationAxes": {
                         "primary": 0.7,
-                        "secondary": 0.8
+                        "secondary": 0.8,
+                        "tertiary": 0.7
                     },
                     "visuals": {
                         "groundColor": "#283618",
@@ -438,7 +449,8 @@
                     "biomeType": "REGION",
                     "generationAxes": {
                         "primary": 0.85,
-                        "secondary": 0.95
+                        "secondary": 0.95,
+                        "tertiary": 0.8
                     },
                     "visuals": {
                         "groundColor": "#1b3d11", 
@@ -492,7 +504,8 @@
                 "playerTexture": "white_hat_man_with_sunglasses",
                 "generationAxes": {
                     "primary": "URBANIZATION",
-                    "secondary": "WEALTH"
+                    "secondary": "WEALTH",
+                    "tertiary": "CRIME RATE"
                 }
             },
             "biomes": [
@@ -501,25 +514,49 @@
                     "biomeDescription": "The heart of the city, packed with towering office buildings and corporate workers.",
                     "biomeType": "REGION",
                     "generationAxes": {
-                        "primary": 0.95,
-                        "secondary": 0.9
+                        "primary": 0.8,
+                        "secondary": 0.9,
+                        "tertiary": 0.1
                     },
                     "visuals": {
-                        "groundColor": "#5D5E58",
+                        "groundColor": "#64655f",
                         "groundNoiseIntensity": 0.02
                     },
                     "props": [
                         { "texture": "old_light_post", "density": 0.05 },
-                        { "texture": "industrial_vent_unit", "density": 0.03 }
+                        { "texture": "industrial_vent_unit", "density": 0.03 },
+                        { "texture": "futuristic_crate", "density": 0.02 }
                     ],
                     "entities": [
                         {
                             "texture": "man_in_dark_suit",
-                            "displayName": "Corporate Worker",
+                            "displayName": null,
+                            "density": 0.05,
+                            "traits": ["WANDERER", "COWARD"],
+                            "stats": {
+                                "health": "MEDIUM",
+                                "movementSpeed": "MEDIUM",
+                                "visionRange": "MEDIUM"
+                            }
+                        },
+                        {
+                            "texture": "bald_man",
+                            "displayName": null,
                             "density": 0.02,
                             "traits": ["WANDERER", "COWARD"],
                             "stats": {
-                                "health": "LOW",
+                                "health": "MEDIUM",
+                                "movementSpeed": "MEDIUM",
+                                "visionRange": "MEDIUM"
+                            }
+                        },
+                        {
+                            "texture": "blond_human",
+                            "displayName": null,
+                            "density": 0.03,
+                            "traits": ["WANDERER", "COWARD"],
+                            "stats": {
+                                "health": "MEDIUM",
                                 "movementSpeed": "MEDIUM",
                                 "visionRange": "MEDIUM"
                             }
@@ -530,8 +567,24 @@
                             "layout": "rectangle_house",
                             "density": 1.0,
                             "properties": {
-                                "walls": { "texture": "smooth", "color": "#a8a8a8" },
+                                "walls": { "texture": "smooth", "color": "#aca49b" },
                                 "floors": { "texture": "checkerboard", "color": "#d4d4d4" }
+                            }
+                        },
+                        {
+                            "layout": "square_house",
+                            "density": 1.0,
+                            "properties": {
+                                "walls": { "texture": "bricks", "color": "#866d59" },
+                                "floors": { "texture": "smooth", "color": "#afb18d" }
+                            }
+                        },
+                        {
+                            "layout": "u_shaped_closed_courtyard",
+                            "density": 1.0,
+                            "properties": {
+                                "walls": { "texture": "bricks", "color": "#866d59" },
+                                "floors": { "texture": "grate", "color": "#cacac5" }
                             }
                         }
                     ]
@@ -541,27 +594,178 @@
                     "biomeDescription": "A dense network of shops, stalls, and heavy foot traffic.",
                     "biomeType": "REGION",
                     "generationAxes": {
-                        "primary": 0.9,
-                        "secondary": 0.6
+                        "primary": 0.7,
+                        "secondary": 0.65,
+                        "tertiary": 0.4
                     },
                     "visuals": {
-                        "groundColor": "#737373",
+                        "groundColor": "#918c81",
                         "groundNoiseIntensity": 0.02
                     },
                     "props": [
-                        { "texture": "red_vending_machine", "density": 0.08 },
-                        { "texture": "old_light_post", "density": 0.04 },
+                        { "texture": "futuristic_food_cart", "density": 0.04 },
+                        { "texture": "red_vending_machine", "density": 0.06 },
+                        { "texture": "old_light_post", "density": 0.03 },
                         { "texture": "wooden_crate", "density": 0.02 },
-                        { "texture": "wooden_tool_table", "density": 0.007 }
+                        { "texture": "wooden_tool_table", "density": 0.007 },
+                        { "texture": "futuristic_crate", "density": 0.004 },
+                        { "texture": "vegetable_basket", "density": 0.005 }
                     ],
                     "entities": [
                         {
                             "texture": "asian_girl",
-                            "displayName": "Shopper",
-                            "density": 0.05,
-                            "traits": ["WANDERER", "SKITTISH"],
+                            "displayName": null,
+                            "density": 0.02,
+                            "traits": ["WANDERER", "COWARD"],
+                            "stats": {
+                                "health": "LOW",
+                                "movementSpeed": "MEDIUM",
+                                "visionRange": "HIGH"
+                            }
+                        },
+                        {
+                            "texture": "bald_man",
+                            "displayName": null,
+                            "density": 0.02,
+                            "traits": ["WANDERER"],
                             "stats": {
                                 "health": "MEDIUM",
+                                "movementSpeed": "MEDIUM",
+                                "visionRange": "MEDIUM"
+                            }
+                        },
+                        {
+                            "texture": "blond_human",
+                            "displayName": null,
+                            "density": 0.02,
+                            "traits": ["WANDERER"],
+                            "stats": {
+                                "health": "MEDIUM",
+                                "movementSpeed": "MEDIUM",
+                                "visionRange": "MEDIUM"
+                            }
+                        },
+                        {
+                            "texture": "elder_man",
+                            "displayName": null,
+                            "density": 0.01,
+                            "traits": ["WANDERER"],
+                            "stats": {
+                                "health": "LOW",
+                                "movementSpeed": "LOW",
+                                "visionRange": "MEDIUM"
+                            }
+                        },
+                        {
+                            "texture": "green_hat_man",
+                            "displayName": "Vendor",
+                            "density": 0.03,
+                            "traits": ["WANDERER"],
+                            "stats": {
+                                "health": "LOW",
+                                "movementSpeed": "MEDIUM",
+                                "visionRange": "HIGH"
+                            }
+                        }
+                    ],
+                    "structures": [
+                        {
+                            "layout": "merchant_stall",
+                            "density": 0.9,
+                            "properties": {
+                                "walls": { "texture": "bricks", "color": "#a36254" },
+                                "floors": { "texture": "square_grid", "color": "#898989" }
+                            }
+                        },
+                        {
+                            "layout": "merchant_stall",
+                            "density": 0.6,
+                            "properties": {
+                                "walls": { "texture": "bricks", "color": "#845f57" },
+                                "floors": { "texture": "cracked_stone", "color": "#615e59" }
+                            }
+                        },
+                        {
+                            "layout": "small_square_house",
+                            "density": 0.7,
+                            "properties": {
+                                "walls": { "texture": "bricks", "color": "#785e42" },
+                                "floors": { "texture": "smooth", "color": "#756d6d" }
+                            }
+                        },
+                        {
+                            "layout": "rectangle_house",
+                            "density": 0.7,
+                            "properties": {
+                                "walls": { "texture": "smooth", "color": "#8c906f" },
+                                "floors": { "texture": "checkerboard", "color": "#b56c5a" }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "biomeName": "Industrial Sector",
+                    "biomeDescription": "A polluted sector filled with warehouses and machinery.",
+                    "biomeType": "REGION",
+                    "generationAxes": {
+                        "primary": 0.8,
+                        "secondary": 0.2,
+                        "tertiary": 0.7
+                    },
+                    "visuals": {
+                        "groundColor": "#50413a",
+                        "groundNoiseIntensity": 0.08
+                    },
+                    "props": [
+                        { "texture": "industrial_vent_unit", "density": 0.07 },
+                        { "texture": "futuristic_solar_panels_on_pole", "density": 0.05 },
+                        { "texture": "big_wooden_crate", "density": 0.09 },
+                        { "texture": "wooden_crate", "density": 0.12 },
+                        { "texture": "wooden_barrel", "density": 0.05 },
+                        { "texture": "wooden_tool_table", "density": 0.02 },
+                        { "texture": "direction_wooden_sign", "density": 0.01 }
+                    ],
+                    "entities": [
+                        {
+                            "texture": "man_in_dark_suit",
+                            "displayName": null,
+                            "density": 0.01,
+                            "traits": ["WANDERER", "COWARD"],
+                            "stats": {
+                                "health": "HIGH",
+                                "movementSpeed": "MEDIUM",
+                                "visionRange": "HIGH"
+                            }
+                        },
+                        {
+                            "texture": "elder_man",
+                            "displayName": null,
+                            "density": 0.03,
+                            "traits": ["WANDERER"],
+                            "stats": {
+                                "health": "LOW",
+                                "movementSpeed": "LOW",
+                                "visionRange": "MEDIUM"
+                            }
+                        },
+                        {
+                            "texture": "green_hat_man",
+                            "displayName": null,
+                            "density": 0.02,
+                            "traits": ["WANDERER", "COWARD"],
+                            "stats": {
+                                "health": "MEDIUM",
+                                "movementSpeed": "MEDIUM",
+                                "visionRange": "MEDIUM"
+                            }
+                        },
+                        {
+                            "texture": "scarred_bearded_man",
+                            "displayName": null,
+                            "density": 0.02,
+                            "traits": ["WANDERER"],
+                            "stats": {
+                                "health": "HIGH",
                                 "movementSpeed": "MEDIUM",
                                 "visionRange": "MEDIUM"
                             }
@@ -569,92 +773,90 @@
                     ],
                     "structures": [
                         {
-                            "layout": "merchant_stall",
-                            "density": 1.0,
-                            "properties": {
-                                "walls": { "texture": "bricks", "color": "#8f574b" },
-                                "floors": { "texture": "square_grid", "color": "#636363" }
-                            }
-                        },
-                        {
-                            "layout": "small_square_house",
+                            "layout": "u_shaped_closed_courtyard",
                             "density": 0.8,
                             "properties": {
-                                "walls": { "texture": "bricks", "color": "#784b42" },
-                                "floors": { "texture": "smooth", "color": "#525252" }
-                            }
-                        }
-                    ]
-                },
-                {
-                    "biomeName": "Industrial Sector",
-                    "biomeDescription": "A polluted sector filled with massive warehouses and machinery.",
-                    "biomeType": "REGION",
-                    "generationAxes": {
-                        "primary": 0.8,
-                        "secondary": 0.2
-                    },
-                    "visuals": {
-                        "groundColor": "#45413c",
-                        "groundNoiseIntensity": 0.05
-                    },
-                    "props": [
-                        { "texture": "industrial_vent_unit", "density": 0.1 },
-                        { "texture": "big_wooden_crate", "density": 0.15 },
-                        { "texture": "wooden_barrel", "density": 0.05 },
-                        { "texture": "wooden_tool_table", "density": 0.02 }
-                    ],
-                    "entities": [
-                        {
-                            "texture": "bald_man",
-                            "displayName": "Factory Worker",
-                            "density": 0.01,
-                            "traits": ["WANDERER"],
-                            "stats": {
-                                "health": "MEDIUM",
-                                "movementSpeed": "LOW",
-                                "visionRange": "LOW"
-                            }
-                        }
-                    ],
-                    "structures": [
-                        {
-                            "layout": "long_horizontal_corridor",
-                            "density": 0.9,
-                            "properties": {
-                                "walls": { "texture": "reinforced_metal", "color": "#545e61" },
-                                "floors": { "texture": "grate", "color": "#383d3f" }
+                                "walls": { "texture": "reinforced_metal", "color": "#5b6465" },
+                                "floors": { "texture": "grate", "color": "#3f3d38" }
                             }
                         }
                     ]
                 },
                 {
                     "biomeName": "Suburban Neighborhood",
-                    "biomeDescription": "A quiet residential area with houses, paved streets, and greenery.",
+                    "biomeDescription": "A quiet residential area.",
                     "biomeType": "REGION",
                     "generationAxes": {
-                        "primary": 0.5,
-                        "secondary": 0.7
+                        "primary": 0.4,
+                        "secondary": 0.45,
+                        "tertiary": 0.05
                     },
                     "visuals": {
-                        "groundColor": "#5e7552",
-                        "groundNoiseIntensity": 0.03
+                        "groundColor": "#717e6a",
+                        "groundNoiseIntensity": 0.04
                     },
                     "props": [
                         { "texture": "generic_tree", "density": 0.05 },
-                        { "texture": "old_light_post", "density": 0.02 },
-                        { "texture": "grass_patch", "density": 0.1 }
+                        { "texture": "old_light_post", "density": 0.03 },
+                        { "texture": "grass_patch", "density": 0.1 },
+                        { "texture": "bush", "density": 0.03 },
+                        { "texture": "direction_wooden_sign", "density": 0.02 },
+                        { "texture": "flower_rose", "density": 0.03 }
                     ],
                     "entities": [
                         {
                             "texture": "elder_man",
-                            "displayName": "Local Resident",
+                            "displayName": null,
                             "density": 0.01,
-                            "traits": ["WANDERER", "COWARD"],
+                            "traits": ["WANDERER"],
                             "stats": {
                                 "health": "LOW",
-                                "movementSpeed": "VERY LOW",
+                                "movementSpeed": "LOW",
                                 "visionRange": "MEDIUM"
+                            }
+                        },
+                        {
+                            "texture": "bald_man",
+                            "displayName": null,
+                            "density": 0.02,
+                            "traits": ["WANDERER"],
+                            "stats": {
+                                "health": "MEDIUM",
+                                "movementSpeed": "MEDIUM",
+                                "visionRange": "MEDIUM"
+                            }
+                        },
+                        {
+                            "texture": "orange_shirt_human",
+                            "displayName": null,
+                            "density": 0.03,
+                            "traits": ["WANDERER"],
+                            "stats": {
+                                "health": "MEDIUM",
+                                "movementSpeed": "MEDIUM",
+                                "visionRange": "MEDIUM"
+                            }
+                        },
+                        {
+                            "texture": "red_hair_woman",
+                            "displayName": null,
+                            "density": 0.02,
+                            "traits": ["WANDERER"],
+                            "stats": {
+                                "health": "MEDIUM",
+                                "movementSpeed": "MEDIUM",
+                                "visionRange": "HIGH"
+                            }
+                        },
+                        {
+                            "texture": "white_hair_mustached_man",
+                            "displayName": null,
+                            "density": 0.006,
+                            "traits": ["WANDERER"],
+                            "stats": {
+                                "health": "HIGH",
+                                "movementSpeed": "MEDIUM",
+                                "visionRange": "HIGH"
                             }
                         }
                     ],
@@ -663,8 +865,16 @@
                             "layout": "small_house",
                             "density": 0.4,
                             "properties": {
-                                "walls": { "texture": "smooth", "color": "#e0d8c8" },
-                                "floors": { "texture": "checkerboard", "color": "#b8afa0" }
+                                "walls": { "texture": "smooth", "color": "#c7c0b1" },
+                                "floors": { "texture": "checkerboard", "color": "#bcb09b" }
+                            }
+                        },
+                        {
+                            "layout": "small_l_shaped_room",
+                            "density": 0.2,
+                            "properties": {
+                                "walls": { "texture": "bricks", "color": "#b76855" },
+                                "floors": { "texture": "square_grid", "color": "#beb4a3" }
                             }
                         }
                     ]
@@ -675,38 +885,54 @@
                     "biomeType": "REGION",
                     "generationAxes": {
                         "primary": 0.6,
-                        "secondary": 0.1
+                        "secondary": 0.1,
+                        "tertiary": 0.9
                     },
                     "visuals": {
-                        "groundColor": "#3d3b36",
-                        "groundNoiseIntensity": 0.15
+                        "groundColor": "#4c412f",
+                        "groundNoiseIntensity": 0.12
                     },
                     "props": [
-                        { "texture": "wooden_crate", "density": 0.08 },
-                        { "texture": "wooden_barrel", "density": 0.05 },
-                        { "texture": "broken_stone_pillar", "density": 0.01 }
+                        { "texture": "wooden_crate", "density": 0.06 },
+                        { "texture": "wooden_barrel", "density": 0.04 },
+                        { "texture": "broken_stone_pillar", "density": 0.01 },
+                        { "texture": "direction_wooden_sign", "density": 0.007 },
+                        { "texture": "grass_patch", "density": 0.002 },
+                        { "texture": "old_light_post", "density": 0.02 },
+                        { "texture": "red_vending_machine", "density": 0.006 }
                     ],
                     "entities": [
                         {
                             "texture": "homeless_looking_man",
-                            "displayName": "Drifter",
-                            "density": 0.03,
-                            "traits": ["WANDERER", "VULTURE"],
+                            "displayName": null,
+                            "density": 0.05,
+                            "traits": ["WANDERER", "COWARD", "VULTURE"],
                             "stats": {
-                                "health": "MEDIUM",
+                                "health": "LOW",
                                 "movementSpeed": "MEDIUM",
                                 "visionRange": "MEDIUM"
                             }
                         },
                         {
-                            "texture": "green_hat_man",
-                            "displayName": "Thug",
-                            "density": 0.01,
-                            "traits": ["AGGRESSIVE", "STALKER"],
+                            "texture": "mustached_asian_elder",
+                            "displayName": null,
+                            "density": 0.03,
+                            "traits": ["WANDERER", "COWARD"],
                             "stats": {
-                                "health": "MEDIUM",
+                                "health": "LOW",
+                                "movementSpeed": "LOW",
+                                "visionRange": "MEDIUM"
+                            }
+                        },
+                        {
+                            "texture": "scarred_bearded_man",
+                            "displayName": null,
+                            "density": 0.03,
+                            "traits": ["WANDERER", "VULTURE"],
+                            "stats": {
+                                "health": "HIGH",
                                 "movementSpeed": "HIGH",
-                                "visionRange": "HIGH"
+                                "visionRange": "MEDIUM"
                             }
                         }
                     ],
@@ -715,36 +941,56 @@
                             "layout": "mini_shack",
                             "density": 0.7,
                             "properties": {
-                                "walls": { "texture": "cracked_stone", "color": "#61574a" },
-                                "floors": { "texture": "cracked_stone", "color": "#4a4237" }
+                                "walls": { "texture": "bricks", "color": "#746a5e" },
+                                "floors": { "texture": "cracked_stone", "color": "#413b32" }
+                            }
+                        },
+                        {
+                            "layout": "generic_ruins",
+                            "density": 0.4,
+                            "properties": {
+                                "walls": { "texture": "bricks", "color": "#86624d" },
+                                "floors": { "texture": "grate", "color": "#686158" }
+                            }
+                        },
+                        {
+                            "layout": "ancient_pillars",
+                            "density": 0.2,
+                            "properties": {
+                                "walls": { "texture": "reinforced_metal", "color": "#443f3c" },
+                                "floors": { "texture": "cracked_stone", "color": "#a99f91" }
                             }
                         }
                     ]
                 },
                 {
                     "biomeName": "Central Park",
-                    "biomeDescription": "A massive, maintained green space surrounded by the dense city.",
+                    "biomeDescription": "A maintained green space surrounded by the dense city.",
                     "biomeType": "REGION",
                     "generationAxes": {
-                        "primary": 0.2,
-                        "secondary": 0.5
+                        "primary": 0.15,
+                        "secondary": 0.5,
+                        "tertiary": 0.0
                     },
                     "visuals": {
-                        "groundColor": "#3e7033",
+                        "groundColor": "#48833b",
                         "groundNoiseIntensity": 0.04
                     },
                     "props": [
-                        { "texture": "generic_tree", "density": 0.6 },
-                        { "texture": "grass_patch", "density": 0.4 },
-                        { "texture": "flower_rose", "density": 0.05 },
-                        { "texture": "bush", "density": 0.15 },
-                        { "texture": "old_light_post", "density": 0.01 }
+                        { "texture": "generic_tree", "density": 0.5 },
+                        { "texture": "grass_patch", "density": 0.2 },
+                        { "texture": "flower_rose", "density": 0.04 },
+                        { "texture": "small_red_mushroom", "density": 0.01 },
+                        { "texture": "bush", "density": 0.08 },
+                        { "texture": "old_light_post", "density": 0.01 },
+                        { "texture": "vegetable_basket", "density": 0.006 },
+                        { "texture": "small_rock", "density": 0.01 }
                     ],
                     "entities": [
                         {
                             "texture": "chicken",
-                            "displayName": "Pigeon",
-                            "density": 0.02,
+                            "displayName": null,
+                            "density": 0.01,
                             "traits": ["SKITTISH", "WANDERER"],
                             "stats": {
                                 "health": "LOW",
@@ -757,30 +1003,81 @@
                 },
                 {
                     "biomeName": "Rural Outskirts",
-                    "biomeDescription": "The very edge of the city, transitioning into farmland and countryside.",
+                    "biomeDescription": "The very edge of the city.",
                     "biomeType": "REGION",
                     "generationAxes": {
-                        "primary": 0.0,
-                        "secondary": 0.3
+                        "primary": 0.05,
+                        "secondary": 0.3,
+                        "tertiary": 0.05
                     },
                     "visuals": {
-                        "groundColor": "#6e8a56",
+                        "groundColor": "#8fa068",
                         "groundNoiseIntensity": 0.06
                     },
                     "props": [
                         { "texture": "generic_tree", "density": 0.05 },
-                        { "texture": "grass_patch", "density": 0.2 },
-                        { "texture": "wooden_crate", "density": 0.01 }
+                        { "texture": "tree_stump", "density": 0.006 },
+                        { "texture": "grass_patch", "density": 0.12 },
+                        { "texture": "bush", "density": 0.02 },
+                        { "texture": "wooden_crate", "density": 0.007 },
+                        { "texture": "direction_wooden_sign", "density": 0.005 },
+                        { "texture": "yellow_flower", "density": 0.01 },
+                        { "texture": "sunflower", "density": 0.006 },
+                        { "texture": "old_light_post", "density": 0.01 }
                     ],
                     "entities": [
                         {
-                            "texture": "cow",
+                            "texture": "elder_man",
                             "displayName": null,
-                            "density": 0.01,
+                            "density": 0.02,
+                            "traits": ["WANDERER"],
+                            "stats": {
+                                "health": "LOW",
+                                "movementSpeed": "LOW",
+                                "visionRange": "MEDIUM"
+                            }
+                        },
+                        {
+                            "texture": "asian_girl",
+                            "displayName": null,
+                            "density": 0.007,
+                            "traits": ["WANDERER"],
+                            "stats": {
+                                "health": "LOW",
+                                "movementSpeed": "MEDIUM",
+                                "visionRange": "MEDIUM"
+                            }
+                        },
+                        {
+                            "texture": "orange_shirt_human",
+                            "displayName": null,
+                            "density": 0.02,
                             "traits": ["WANDERER"],
                             "stats": {
                                 "health": "MEDIUM",
-                                "movementSpeed": "LOW",
+                                "movementSpeed": "MEDIUM",
+                                "visionRange": "HIGH"
+                            }
+                        },
+                        {
+                            "texture": "white_hair_mustached_man",
+                            "displayName": null,
+                            "density": 0.005,
+                            "traits": ["WANDERER"],
+                            "stats": {
+                                "health": "HIGH",
+                                "movementSpeed": "MEDIUM",
+                                "visionRange": "HIGH"
+                            }
+                        },
+                        {
+                            "texture": "mustached_asian_elder",
+                            "displayName": null,
+                            "density": 0.008,
+                            "traits": ["WANDERER"],
+                            "stats": {
+                                "health": "LOW",
+                                "movementSpeed": "MEDIUM",
                                 "visionRange": "MEDIUM"
                             }
                         }
@@ -788,10 +1085,26 @@
                     "structures": [
                         {
                             "layout": "mini_shack",
+                            "density": 0.02,
+                            "properties": {
+                                "walls": { "texture": "bricks", "color": "#8d634d" },
+                                "floors": { "texture": "square_grid", "color": "#534b47" }
+                            }
+                        },
+                        {
+                            "layout": "small_house",
                             "density": 0.05,
                             "properties": {
-                                "walls": { "texture": "bricks", "color": "#8f6954" },
-                                "floors": { "texture": "smooth", "color": "#755645" }
+                                "walls": { "texture": "bricks", "color": "#cfb184" },
+                                "floors": { "texture": "checkerboard", "color": "#c9c6bc" }
+                            }
+                        },
+                        {
+                            "layout": "merchant_stall",
+                            "density": 0.03,
+                            "properties": {
+                                "walls": { "texture": "smooth", "color": "#6b5a40" },
+                                "floors": { "texture": "cracked_stone", "color": "#a09f9b" }
                             }
                         }
                     ]
@@ -802,38 +1115,56 @@
                     "biomeType": "ABOVE",
                     "generationAxes": {
                         "primary": 0.7,
-                        "secondary": 0.5
+                        "secondary": 0.5,
+                        "tertiary": 0.5
                     },
-                    "rarity": 0.8,
+                    "rarity": 0.9,
                     "visuals": {
-                        "groundColor": "#857560",
+                        "groundColor": "#8f806d",
                         "groundNoiseIntensity": 0.12
                     },
                     "props": [
-                        { "texture": "big_wooden_crate", "density": 0.1 },
-                        { "texture": "stone_pillar", "density": 0.05 },
-                        { "texture": "large_rock", "density": 0.03 }
+                        { "texture": "big_wooden_crate", "density": 0.04 },
+                        { "texture": "wooden_crate", "density": 0.06 },
+                        { "texture": "stone_pillar", "density": 0.04 },
+                        { "texture": "polished_stone_cube", "density": 0.05 },
+                        { "texture": "large_rock", "density": 0.03 },
+                        { "texture": "small_rock", "density": 0.06 },
+                        { "texture": "wooden_tool_table", "density": 0.008 },
+                        { "texture": "tree_stump", "density": 0.01 },
+                        { "texture": "sandstone_floor_rocks", "density": 0.012 }
                     ],
                     "entities": [
                         {
                             "texture": "bald_man",
                             "displayName": "Contractor",
                             "density": 0.01,
-                            "traits": ["WANDERER"],
+                            "traits": ["WANDERER", "STALKER"],
+                            "stats": {
+                                "health": "HIGH",
+                                "movementSpeed": "MEDIUM",
+                                "visionRange": "HIGH"
+                            }
+                        },
+                        {
+                            "texture": "homeless_looking_man",
+                            "displayName": "Construction Worker",
+                            "density": 0.1,
+                            "traits": ["WANDERER", "COWARD"],
                             "stats": {
                                 "health": "MEDIUM",
                                 "movementSpeed": "MEDIUM",
-                                "visionRange": "MEDIUM"
+                                "visionRange": "LOW"
                             }
                         }
                     ],
                     "structures": [
                         {
-                            "layout": "mini_maze",
-                            "density": 0.6,
+                            "layout": "ancient_pillars",
+                            "density": 0.4,
                             "properties": {
-                                "walls": { "texture": "reinforced_metal", "color": "#7a7a7a" },
-                                "floors": { "texture": "smooth", "color": "#8c8275" }
+                                "walls": { "texture": "bricks", "color": "#7a7a7a" },
+                                "floors": { "texture": "grate", "color": "#6a6155" }
                             }
                         }
                     ]

@@ -230,6 +230,7 @@ const entityBehavior = {
 }
 
 
+
 // checks which is the best action to do based on entity traits
 function updateEntity(entity, deltaTime) {
     const player = CURRENT_WORLD.player;

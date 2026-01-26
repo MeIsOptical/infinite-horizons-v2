@@ -139,6 +139,7 @@ function generateBiomePoint(gridX, gridY) {
     const scale = BIOME_SCALE;
     const primaryVal = smoothNoise(gridX * scale, gridY * scale, CURRENT_WORLD.worldSeed); // axis 1
     const secondaryVal = smoothNoise(gridX * scale + 500, gridY * scale + 500, CURRENT_WORLD.worldSeed); // axis 2
+    const tertiaryVal = smoothNoise(gridX * scale + 1000, gridY * scale + 1000, CURRENT_WORLD.worldSeed); // axis 3
     const scatterVal = pseudoRandom(cellSeed + 30); // using 'pseudoRandom' to be random, not smooth
 
     let selectedBiome = null;
@@ -152,11 +153,12 @@ function generateBiomePoint(gridX, gridY) {
         if (biome.generationAxes) {
             // calculate distance to target environment
             const dist = Math.hypot(
-                primaryVal - biome.generationAxes.primary,
-                secondaryVal - biome.generationAxes.secondary
+                (primaryVal - biome.generationAxes.primary),
+                (secondaryVal - biome.generationAxes.secondary) * 0.7,
+                (tertiaryVal - biome.generationAxes.tertiary) * 0.3
             );
             // if too far from ideal conditions, don't spawn
-            if (dist > 0.15) continue; 
+            if (dist > 0.2) continue; 
         }
 
         // match found
@@ -172,8 +174,9 @@ function generateBiomePoint(gridX, gridY) {
         for (const biome of CURRENT_WORLD.cachedRegionBiomes) {
             // calculate distance to target environment
             const dist = Math.hypot(
-                primaryVal - biome.generationAxes.primary,
-                secondaryVal - biome.generationAxes.secondary
+                (primaryVal - biome.generationAxes.primary),
+                (secondaryVal - biome.generationAxes.secondary) * 0.7,
+                (tertiaryVal - biome.generationAxes.tertiary) * 0.3
             );
 
             if (dist < minDist) {
