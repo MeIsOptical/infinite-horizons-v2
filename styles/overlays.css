@@ -1,0 +1,56 @@
+
+
+
+#gameCanvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+}
+
+
+
+#gameHotbar {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: row;
+    margin: 10px; padding: 0;
+    width: 24vw;
+    min-width: fit-content;
+    gap: 10px;
+}
+
+.hotbarElement {
+    margin: 0; padding: 5px;
+    width: stretch;
+    min-width: 2rem;
+    aspect-ratio: 1 / 1;
+    box-shadow: rgba(0, 0, 0, 0.5) 0 0 10px;
+    border: var(--hotbar-border) 3px solid;
+    background: var(--hotbar-color);
+    display: flex;
+    align-items: center;
+}
+
+
+.hotbarElement img {
+    image-rendering: pixelated;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.3));
+}
+
+.selectedSlot {
+    border-color: var(--primary-color);
+    box-shadow: var(--primary-color) 0 0 10px;
+    
+}
+
+
+.hotbarElement img[src=""] {
+    display: none;
+}

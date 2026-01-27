@@ -2,6 +2,9 @@
 {
     "entities": {
 
+        "male_zombie":
+        { "isFlat": false, "hasCollision": true },
+
         "blue_smiling_slimeball":
         { "isFlat": false, "hasCollision": true },
 

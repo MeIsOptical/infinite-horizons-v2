@@ -50,6 +50,22 @@
                             }
                         }
                     ],
+                    "items": [
+                        {
+                            "texture": "generic_sword",
+                            "displayName": "Lost Sword",
+                            "displayDescription": "A blade lost in a sea of sand.",
+                            "density": 1,
+                            "itemData": {
+                                "category": "MELEE WEAPON",
+                                "weaponAttackDamage": "MEDIUM",
+                                "weaponAttackReach": "MEDIUM",
+                                "weaponAttackCooldown": "MEDIUM",
+                                "weaponAttackArc": "MEDIUM",
+                                "weaponAttackLunge": "MEDIUM"
+                            }
+                        }
+                    ],
                     "structures": [
                         {
                             "layout": "ancient_pillars",
@@ -91,7 +107,7 @@
                     "entities": [
                         {
                             "texture": "skeleton",
-                            "displayName": "Dust Skeleton",
+                            "displayName": null,
                             "density": 0.02,
                             "traits": ["AGGRESSIVE", "WANDERER", "VULTURE"],
                             "stats": {
@@ -178,7 +194,7 @@
                     "structures": [
                         {
                             "layout": "small_house",
-                            "density": 0.005,
+                            "density": 0.004,
                             "properties": {
                                 "walls": { "texture": "bricks", "color": "#785c40" },
                                 "floors": { "texture": "checkerboard", "color": "#8f6e4f" }
@@ -186,7 +202,7 @@
                         },
                         {
                             "layout": "merchant_stall",
-                            "density": 0.003,
+                            "density": 0.002,
                             "properties": {
                                 "walls": { "texture": "bricks", "color": "#7a8277" },
                                 "floors": { "texture": "square_grid", "color": "#5b6159" }
@@ -229,11 +245,22 @@
                         },
                         {
                             "texture": "skeleton_monster",
-                            "displayName": "Giant Skeleton",
+                            "displayName": null,
                             "density": 0.02,
                             "traits": ["AGGRESSIVE"],
                             "stats": {
                                 "health": "VERY HIGH",
+                                "movementSpeed": "LOW",
+                                "visionRange": "MEDIUM"
+                            }
+                        },
+                        {
+                            "texture": "male_zombie",
+                            "displayName": null,
+                            "density": 0.08,
+                            "traits": ["AGGRESSIVE", "WANDERER"],
+                            "stats": {
+                                "health": "LOW",
                                 "movementSpeed": "LOW",
                                 "visionRange": "MEDIUM"
                             }
@@ -263,8 +290,8 @@
                     "biomeDescription": "A vast frozen land.",
                     "biomeType": "REGION",
                     "generationAxes": {
-                        "primary": 0.1,
-                        "secondary": 0.4,
+                        "primary": 0.12,
+                        "secondary": 0.35,
                         "tertiary": 0.3
                     },
                     "visuals": {
@@ -307,8 +334,9 @@
                     "biomeDescription": "A deep valley, completely deprived of any heat source.",
                     "biomeType": "REGION",
                     "generationAxes": {
-                        "primary": 0.0,
-                        "secondary": 0.02
+                        "primary": 0.08,
+                        "secondary": 0.05,
+                        "tertiary": 0.35
                     },
                     "visuals": {
                         "groundColor": "#c5dbe0",
@@ -324,7 +352,7 @@
                     "entities": [
                         {
                             "texture": "skeleton",
-                            "displayName": "Deceased Stray",
+                            "displayName": null,
                             "density": 0.01,
                             "traits": ["AGGRESSIVE", "WANDERER"],
                             "stats": {
@@ -382,6 +410,22 @@
                             }
                         }
                     ],
+                    "items": [
+                        {
+                            "texture": "generic_sword",
+                            "displayName": "Lost Sword",
+                            "displayDescription": "A blade lost in a sea of sand.",
+                            "density": 1,
+                            "itemData": {
+                                "category": "MELEE WEAPON",
+                                "weaponAttackDamage": "MEDIUM",
+                                "weaponAttackReach": "MEDIUM",
+                                "weaponAttackCooldown": "MEDIUM",
+                                "weaponAttackArc": "MEDIUM",
+                                "weaponAttackLunge": "MEDIUM"
+                            }
+                        }
+                    ],
                     "structures": [
                     ]
                 },
@@ -430,6 +474,17 @@
                                 "movementSpeed": "MEDIUM",
                                 "visionRange": "MEDIUM"
                             }
+                        },
+                        {
+                            "texture": "male_zombie",
+                            "displayName": null,
+                            "density": 0.01,
+                            "traits": ["AGGRESSIVE", "WANDERER"],
+                            "stats": {
+                                "health": "MEDIUM",
+                                "movementSpeed": "LOW",
+                                "visionRange": "HIGH"
+                            }
                         }
                     ],
                     "structures": [
@@ -474,6 +529,17 @@
                             "stats": {
                                 "health": "HIGH",
                                 "movementSpeed": "MEDIUM",
+                                "visionRange": "HIGH"
+                            }
+                        },
+                        {
+                            "texture": "male_zombie",
+                            "displayName": null,
+                            "density": 0.1,
+                            "traits": ["AGGRESSIVE", "WANDERER"],
+                            "stats": {
+                                "health": "MEDIUM",
+                                "movementSpeed": "LOW",
                                 "visionRange": "HIGH"
                             }
                         }

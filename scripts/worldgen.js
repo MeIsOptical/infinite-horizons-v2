@@ -5,6 +5,7 @@ import * as Player from "./player.js";
 import * as Entities from "./entities.js";
 import { CURRENT_WORLD } from "./state.js";
 import { getCollisionsFromArray } from "./physics.js";
+import * as Items from "./items.js";
 
 
 // biome generation settings
@@ -295,6 +296,12 @@ export function generateChunkData(chunkX, chunkY) {
         e.y >= chunkWorldY && e.y < maxChunkY
     );
 
+    // get items in range (in case they have a hitbox)
+    const chunkItems = CURRENT_WORLD.items.filter(e => 
+        e.x >= chunkWorldX && e.x < maxChunkX &&
+        e.y >= chunkWorldY && e.y < maxChunkY
+    );
+
     // add elements (props, entities, items, structures)
     for (let localX = 0; localX < GEN_CHUNK_SIZE; localX += PROP_SPAWN_STEP) {
         for (let localY = 0; localY < GEN_CHUNK_SIZE; localY += PROP_SPAWN_STEP) {
@@ -306,6 +313,7 @@ export function generateChunkData(chunkX, chunkY) {
             // get biome props, entities and items
             const biomeProps = (biome.props || []).map(e => ({ ...e, type: "props" }));
             const biomeEntities = (biome.entities || []).map(e => ({ ...e, type: "entities" }));
+            const biomeItems = (biome.items || []).map(e => ({ ...e, type: "items" }));
             const biomeStructures = (biome.structures || []).map(e => ({ ...e, type: "structures" }));
 
             const tileSeed = chunkSeed + (localX * 13) + (localY * 37);
@@ -317,8 +325,8 @@ export function generateChunkData(chunkX, chunkY) {
                 [shuffledStructures[i], shuffledStructures[j]] = [shuffledStructures[j], shuffledStructures[i]];
             }
 
-            // shuffle entities and props
-            let shuffledElements = [...biomeProps, ...biomeEntities];
+            // shuffle entities, props and items
+            let shuffledElements = [...biomeProps, ...biomeEntities, ...biomeItems];
             for (let i = shuffledElements.length - 1; i > 0; i--) {
                 const j = Math.floor(pseudoRandom(tileSeed + i) * (i + 1));
                 [shuffledElements[i], shuffledElements[j]] = [shuffledElements[j], shuffledElements[i]];
@@ -334,10 +342,13 @@ export function generateChunkData(chunkX, chunkY) {
 
                 let effectiveDensity = propConfig.density;
                 if (propConfig.type === "entities") { // make entities rarer than props
-                    effectiveDensity *= 0.2;
+                    effectiveDensity *= 0.5;
                 }
                 else if (propConfig.type === "structures") { // make structures even rarer
                     effectiveDensity *= 0.1; 
+                }
+                else if (propConfig.type === "items") { // make items a bit rarer than props
+                    effectiveDensity *= 0.6; 
                 }
 
                 if (densityRoll < effectiveDensity) {
@@ -345,7 +356,7 @@ export function generateChunkData(chunkX, chunkY) {
                     let finalY = worldY + (pseudoRandom(propSeed + 2) * PROP_SPAWN_STEP);
 
                     // get colliders
-                    const chunkColliders = [...newChunk.props, ...newChunk.tiles, ...chunkEntities];
+                    const chunkColliders = [...newChunk.props, ...newChunk.tiles, ...chunkEntities, ...chunkItems];
 
                     // define the element
                     if (propConfig.type === "structures") { // is a structure
@@ -369,12 +380,12 @@ export function generateChunkData(chunkX, chunkY) {
 
                         // get the prop's width and height
                         const asset = ASSETS[propConfig.type][propConfig.texture];
-                        const fullWidth = asset.image.naturalWidth * PIXEL_SCALE * elementScale / 2;
-                        const fullHeight = asset.image.naturalHeight * PIXEL_SCALE * elementScale / 2;
+                        const halfWidth = asset.image.naturalWidth * PIXEL_SCALE * elementScale / 2;
+                        const halfHeight = asset.image.naturalHeight * PIXEL_SCALE * elementScale / 2;
 
                         // clamp to make sure the prop stays in the chunk
-                        finalX = Math.min(Math.max(finalX, chunkWorldX), maxChunkX - fullWidth);
-                        finalY = Math.min(Math.max(finalY, chunkWorldY), maxChunkY - fullHeight);
+                        finalX = Math.min(Math.max(finalX, chunkWorldX + halfWidth), maxChunkX - halfWidth);
+                        finalY = Math.min(Math.max(finalY, chunkWorldY + halfHeight), maxChunkY - halfHeight);
 
                         if (propConfig.type === "props") { // is a prop
                             const element = newProp(finalX, finalY, propConfig.texture);
@@ -396,6 +407,18 @@ export function generateChunkData(chunkX, chunkY) {
                             if (getCollisionsFromArray(element, chunkColliders, true).length === 0) {
                                 chunkEntities.push(element);
                                 CURRENT_WORLD.entities.push(element);
+                                break;
+                            }
+                        }
+                        else if (propConfig.type === "items") { // is an item
+                            const element = Items.newItem(finalX, finalY, propConfig.texture, propConfig.displayName, propConfig.displayDescription, propConfig.itemData);
+                            //element.flipped = pseudoRandom(propSeed + 3) > 0.5;
+                            element.scale = elementScale;
+
+                            // collision check
+                            if (getCollisionsFromArray(element, chunkColliders, true).length === 0) {
+                                chunkItems.push(element);
+                                CURRENT_WORLD.items.push(element);
                                 break;
                             }
                         }

@@ -59,6 +59,12 @@ export function newPlayer(texture) {
         texture: texture,
         scale: 1,
         flipped: false,
+
+        // inventory
+        inventory: {
+            slots: [null, null, null, null, null],
+            selectedSlot: 0
+        }
     }
 }
 
@@ -128,6 +134,11 @@ window.addEventListener('keydown', (e) => {
     if (e.key === "s") CURRENT_WORLD.player.keys.down = true;
     if (e.key === "d") CURRENT_WORLD.player.keys.right = true;
     if (e.key === "m") switchCamera();
+    if (e.key === "1") switchSelectedSlot(0);
+    if (e.key === "2") switchSelectedSlot(1);
+    if (e.key === "3") switchSelectedSlot(2);
+    if (e.key === "4") switchSelectedSlot(3);
+    if (e.key === "5") switchSelectedSlot(4);
 });
 window.addEventListener('keyup', (e) => {
     if (e.key === 'w') CURRENT_WORLD.player.keys.up = false;
@@ -165,7 +176,35 @@ function switchCamera() {
     cam.y = player.y;    
     cam.smoothZoom = otherCam.smoothZoom;
     cam.targetZoom = cam.initZoom;
+
+    // update overlays
+    const overlaysDiv = document.getElementById("gameOverlays");
+    overlaysDiv.style.display = CURRENT_WORLD.isMapOpen ? "none" : "initial";
     
+}
+
+//#endregion
+
+
+
+
+//#region INVENTORY
+
+function switchSelectedSlot(slotId) {
+    CURRENT_WORLD.player.inventory.selectedSlot = slotId;
+    updateInventoryDisplay();
+}
+
+
+export function updateInventoryDisplay() {
+    const selectedSlot = CURRENT_WORLD.player.inventory.selectedSlot;
+    const inventory = CURRENT_WORLD.player.inventory.slots;
+
+    inventory.forEach((slot, index) => {
+        const slotElement = document.querySelector(`.hotbarElement[data-slot-id="${index}"]`);
+        if (index === selectedSlot) slotElement.classList.add("selectedSlot");
+        else slotElement.classList.remove("selectedSlot");
+    });
 }
 
 //#endregion

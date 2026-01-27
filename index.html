@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="/styles/variables.css">
     <link rel="stylesheet" href="/styles/defaults.css">
     <link rel="stylesheet" href="/styles/menus.css">
+    <link rel="stylesheet" href="/styles/overlays.css">
     <link rel="stylesheet" href="/auth/auth.css">
 </head>
 <body>
@@ -96,6 +97,17 @@
 
     <!-- GAME CANVAS -->
     <div class="page" id="gamePage" style="display: none">
+
+        <div id="gameOverlays">
+            <div id="gameHotbar">
+                <div class="hotbarElement" data-slot-id="0"><img src=""></div>
+                <div class="hotbarElement" data-slot-id="1"><img src=""></div>
+                <div class="hotbarElement" data-slot-id="2"><img src=""></div>
+                <div class="hotbarElement" data-slot-id="3"><img src=""></div>
+                <div class="hotbarElement" data-slot-id="4"><img src=""></div>
+            </div>
+        </div>
+        
         <canvas id="gameCanvas"></canvas>
     </div>
 

@@ -35,13 +35,34 @@
             "entities": [
                 {
                     "texture": "String: The appearance of this entity. Must be in ENTITIES LIBRARY",
-                    "displayName": "String (Optional): The visible name of this entity. Set to NULL if entity is generic.",
+                    "displayName": "String (OPTIONAL): The visible name of this entity. Set to NULL if entity is generic",
                     "density": "Number: Density of this entity in each chunk. Must be between 0.001 (rare) and 1.0 (extremely dense)",
                     "traits": [ "String: The behavior of this entity. Choose all that apply from: 'AGGRESSIVE' (attacks player on sight), 'REGENERATIVE' (passive heal & flees player when health too low), 'COWARD' (flees when health too low), 'SKITTISH' (flees if player approaches), 'WANDERER' (moves aimlessly), 'COMPANION' (follows player at medium distance), 'STALKER' (watches player from a distance, flees if approached), 'VULTURE' (attacks only if player health is low), 'VIPER' (slowly weaves towards player, then attacks by charging at them)" ],
                     "stats": {
                         "health": "String: The health of this entity. Must be one of: 'VERY LOW', 'LOW', 'MEDIUM', 'HIGH', 'VERY HIGH'",
                         "movementSpeed": "String: The speed at which this entity moves. Must be one of: 'VERY LOW', 'LOW', 'MEDIUM', 'HIGH', 'VERY HIGH'",
                         "visionRange": "String: The vision range of this entity. Must be one of: 'VERY LOW', 'LOW', 'MEDIUM', 'HIGH', 'VERY HIGH'"
+                    }
+                }
+            ],
+            "items": [
+                {
+                    "texture": "String: The appearance of the item. Must be in ITEMS LIBRARY",
+                    "displayName": "String: The visible name of this item",
+                    "displayDescription": "String: The visible description of this item",
+                    "density": "Number: Density of this item in each chunk. Must be between 0.001 (rare) and 1.0 (extremely dense)",
+                    "itemData": {
+                        "category": "String: The category of this item. This massively changes the way the item is used. Must be one of 'JUNK' (no technical use), 'MELEE WEAPON' (physical short-range combat), 'CONSUMABLE' (one-time use, then disappears forever)",
+
+                        "// WEAPON STATS": "Only add the following stats if item category is 'MELEE WEAPON'",
+                        "weaponAttackDamage": "String: The damage dealt to enemies. Must be one of: 'VERY LOW', 'LOW', 'MEDIUM', 'HIGH', 'VERY HIGH'",
+                        "weaponAttackReach": "String: How far the weapon can hurt enemies. Must be one of: 'VERY LOW', 'LOW', 'MEDIUM', 'HIGH', 'VERY HIGH'",
+                        "weaponAttackCooldown": "String: How long it takes to wait between each attack. Must be one of: 'VERY LOW', 'LOW', 'MEDIUM', 'HIGH', 'VERY HIGH'",
+                        "weaponAttackArc": "String: How wide the attack radius is. A greater arc means the weapon can 'sweep' at multiple enemies at once. Must be one of: 'VERY LOW', 'LOW', 'MEDIUM', 'HIGH', 'VERY HIGH'",
+                        "weaponAttackLunge": "String: How far the player is pushed when attacking. Must be one of: 'VERY LOW', 'LOW', 'MEDIUM', 'HIGH', 'VERY HIGH'",
+
+                        "// CONSUMABLE STATS": "Only add the following stats if item category is 'CONSUMABLE'",
+                        "consumeHealth": "String: The health boost given when used. Must be one of: 'VERY LOW', 'LOW', 'MEDIUM', 'HIGH', 'VERY HIGH'"
                     }
                 }
             ],

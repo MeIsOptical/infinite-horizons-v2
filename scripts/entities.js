@@ -4,40 +4,14 @@ import { CURRENT_WORLD } from "./state.js";
 
 
 // maps to convert stats from text to values
-const HEALTH_MAP = {
-    "VERY LOW": 20,
-    "LOW": 50,
-    "MEDIUM": 100,
-    "HIGH": 250,
-    "VERY HIGH": 500
-}
+const HEALTH_MAP = { "VERY LOW": 20, "LOW": 50, "MEDIUM": 100, "HIGH": 250, "VERY HIGH": 500 };
 
-const MOV_SPEED_MAP = {
-    "VERY LOW": 0.2,
-    "LOW": 0.6,
-    "MEDIUM": 1,
-    "HIGH": 1.6,
-    "VERY HIGH": 3
-}
+const MOV_SPEED_MAP = { "VERY LOW": 0.2, "LOW": 0.6, "MEDIUM": 1, "HIGH": 1.6, "VERY HIGH": 3 };
 
-const VISION_RANGE_MAP = {
-    "VERY LOW": 600,
-    "LOW": 1200,
-    "MEDIUM": 1800,
-    "HIGH": 2600,
-    "VERY HIGH": 4500
-}
-
+const VISION_RANGE_MAP = { "VERY LOW": 600, "LOW": 1200, "MEDIUM": 1800, "HIGH": 2600, "VERY HIGH": 4500 };
 
 // maps the debug colors of all possible entity actions
-export const ENTITY_ACTION_COLORS = {
-    "IDLE": "#d8eaff",
-    "WANDER": "#9cff5f",
-    "ATTACK": "#ff5f5f",
-    "FLEE": "#ffee58",
-    "FOLLOW": "#d078ff",
-    "WEAVE": "#ff9b53"
-}
+export const ENTITY_ACTION_COLORS = { "IDLE": "#d8eaff", "WANDER": "#9cff5f", "ATTACK": "#ff5f5f", "FLEE": "#ffee58", "FOLLOW": "#d078ff", "WEAVE": "#ff9b53" };
 
 
 // get a new entity

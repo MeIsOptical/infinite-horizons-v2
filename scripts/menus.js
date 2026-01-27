@@ -1,6 +1,7 @@
 
 import * as World from "./worldgen.js";
 import * as Game from "./game.js";
+import * as Player from "./player.js";
 import { generateWorldFromPrompt } from "../ai/prompts.js";
 
 
@@ -124,6 +125,9 @@ async function generateNewWorld(currentPage) {
         World.generateNewWorld(newWorldConfig[selectedWorldPreset].output);
 
     }
+
+    // update inventory display
+    Player.updateInventoryDisplay();
 
     // start game loop
     requestAnimationFrame(Game.gameLoop);
