@@ -2,6 +2,7 @@
 import { CURRENT_WORLD } from "./state.js";
 import * as Entities from "./entities.js"
 import * as State from "./state.js";
+import * as Items from "./items.js";
 
 
 // get a new camera
@@ -49,7 +50,8 @@ export function newPlayer(texture) {
         stats: {
             maxHealth: 100,
             health: 100,
-            movementSpeed: 2
+            movementSpeed: 2,
+            pickupRange: 200
         },
 
         // inputs
@@ -134,6 +136,8 @@ window.addEventListener('keydown', (e) => {
     if (e.key === "s") CURRENT_WORLD.player.keys.down = true;
     if (e.key === "d") CURRENT_WORLD.player.keys.right = true;
     if (e.key === "m") switchCamera();
+    if (e.key === "e") tryPickUpNearestItem();
+    if (e.key === "q") dropSelectedItem();
     if (e.key === "1") switchSelectedSlot(0);
     if (e.key === "2") switchSelectedSlot(1);
     if (e.key === "3") switchSelectedSlot(2);
@@ -201,10 +205,73 @@ export function updateInventoryDisplay() {
     const inventory = CURRENT_WORLD.player.inventory.slots;
 
     inventory.forEach((slot, index) => {
+        // get slot
         const slotElement = document.querySelector(`.hotbarElement[data-slot-id="${index}"]`);
+
+        // get slot's image element
+        const img = slotElement.querySelector('img');
+
+        // update selected slot
         if (index === selectedSlot) slotElement.classList.add("selectedSlot");
         else slotElement.classList.remove("selectedSlot");
+
+        if (slot) {
+            const texture = `./assets/items/${slot.texture}.png`;
+            img.src = texture;
+        }
+        else {
+            img.src = "";
+        }
     });
+}
+
+
+
+
+function tryPickUpNearestItem() {
+    const player = CURRENT_WORLD.player;
+    const nearestItem = Items.getnearestItem(player.x, player.y, player.stats.pickupRange);
+
+    if (nearestItem) {
+        const inventory = player.inventory;
+        const selectedSlot = inventory.selectedSlot;
+        
+        if (inventory.slots[selectedSlot]) {
+            // if slot already filled, try adding to another slot
+            const emptySlotIndex = inventory.slots.findIndex(slot => slot === null);
+
+            if (emptySlotIndex !== -1) {
+                inventory.slots[emptySlotIndex] = nearestItem;
+                updateInventoryDisplay();
+                CURRENT_WORLD.items = CURRENT_WORLD.items.filter(item => item !== nearestItem);
+            }
+            else {
+                // all slots full, replace player's selected slot
+                dropSelectedItem();
+                inventory.slots[selectedSlot] = nearestItem;
+                updateInventoryDisplay();
+                CURRENT_WORLD.items = CURRENT_WORLD.items.filter(item => item !== nearestItem);
+            }
+        }
+        else {
+            inventory.slots[selectedSlot] = nearestItem;
+            updateInventoryDisplay();
+            CURRENT_WORLD.items = CURRENT_WORLD.items.filter(item => item !== nearestItem);
+        }
+    }
+}
+
+
+function dropSelectedItem() {
+    const player = CURRENT_WORLD.player;
+    const inventory = player.inventory;
+    const selectedItem = inventory.slots[inventory.selectedSlot];
+
+    if (selectedItem) {
+        CURRENT_WORLD.items.push(Items.newItem(player.x, player.y, selectedItem.texture, selectedItem.displayName, selectedItem.displayDescription, selectedItem.itemData));
+        inventory.slots[inventory.selectedSlot] = null;
+        updateInventoryDisplay();
+    }
 }
 
 //#endregion

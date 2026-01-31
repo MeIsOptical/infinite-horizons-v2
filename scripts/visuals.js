@@ -3,6 +3,7 @@ import { CURRENT_WORLD, DEBUG_MODE } from "./state.js";
 import { ASSETS } from "../assets/assets.js";
 import { getVisibleBiomePoints, pseudoRandom, GEN_CHUNK_SIZE } from "./worldgen.js";
 import { ENTITY_ACTION_COLORS } from "./entities.js";
+import * as Items from "./items.js";
 
 
 //#region SETUP
@@ -88,6 +89,13 @@ export function drawGame() {
         for (const element of verticalElements) {
             drawWorldElement(element);
         }
+
+
+        
+        const nearestItem = Items.getnearestItem(CURRENT_WORLD.player.x, CURRENT_WORLD.player.y, CURRENT_WORLD.player.stats.pickupRange);
+        if (nearestItem) {
+            drawItemTooltip(nearestItem);
+        }
     }
     else {
         drawMapIndicators();
@@ -162,11 +170,15 @@ function drawWorldElement(element) {
 
 
 
+
+//#region UI
+
 // function to write text on the game canvas
-function canvasWrite(text, x, y, color, fontSize, textAlign) {
+function canvasWrite(text, x, y, color, fontSize, textAlign, textBaseline = "alphabetic") {
 
     ctx.font = `${fontSize}px 'Jersey 10'`;
     ctx.textAlign = textAlign;
+    ctx.textBaseline = textBaseline;
 
     ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
     ctx.fillText(
@@ -182,6 +194,78 @@ function canvasWrite(text, x, y, color, fontSize, textAlign) {
     );
 }
 
+
+
+// function to get a color from the variables.css file
+function getCssColor(variableName) {
+    return getComputedStyle(document.documentElement).getPropertyValue(variableName).trim();
+}
+
+// colors used for the ui
+const UI_COLORS = {
+    border: getCssColor("--primary-color"),
+    background: getCssColor("--hotbar-color"),
+    interact: "#ffd154",
+    text: "#ffffff"
+};
+
+// function to draw an item's tooltip
+function drawItemTooltip(item) {
+    const cam = CURRENT_WORLD.isMapOpen ? CURRENT_WORLD.mapCamera : CURRENT_WORLD.camera;
+    const zoom = cam.smoothZoom;
+
+    const asset = ASSETS.items[item.texture];
+    const assetWidthOffset = asset.image.naturalWidth * PIXEL_SCALE / 2;
+
+    const scale = zoom / 2 + 0.6;
+
+    // text
+    const titleNameText = item.displayName;
+    const keybindText = " [E]";
+    const title = `${titleNameText}${keybindText}`;
+    const description = `${item.displayDescription}`;
+
+    // width & height calculation
+    const titleFontSize = 40 * scale;
+    const descriptionFontSize = 27 * scale;
+    const textGap = -2 * scale;
+    let totalTextHeight = titleFontSize + textGap + descriptionFontSize;
+    ctx.font = `${titleFontSize}px 'Jersey 10'`;
+    const titleNameWidth = ctx.measureText(titleNameText).width;
+    const fullTitleWidth = ctx.measureText(title).width;
+    ctx.font = `${descriptionFontSize}px 'Jersey 10'`;
+    const descriptionWidth = ctx.measureText(description).width;
+    const maxTextWidth = Math.max(fullTitleWidth, descriptionWidth);
+
+    // box size
+    const boxPadding = 10 * scale;
+    const boxWidth = maxTextWidth + boxPadding * 2;
+    const boxHeight = totalTextHeight + boxPadding * 2;
+
+    // get screen position
+    const screenX = (canvas.width / 2) + ((item.x - cam.x + assetWidthOffset + 30) * zoom);
+    const screenY = (canvas.height / 2) + ((item.y - cam.y) * zoom) - (boxHeight / 2);
+
+    // draw background
+    ctx.fillStyle = UI_COLORS.background;
+    ctx.fillRect(screenX, screenY, boxWidth, boxHeight);
+
+    // draw border
+    const borderSize = 5 * scale;
+    ctx.lineWidth = borderSize;
+    ctx.strokeStyle = UI_COLORS.border;
+    ctx.strokeRect(screenX - borderSize / 2 + 1, screenY - borderSize / 2 + 1, boxWidth + borderSize - 2, boxHeight + borderSize - 2);
+
+    // draw text
+    let textY = screenY + boxPadding;
+    canvasWrite(titleNameText, screenX + boxPadding, textY, UI_COLORS.text, titleFontSize, "left", "top");
+    canvasWrite(keybindText, screenX + boxPadding + titleNameWidth, textY, UI_COLORS.interact, titleFontSize, "left", "top");
+    textY += textGap + titleFontSize;
+    canvasWrite(description, screenX + boxPadding, textY, UI_COLORS.text, descriptionFontSize, "left", "top");
+}
+
+
+//#endregion
 
 
 

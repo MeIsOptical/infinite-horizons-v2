@@ -1,3 +1,5 @@
+import { CURRENT_WORLD } from "./state.js";
+import { ASSETS } from "../assets/assets.js";
 
 
 // maps to convert stats from text to values
@@ -25,4 +27,36 @@ export function newItem(x, y, texture, displayName, displayDescription, itemData
         scale: 1,
         flipped: false
     }
+}
+
+
+
+
+
+// get the nearest item in a radius around a certain x, y
+export function getnearestItem(centerX, centerY, radius) {
+    const radiusSq = radius ** 2;
+
+    let nearestItem = null;
+    let nearestItemDistSq = Infinity;
+    for (const item of CURRENT_WORLD.items) {
+        // get item width and height
+        const asset = ASSETS.items[item.texture];
+        const itemWidth = asset.image.naturalWidth;
+        const itemHeight = asset.image.naturalHeight;
+
+        // calculate item's center
+        const itemCenterX = item.x + itemWidth / 2;
+        const itemCenterY = item.y + itemHeight / 2;
+
+        // calculate distance
+        const itemDistanceSq = (centerX - itemCenterX) ** 2 + (centerY - itemCenterY) ** 2;
+
+        if (itemDistanceSq < nearestItemDistSq && itemDistanceSq < radiusSq) {
+            nearestItem = item;
+            nearestItemDistSq = itemDistanceSq;
+        }
+    }
+
+    return nearestItem;
 }

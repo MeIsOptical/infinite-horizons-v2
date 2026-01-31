@@ -424,6 +424,20 @@
                                 "weaponAttackArc": "MEDIUM",
                                 "weaponAttackLunge": "MEDIUM"
                             }
+                        },
+                        {
+                            "texture": "red_apple",
+                            "displayName": "Red Apple",
+                            "displayDescription": "an apple",
+                            "density": 1,
+                            "itemData": {
+                                "category": "MELEE WEAPON",
+                                "weaponAttackDamage": "MEDIUM",
+                                "weaponAttackReach": "MEDIUM",
+                                "weaponAttackCooldown": "MEDIUM",
+                                "weaponAttackArc": "MEDIUM",
+                                "weaponAttackLunge": "MEDIUM"
+                            }
                         }
                     ],
                     "structures": [

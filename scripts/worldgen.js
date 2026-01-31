@@ -56,7 +56,7 @@ export async function generateNewWorld(newWorldConfig) {
 
 
 // get a new prop
-function newProp(x, y, texture) {
+export function newProp(x, y, texture) {
     return {
         //type
         type: "props",
