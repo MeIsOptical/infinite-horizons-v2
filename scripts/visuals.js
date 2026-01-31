@@ -714,13 +714,13 @@ function drawChunkBorders() {
 
 
 const mapIndicators = {
-    red: "../assets/ui/map/red_map_indicator.png",
-    orange: "../assets/ui/map/orange_map_indicator.png",
-    yellow: "../assets/ui/map/yellow_map_indicator.png",
-    green: "../assets/ui/map/green_map_indicator.png",
-    aqua: "../assets/ui/map/aqua_map_indicator.png",
-    blue: "../assets/ui/map/blue_map_indicator.png",
-    purple: "../assets/ui/map/purple_map_indicator.png"
+    red: "./assets/ui/map/red_map_indicator.png",
+    orange: "./assets/ui/map/orange_map_indicator.png",
+    yellow: "./assets/ui/map/yellow_map_indicator.png",
+    green: "./assets/ui/map/green_map_indicator.png",
+    aqua: "./assets/ui/map/aqua_map_indicator.png",
+    blue: "./assets/ui/map/blue_map_indicator.png",
+    purple: "./assets/ui/map/purple_map_indicator.png"
 };
 
 

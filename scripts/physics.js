@@ -1,5 +1,4 @@
 
-import { CURRENT_WORLD } from "./state.js";
 import { ASSETS } from "../assets/assets.js";
 import { PIXEL_SCALE } from "./visuals.js";
 import { getVisibleElements } from "./visuals.js";
